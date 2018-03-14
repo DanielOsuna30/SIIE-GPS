@@ -15,6 +15,7 @@ namespace SIIE.Api.Models
             public string Password { get; set; }
             public string Semester { get; set; } 
             public int Carrer { get; set; } = -1;
+            public int Specialty { get; set; } = -1;
             public int Type { get; set; } = -1;
             public string FirstName { get; set; }
             public string LastName { get; set; }

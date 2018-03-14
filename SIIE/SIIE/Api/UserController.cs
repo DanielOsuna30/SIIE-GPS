@@ -9,7 +9,7 @@ using System.Web.Http;
 
 namespace SIIE.Api
 {
-    [RoutePrefix("api/users/")]
+    [RoutePrefix("api/users")]
     public class UserController : ApiController
     {
         [HttpGet, Route("{userId:int}")]
@@ -23,6 +23,12 @@ namespace SIIE.Api
         public HttpResponseMessage Patch([FromBody] UserModels.User UserData)
         {
             return Request.CreateResponse(HttpStatusCode.OK, new { Status = "Saved" });
+        }
+
+        [HttpDelete, Route("{userId:int}")]
+        public HttpResponseMessage Delete([FromBody] UserModels.User UserData)
+        {
+            return Request.CreateResponse(HttpStatusCode.OK, new { Status = "Deleted" });
         }
 
         [HttpGet, Route("get")]
