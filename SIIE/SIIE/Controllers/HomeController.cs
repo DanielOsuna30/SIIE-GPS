@@ -26,5 +26,10 @@ namespace SIIE.Controllers
 
             return View();
         }
+
+        private ActionResult Unauthorized()
+        {
+            return new HttpUnauthorizedResult();
+        }
     }
 }
