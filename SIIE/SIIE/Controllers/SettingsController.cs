@@ -9,9 +9,9 @@ using SIIE.Controllers.Helpers;
 namespace SIIE.Controllers
 {
     [SessionAuthorize]
-    public class SubjectController : Controller
+    public class SettingsController : Controller
     {
-        // GET: Subject
+        // GET: Settings
         public ActionResult Index()
         {
             return View();

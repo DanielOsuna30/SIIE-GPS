@@ -20,18 +20,14 @@ namespace SIIE.Controllers.Helpers
         /// <param name="filterContext"></param>
         protected override void HandleUnauthorizedRequest(AuthorizationContext Context)
         {
-            if (Context.HttpContext.Session[""]!=null)
-            {
+            if (Context.HttpContext.Session["userType"]==null)
                 Context.Result = new RedirectToRouteResult(
                     new RouteValueDictionary(new { controller = "Auth", action = "Index" })
                 );
-            }
             else
-            {
                 Context.Result = new RedirectToRouteResult(
-                    new RouteValueDictionary(new { controller = "Home", action = "Unauthorized" })
+                    new RouteValueDictionary(new { controller = "Home", action = "Index" })
                 );
-            }
         }
 
         /// <summary>

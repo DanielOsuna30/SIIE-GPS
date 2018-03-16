@@ -21,7 +21,7 @@ namespace SIIE.Models
             public string SubjectsJson { get; set; }
         }
 
-        public class StuentCourse
+        public class StudentCourse
         {
             public int id { get; set; }
             public int CarrerId { get; set; }
@@ -59,6 +59,14 @@ namespace SIIE.Models
             public int id { get; set; }
             public int StudentId { get; set; }
             public string Subjects { get; set; }
+        }
+
+        public class ReinscriptionData
+        {
+            public string BeginDate { get; set; }
+            public string EndingDate { get; set; }
+            public double Quantity1 { get; set; }
+            public double Quantity2 { get; set; }
         }
 
     }

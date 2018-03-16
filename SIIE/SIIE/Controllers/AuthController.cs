@@ -15,7 +15,10 @@ namespace SIIE.Controllers
         [Route("")]
         public ActionResult Index()
         {
-            return View();
+            if (HttpContext.Session["userType"] == null)
+                return View();
+            else
+                return RedirectToAction("Index", "Home");
         }
 
         /// <summary>

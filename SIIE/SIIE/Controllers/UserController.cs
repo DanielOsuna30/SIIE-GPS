@@ -10,15 +10,22 @@ using SIIE.Controllers.Helpers;
 
 namespace SIIE.Controllers
 {
-    [RoutePrefix("User")]
     [SessionAuthorize]
+    [RoutePrefix("User")]
     public class UserController : Controller
     {
         UserModels.Admin AdminController;
         UserModels.Student StudentController;
 
         // GET: User
+        [Route("")]
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        [Route("Search")]
+        public ActionResult Search()
         {
             return View();
         }
@@ -32,18 +39,6 @@ namespace SIIE.Controllers
         [Route("")]
         public JsonResult Get(int userId = -1)
         {
-            //switch (Convert.ToInt32(Session["userType"]))
-            //{
-            //    case 0:
-            //        StudentController.Get();
-            //        break;
-            //    case 1:
-            //        AdminController.Get();
-            //        break;
-            //    default:
-            //        break;
-               
-            //} 
             UserModels.User UserData = new UserModels.User();
             return Json(new { success = true, status=HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
         }
@@ -54,6 +49,7 @@ namespace SIIE.Controllers
         /// <param name="UserData"></param>
         /// <returns></returns>
         [HttpPost]
+        [Route("")]
         [SessionAuthorize(Users ="1")]
         public JsonResult Post(UserModels.User UserData)
         {
@@ -73,6 +69,7 @@ namespace SIIE.Controllers
         /// <param name="UserData"></param>
         /// <returns></returns>
         [HttpPatch]
+        [Route("")]
         public JsonResult Patch(UserModels.User UserData)
         {
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
@@ -96,8 +93,9 @@ namespace SIIE.Controllers
         /// </summary>
         /// <param name="filters"></param>
         /// <returns></returns>
-        [HttpGet]
-        [SessionAuthorize(Users="1,2,3")]
+        [HttpPost]
+        [Route("Search")]
+        [SessionAuthorize(Users="1,2")]
         public JsonResult GetAll(UserModels.User filters)
         {
             string filtersQuery = "Where ";
@@ -111,16 +109,5 @@ namespace SIIE.Controllers
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
 
-        /// <summary>
-        /// Reinscripcion para alumnos
-        /// </summary>
-        /// <param name="UserData"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [SessionAuthorize(Users ="0")]
-        public JsonResult Reinscription(UserModels.User UserData)
-        {
-            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
-        }
     }
 }

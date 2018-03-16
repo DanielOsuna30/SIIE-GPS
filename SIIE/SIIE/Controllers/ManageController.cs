@@ -7,10 +7,12 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SIIE.Models;
+using SIIE.Controllers.Helpers;
+
 
 namespace SIIE.Controllers
 {
-    [Authorize]
+    [SessionAuthorize]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;
