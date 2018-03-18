@@ -72,5 +72,9 @@ namespace SIIE.Models
         public class InscriptionData
         {
         }
+
+        public class ReinscriptionStudentData
+        {
+        }
     }
 }

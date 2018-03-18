@@ -5,19 +5,20 @@ using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Routing;
+using SIIE.Controllers.Engine;
 
 namespace SIIE.Controllers.Helpers
 {
 
     /// <summary>
-    /// Revision de permisos de Session
+    /// Estanadar para las clases
     /// </summary>
     [AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Method, Inherited = true, AllowMultiple = true)]
-    public class SessionAuthorize:AuthorizeAttribute
+    public class AuthorizeGeneral:AuthorizeAttribute
     {
         protected override void HandleUnauthorizedRequest(AuthorizationContext Context)
         {
-            if (Context.HttpContext.Session["userType"]==null)
+            if (Context.HttpContext.Session["userType"] == null)
                 Context.Result = new RedirectToRouteResult(
                     new RouteValueDictionary(new { controller = "Auth", action = "Index" })
                 );
@@ -27,81 +28,58 @@ namespace SIIE.Controllers.Helpers
                 );
         }
 
-        protected override bool AuthorizeCore(HttpContextBase httpContext)
+        public bool getLoginData(HttpContextBase httpContext)
         {
             if (httpContext.Session["userType"] == null)
                 return false;
-            if (Users != "" )
+            if (Users != "")
                 if (Users.Contains(httpContext.Session["userType"].ToString()))
                     return true;
                 else
                     return false;
             else
                 return true;
+        }
+    }
+
+    /// <summary>
+    /// Revision de permisos de Session
+    /// </summary>
+    public class SessionAuthorize:AuthorizeGeneral
+    {
+        protected override bool AuthorizeCore(HttpContextBase httpContext)
+        {
+            return getLoginData(httpContext);
         }
     }
 
     /// <summary>
     /// Revision si ya es fecha de Inscripcion
     /// </summary>
-    [AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Method, Inherited = true, AllowMultiple = true)]
-    public class InscriptionAuthorize:AuthorizeAttribute
+    public class InscriptionAuthorize:AuthorizeGeneral
     {
-        protected override void HandleUnauthorizedRequest(AuthorizationContext Context)
-        {
-            if (Context.HttpContext.Session["userType"] == null)
-                Context.Result = new RedirectToRouteResult(
-                    new RouteValueDictionary(new { controller = "Auth", action = "Index" })
-                );
-            else
-                Context.Result = new RedirectToRouteResult(
-                    new RouteValueDictionary(new { controller = "Home", action = "Index" })
-                );
-        }
-
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            if (httpContext.Session["userType"] == null)
+            ReinscriptionEngine Re = new ReinscriptionEngine();
+
+            if (!Re.GetStatus())
                 return false;
-            if (Users != "")
-                if (Users.Contains(httpContext.Session["userType"].ToString()))
-                    return true;
-                else
-                    return false;
-            else
-                return true;
+            return getLoginData(httpContext);
         }
     }
 
     /// <summary>
     /// Revision si ya es fecha de Reinscripcion
     /// </summary>
-    [AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Method, Inherited = true, AllowMultiple = true)]
-    public class ReinscriptionAuthorize : AuthorizeAttribute
+    public class ReinscriptionAuthorize : AuthorizeGeneral
     {
-        protected override void HandleUnauthorizedRequest(AuthorizationContext Context)
-        {
-            if (Context.HttpContext.Session["userType"] == null)
-                Context.Result = new RedirectToRouteResult(
-                    new RouteValueDictionary(new { controller = "Auth", action = "Index" })
-                );
-            else
-                Context.Result = new RedirectToRouteResult(
-                    new RouteValueDictionary(new { controller = "Home", action = "Index" })
-                );
-        }
-
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            if (httpContext.Session["userType"] == null)
+            InscriptionEngine Ie = new InscriptionEngine();
+
+            if (!Ie.GetStatus())
                 return false;
-            if (Users != "")
-                if (Users.Contains(httpContext.Session["userType"].ToString()))
-                    return true;
-                else
-                    return false;
-            else
-                return true;
+            return getLoginData(httpContext);
         }
     }
 }

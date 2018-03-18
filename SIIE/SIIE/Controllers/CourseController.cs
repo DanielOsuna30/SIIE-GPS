@@ -36,6 +36,7 @@ namespace SIIE.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("Inscripcion")]
+        [InscriptionAuthorize]
         public JsonResult Inscripcion(CourseModels.InscriptionData Data)
         {
             if (IEngine.GetStatus())
@@ -44,7 +45,35 @@ namespace SIIE.Controllers
                 return Json(new { status=HttpStatusCode.Unauthorized}, JsonRequestBehavior.AllowGet);
         }
 
+        [Route("Inscripcion/Update")]
+        [SessionAuthorize(Users ="1")]
+        public ActionResult InscriptionUpdate()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Route("Inscripcion/Update")]
+        [SessionAuthorize(Users ="1")]
+        public JsonResult InscriptionUpdate(CourseModels.InscriptionUpdate Data)
+        {
+            return Json(new { status = HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [Route("Inscripcion/Update")]
+        [InscriptionAuthorize]
+        public JsonResult InscripcionUpdate(CourseModels.InscriptionUpdate Data)
+        {
+            return Json(new { status=HttpStatusCode.OK },JsonRequestBehavior.AllowGet)
+        }
+
+        /// <summary>
+        /// Vista para reinscribirse
+        /// </summary>
+        /// <returns></returns>
         [Route("Reinscripcion")]
+        [ReinscriptionAuthorize]
         public ActionResult Reinscripcion()
         {
             if (Session["userType"].ToString() != "3")
@@ -54,6 +83,31 @@ namespace SIIE.Controllers
         }
 
         /// <summary>
+        /// Ingresar materias de reinscripcion
+        /// </summary>
+        /// <param name="Data"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("Reinscripcion")]
+        [ReinscriptionAuthorize]
+        public JsonResult Reinscripcion(CourseModels.ReinscriptionData Data)
+        {
+            return Json(new { status = HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// Actualizar reinscripcion
+        /// </summary>
+        /// <returns></returns>
+        [Route("Reinscripcion/Update")]
+        [SessionAuthorize(Users="1")]
+        public ActionResult ReinscriptionUpdate()
+        {
+            return View();
+        }
+
+
+        /// <summary>
         /// Definir fechas, precios y limites para la reinscripcion de este semestre
         /// </summary>
         /// <param name="Data"></param>
@@ -61,7 +115,7 @@ namespace SIIE.Controllers
         [HttpPost]
         [Route("Reinscripcion/Update")]
         [SessionAuthorize(Users="1")]
-        public JsonResult UpdateReinscriptionStatus(CourseModels.ReinscriptionData Data)
+        public JsonResult ReinscriptionUpdate(CourseModels.ReinscriptionUpdate Data)
         {
             REngine.UpdateStatus();
             return Json(new { message="Guardado",status= HttpStatusCode.OK}, JsonRequestBehavior.AllowGet);
@@ -77,17 +131,14 @@ namespace SIIE.Controllers
         [SessionAuthorize(Users = "2,3")]
         public ActionResult ReinscriptionFoil(string userId = "")
         {
-            if (REngine.ReinscriptionStatus())
-            {
-                DocumentsManager Dm = new Helpers.DocumentsManager();
-                string fileName = Dm.ReinscriptionFoil(userId);
-                Response.AddHeader("Content-Disposition", "attachment;filename=" + fileName);
-                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                Response.WriteFile(AppDomain.CurrentDomain.BaseDirectory + "Content\\Templates\\" + fileName);
-                Response.End();
-                FileInfo fileInfo = new FileInfo(AppDomain.CurrentDomain.BaseDirectory + "Content\\Templates\\" + fileName);
-                fileInfo.Delete();
-            }
+            DocumentsManager Dm = new Helpers.DocumentsManager();
+            string fileName = Dm.ReinscriptionFoil(userId);
+            Response.AddHeader("Content-Disposition", "attachment;filename=" + fileName);
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            Response.WriteFile(AppDomain.CurrentDomain.BaseDirectory + "Content\\Templates\\" + fileName);
+            Response.End();
+            FileInfo fileInfo = new FileInfo(AppDomain.CurrentDomain.BaseDirectory + "Content\\Templates\\" + fileName);
+            fileInfo.Delete();
             return null;
         }
 
@@ -99,18 +150,6 @@ namespace SIIE.Controllers
         [HttpGet]
         [Route("ReinscripcionData")]
         public JsonResult GetReinscriptionSubjects(string userId="")
-        {
-            return Json(new { subjects = "" }, JsonRequestBehavior.AllowGet);
-        }
-
-        /// <summary>
-        /// Recibir materias elegidas por usuario
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("ReinscripcionData")]
-        public JsonResult SetReinscriptionSubjects(string userId="")
         {
             return Json(new { subjects = "" }, JsonRequestBehavior.AllowGet);
         }
