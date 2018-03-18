@@ -31,12 +31,33 @@ namespace SIIE.Controllers
         }
 
         /// <summary>
+        /// Obtener todos los usuarios que cumplan con los filtros indicados
+        /// </summary>
+        /// <param name="filters"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("Search")]
+        [SessionAuthorize(Users = "1,2")]
+        public JsonResult Search(UserModels.User filters)
+        {
+            string filtersQuery = "Where ";
+            filtersQuery += filters.Type != -1 ? "Type=" + filters.Type.ToString() : "";
+            filtersQuery += filters.FirstName != null ? "FirstName='" + filters.FirstName + "'" : "";
+            filtersQuery += filters.ControlNumber != 0 ? "ControlNumber=" + filters.ControlNumber : "";
+            filtersQuery += filters.Semester != null ? "Semester=" + filters.Semester : "";
+            filtersQuery += filters.Carrer != -1 ? "Carrer=" + filters.Carrer : "";
+
+            List<UserModels.User> Users = new List<UserModels.User>();
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
         /// Obtener informacion de usuario por ControlNumber
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("")]
+        [Route("Get")]
         public JsonResult Get(int userId = -1)
         {
             UserModels.User UserData = new UserModels.User();
@@ -88,26 +109,7 @@ namespace SIIE.Controllers
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
 
-        /// <summary>
-        /// Obtener todos los usuarios que cumplan con los filtros indicados
-        /// </summary>
-        /// <param name="filters"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("Search")]
-        [SessionAuthorize(Users="1,2")]
-        public JsonResult GetAll(UserModels.User filters)
-        {
-            string filtersQuery = "Where ";
-            filtersQuery += filters.Type != -1 ? "Type=" + filters.Type.ToString() : "";
-            filtersQuery += filters.FirstName != null ? "FirstName='" + filters.FirstName + "'" : "";
-            filtersQuery += filters.ControlNumber != 0 ? "ControlNumber=" + filters.ControlNumber : "";
-            filtersQuery += filters.Semester != null ? "Semester=" + filters.Semester : "";
-            filtersQuery += filters.Carrer != -1 ? "Carrer=" + filters.Carrer : "";
 
-            List<UserModels.User> Users = new List<UserModels.User>();
-            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
-        }
 
     }
 }

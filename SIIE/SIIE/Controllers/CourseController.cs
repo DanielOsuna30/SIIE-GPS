@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using SIIE.Controllers.Helpers;
+using SIIE.Controllers.Engine;
 using SIIE.Models;
 using System.IO;
 using System.Net;
@@ -14,11 +12,36 @@ namespace SIIE.Controllers
     [SessionAuthorize]
     public class CourseController : Controller
     {
+        private ReinscriptionEngine REngine;
+        private InscriptionEngine IEngine;
+           
         // GET: Course
         [Route("")]
         public ActionResult Index()
         {
             return View();
+        }
+
+        [Route("Inscripcion")]
+        [InscriptionAuthorize]
+        public ActionResult Inscripcion()
+        {
+                return View();
+        }
+
+        /// <summary>
+        /// Recibe informacion de alumno de nuevo ingreso 
+        /// </summary>
+        /// <param name="Data"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("Inscripcion")]
+        public JsonResult Inscripcion(CourseModels.InscriptionData Data)
+        {
+            if (IEngine.GetStatus())
+                return Json(new { status=HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
+            else
+                return Json(new { status=HttpStatusCode.Unauthorized}, JsonRequestBehavior.AllowGet);
         }
 
         [Route("Reinscripcion")]
@@ -38,18 +61,10 @@ namespace SIIE.Controllers
         [HttpPost]
         [Route("Reinscripcion/Update")]
         [SessionAuthorize(Users="1")]
-        public JsonResult SetupReinscriptionStatus(CourseModels.ReinscriptionData Data)
+        public JsonResult UpdateReinscriptionStatus(CourseModels.ReinscriptionData Data)
         {
+            REngine.UpdateStatus();
             return Json(new { message="Guardado",status= HttpStatusCode.OK}, JsonRequestBehavior.AllowGet);
-        }
-
-        /// <summary>
-        /// Revisar si ya es fecha de reinscripcion
-        /// </summary>
-        /// <returns></returns>
-        private bool ReinscriptionStatus()
-        {
-            return false;
         }
 
         /// <summary>
@@ -62,7 +77,7 @@ namespace SIIE.Controllers
         [SessionAuthorize(Users = "2,3")]
         public ActionResult ReinscriptionFoil(string userId = "")
         {
-            if (ReinscriptionStatus())
+            if (REngine.ReinscriptionStatus())
             {
                 DocumentsManager Dm = new Helpers.DocumentsManager();
                 string fileName = Dm.ReinscriptionFoil(userId);
@@ -94,20 +109,10 @@ namespace SIIE.Controllers
         /// <param name="userId"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("ReinscriptionData")]
+        [Route("ReinscripcionData")]
         public JsonResult SetReinscriptionSubjects(string userId="")
         {
             return Json(new { subjects = "" }, JsonRequestBehavior.AllowGet);
-        }
-
-        /// <summary>
-        /// Validar que las materias recibidas concuerden con las del usuario
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        private bool ValidateReinscription(string data)
-        {
-            return false;
         }
 
     }

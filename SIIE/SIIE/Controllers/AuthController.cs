@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -32,16 +33,20 @@ namespace SIIE.Controllers
         {
             if (VerifyCredentials(Data.ControlNumber, Data.Password))
             {
-                Session["id"] = 1;
+                Session["id"] = Data.ControlNumber;
                 Session["userType"] = 0;
-                return Json(new { success = true, route= ConfigurationManager.AppSettings["MainRoute"] }, JsonRequestBehavior.AllowGet);
+                return Json(new { status=HttpStatusCode.OK, route= ConfigurationManager.AppSettings["MainRoute"] }, JsonRequestBehavior.AllowGet);
             }
             else
-            {
-                return Json(new { success = false, message="Usuario o contraseña no correctos" }, JsonRequestBehavior.AllowGet);
-            }
+                return Json(new { status=HttpStatusCode.Unauthorized, message="Usuario o contraseña no correctos" }, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Verificar credenciales de login en la db
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         private bool VerifyCredentials(int user,string password)
         {
             return true;

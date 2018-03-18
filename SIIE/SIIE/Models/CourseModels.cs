@@ -69,5 +69,8 @@ namespace SIIE.Models
             public double Quantity2 { get; set; }
         }
 
+        public class InscriptionData
+        {
+        }
     }
 }
