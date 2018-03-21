@@ -71,6 +71,49 @@ namespace SIIE.Models
 
         public class InscriptionData
         {
+            //chente estuvo aqui
+            public string PLastName { get; set; }
+            public string MLastName { get; set; }
+            public string Name { get; set; }
+            public string Date { get; set; }
+            public Boolean Gender { get; set; }
+            public string CareerOption1 { get; set; }
+            public string CareerOption2 { get; set; }
+            public string PrevScholl { get; set; }
+            public string EGressDate { get; set; }
+            public Double GeneralAverage { get; set; }
+            public string Address { get; set; }
+            public string State { get; set; }
+            public string Municipality { get; set; }
+            public UInt16 PostalCode { get; set; }
+            public string Suburb { get; set; }
+            public string PhoneNumber { get; set; }
+            public string Email { get; set; }
+            public String CivilStatus { get; set; }
+            public Boolean Disability { get; set; }
+            public Boolean Shoolarship { get; set; }
+            public Boolean OpportunitiesProgram { get; set; }
+            public string FatherPLastName { get; set; }
+            public string FatherMLastName { get; set; }
+            public string FatherName { get; set; }
+            public string MotherPLastName { get; set; }
+            public string MotherMLastName { get; set; }
+            public string MotherName { get; set; }
+            public string FatherJob { get; set; }
+            public string FatherJobOther { get; set; }
+            public string MotherJob { get; set; }
+            public string MotherJobOther { get; set; }
+            public string EconomicDependence { get; set; }
+            public string HouseOwner { get; set; }
+            public string IncomeRange { get; set; }
+            public string EmergenciesName { get; set; }
+            public string EmergenciesAdress { get; set; }
+            public string EmergenciesPhoneNumber { get; set; }
+            public string EmergenciesJobAdress { get; set; }
+            public string EmergenciesJobPhoneNumber { get; set; }
+
+
+
         }
 
         public class ReinscriptionStudentData
