@@ -251,6 +251,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
+    <Compile Include="Controllers\Engine\InscriptionEngine.cs" />
+    <Compile Include="Controllers\Engine\ReinscriptionEngine.cs" />
+    <Compile Include="Controllers\Engine\SemesterEngine.cs" />
     <Compile Include="Controllers\Helpers\DatabaseManager.cs" />
     <Compile Include="Controllers\Helpers\DocumentsManager.cs" />
     <Compile Include="Controllers\Helpers\SessionAuthorize.cs" />

@@ -7,6 +7,7 @@ using System.Net;
 using System.IO;
 using SIIE.Models;
 using SIIE.Controllers.Helpers;
+using Newtonsoft.Json;
 
 namespace SIIE.Controllers
 {
@@ -24,10 +25,32 @@ namespace SIIE.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Obtener informacion de usuario por ControlNumber
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("Get")]
+        public JsonResult Get(int userId = -1)
+        {
+            UserModels.User UserData = new UserModels.User();
+            return Json(new { success = true, status = HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
+        }
+
         [Route("Search")]
+        [SessionAuthorize(Users = "1,2")]
         public ActionResult Search()
         {
-            return View();
+            List<UserModels.Student> Students = new List<UserModels.Student>();
+            UserModels.Student a = new UserModels.Student();
+            for (int i = 0; i > 5; i ++)
+            {
+                a.ControlNumber = i;
+                Students.Add(a);
+            }
+            var results = JsonConvert.SerializeObject(Students);
+            return View(Students);
         }
 
         /// <summary>
@@ -51,18 +74,6 @@ namespace SIIE.Controllers
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
 
-        /// <summary>
-        /// Obtener informacion de usuario por ControlNumber
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("Get")]
-        public JsonResult Get(int userId = -1)
-        {
-            UserModels.User UserData = new UserModels.User();
-            return Json(new { success = true, status=HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
-        }
 
         /// <summary>
         /// Crear usuario
@@ -108,8 +119,5 @@ namespace SIIE.Controllers
             
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
-
-
-
     }
 }

@@ -14,7 +14,7 @@ namespace SIIE.Controllers
     {
         private ReinscriptionEngine REngine;
         private InscriptionEngine IEngine;
-           
+
         // GET: Course
         [Route("")]
         public ActionResult Index()
@@ -30,7 +30,7 @@ namespace SIIE.Controllers
         }
 
         /// <summary>
-        /// Recibe informacion de alumno de nuevo ingreso 
+        /// Recibe informacion de alumno de nuevo ingreso
         /// </summary>
         /// <param name="Data"></param>
         /// <returns></returns>
@@ -52,20 +52,17 @@ namespace SIIE.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Actualizar fechas de Inscripcion
+        /// </summary>
+        /// <param name="Data"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("Inscripcion/Update")]
         [SessionAuthorize(Users ="1")]
         public JsonResult InscriptionUpdate(CourseModels.InscriptionUpdate Data)
         {
             return Json(new { status = HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        [Route("Inscripcion/Update")]
-        [InscriptionAuthorize]
-        public JsonResult InscripcionUpdate(CourseModels.InscriptionUpdate Data)
-        {
-            return Json(new { status=HttpStatusCode.OK },JsonRequestBehavior.AllowGet)
         }
 
         /// <summary>
@@ -117,7 +114,7 @@ namespace SIIE.Controllers
         [SessionAuthorize(Users="1")]
         public JsonResult ReinscriptionUpdate(CourseModels.ReinscriptionUpdate Data)
         {
-            REngine.UpdateStatus();
+            REngine.UpdateStatus(Data);
             return Json(new { message="Guardado",status= HttpStatusCode.OK}, JsonRequestBehavior.AllowGet);
         }
 
@@ -143,7 +140,7 @@ namespace SIIE.Controllers
         }
 
         /// <summary>
-        /// Obtener materias en formato json 
+        /// Obtener materias en formato json
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
