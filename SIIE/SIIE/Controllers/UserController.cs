@@ -11,8 +11,7 @@ using Newtonsoft.Json;
 
 namespace SIIE.Controllers
 {
-    [SessionAuthorize]
-    [RoutePrefix("User")]
+    [RoutePrefix("Users")]
     public class UserController : Controller
     {
         UserModels.Admin AdminController;
@@ -20,22 +19,36 @@ namespace SIIE.Controllers
 
         // GET: User
         [Route("")]
+        [SessionAuthorize]
         public ActionResult Index()
         {
             return View();
         }
 
         /// <summary>
-        /// Obtener informacion de usuario por ControlNumber
+        /// Obtener informacion de usuario actual
         /// </summary>
-        /// <param name="userId"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("Get")]
-        public JsonResult Get(int userId = -1)
+        [Route("Data")]
+        [SessionAuthorize]
+        public JsonResult Get()
         {
             UserModels.User UserData = new UserModels.User();
-            return Json(new { success = true, status = HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
+            return Json(new { controlNumber=Session["controlNumber"], success = true, status = HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// Obtener informacion de usuario por ControlNumber
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("Data/{controlNumber:int}")]
+        [SessionAuthorize(Users ="1,2")]
+        public JsonResult Get(int controlNumber)
+        {
+            UserModels.User UserData = new UserModels.User();
+            return Json(new { controlNumber=controlNumber, success = true, status = HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
         }
 
         [Route("Search")]
@@ -73,7 +86,6 @@ namespace SIIE.Controllers
             List<UserModels.User> Users = new List<UserModels.User>();
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
-
 
         /// <summary>
         /// Crear usuario

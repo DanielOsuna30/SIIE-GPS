@@ -65,10 +65,6 @@ namespace SIIE.Controllers
             return Json(new { status = HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
         }
 
-        /// <summary>
-        /// Vista para reinscribirse
-        /// </summary>
-        /// <returns></returns>
         [Route("Reinscripcion")]
         [ReinscriptionAuthorize]
         public ActionResult Reinscripcion()
@@ -92,17 +88,12 @@ namespace SIIE.Controllers
             return Json(new { status = HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
         }
 
-        /// <summary>
-        /// Actualizar reinscripcion
-        /// </summary>
-        /// <returns></returns>
         [Route("Reinscripcion/Update")]
         [SessionAuthorize(Users="1")]
         public ActionResult ReinscriptionUpdate()
         {
             return View();
         }
-
 
         /// <summary>
         /// Definir fechas, precios y limites para la reinscripcion de este semestre
@@ -125,11 +116,11 @@ namespace SIIE.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("Reinscripcion/Ficha")]
-        [SessionAuthorize(Users = "2,3")]
-        public ActionResult ReinscriptionFoil(string userId = "")
+        [SessionAuthorize]
+        public ActionResult ReinscriptionFoil(string controlNumber = "")
         {
             DocumentsManager Dm = new Helpers.DocumentsManager();
-            string fileName = Dm.ReinscriptionFoil(userId);
+            string fileName = Dm.ReinscriptionFoil(controlNumber);
             Response.AddHeader("Content-Disposition", "attachment;filename=" + fileName);
             Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
             Response.WriteFile(AppDomain.CurrentDomain.BaseDirectory + "Content\\Templates\\" + fileName);
@@ -142,11 +133,10 @@ namespace SIIE.Controllers
         /// <summary>
         /// Obtener materias en formato json
         /// </summary>
-        /// <param name="userId"></param>
         /// <returns></returns>
         [HttpGet]
         [Route("ReinscripcionData")]
-        public JsonResult GetReinscriptionSubjects(string userId="")
+        public JsonResult GetReinscriptionSubjects()
         {
             return Json(new { subjects = "" }, JsonRequestBehavior.AllowGet);
         }

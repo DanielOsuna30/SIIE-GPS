@@ -33,12 +33,12 @@ namespace SIIE.Controllers
         {
             if (VerifyCredentials(Data.ControlNumber, Data.Password))
             {
-                Session["id"] = Data.ControlNumber;
-                Session["userType"] = 0;
+                Session["controlNumber"] = Data.ControlNumber;
+                Session["userType"] = 1;
                 return Json(new { status=HttpStatusCode.OK, route= ConfigurationManager.AppSettings["MainRoute"] }, JsonRequestBehavior.AllowGet);
             }
             else
-                return Json(new { status=HttpStatusCode.Unauthorized, message="Usuario o contraseña no correctos" }, JsonRequestBehavior.AllowGet);
+                return Json(new { status=HttpStatusCode.Unauthorized, message="Usuario o contraseña incorrectos" }, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
