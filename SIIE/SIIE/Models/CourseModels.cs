@@ -69,35 +69,39 @@ namespace SIIE.Models
             public double Quantity2 { get; set; }
         }
 
+        public class ReinscriptionUpdate
+        {
+        }
+
         public class InscriptionData
         {
-            //chente estuvo aqui
-            public string PLastName { get; set; }
-            public string MLastName { get; set; }
+            public string LastNameP { get; set; }
+            public string LastNameM { get; set; }
             public string Name { get; set; }
             public string Date { get; set; }
             public Boolean Gender { get; set; }
+            public string CURP { get; set; }
             public string CareerOption1 { get; set; }
             public string CareerOption2 { get; set; }
-            public string PrevScholl { get; set; }
-            public string EGressDate { get; set; }
+            public string PrevSchool { get; set; }
+            public string EgressDate { get; set; }
             public Double GeneralAverage { get; set; }
             public string Address { get; set; }
             public string State { get; set; }
             public string Municipality { get; set; }
-            public UInt16 PostalCode { get; set; }
+            public int PostalCode { get; set; }
             public string Suburb { get; set; }
             public string PhoneNumber { get; set; }
             public string Email { get; set; }
-            public String CivilStatus { get; set; }
+            public string CivilStatus { get; set; }
             public Boolean Disability { get; set; }
             public Boolean Shoolarship { get; set; }
             public Boolean OpportunitiesProgram { get; set; }
-            public string FatherPLastName { get; set; }
-            public string FatherMLastName { get; set; }
+            public string FatherLastNameP { get; set; }
+            public string FatherLastNameM { get; set; }
             public string FatherName { get; set; }
-            public string MotherPLastName { get; set; }
-            public string MotherMLastName { get; set; }
+            public string MotherLastNameP { get; set; }
+            public string MotherLastNameM { get; set; }
             public string MotherName { get; set; }
             public string FatherJob { get; set; }
             public string FatherJobOther { get; set; }
@@ -111,17 +115,6 @@ namespace SIIE.Models
             public string EmergenciesPhoneNumber { get; set; }
             public string EmergenciesJobAdress { get; set; }
             public string EmergenciesJobPhoneNumber { get; set; }
-
-
-
-        }
-
-        public class ReinscriptionStudentData
-        {
-        }
-
-        public class ReinscriptionUpdate
-        {
         }
 
         public class InscriptionUpdate

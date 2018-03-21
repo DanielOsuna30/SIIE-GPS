@@ -30,7 +30,7 @@ namespace SIIE.Controllers.Engine
         /// Validar que las materias recibidas concuerden con las del usuario
         /// </summary>
         /// <returns></returns>
-        public bool Validate(CourseModels.ReinscriptionStudentData Data)
+        public bool Validate(CourseModels.ReinscriptionData Data)
         {
             return false;
         }
