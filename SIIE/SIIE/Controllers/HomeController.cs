@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SIIE.Controllers.Helpers;
-
+using SIIE.Controllers.Engine;
 
 namespace SIIE.Controllers
 {
@@ -12,6 +12,9 @@ namespace SIIE.Controllers
     [SessionAuthorize]
     public class HomeController : Controller
     {
+        private StudentEngine SEngine;
+        private AdminEngine AEngine;
+
         [Route("")]
         public ActionResult Index()
         {
@@ -21,15 +24,7 @@ namespace SIIE.Controllers
         [Route("About")]
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        [Route("Contact")]
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Application Description";
 
             return View();
         }

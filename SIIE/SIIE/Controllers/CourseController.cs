@@ -9,137 +9,54 @@ using System.Net;
 namespace SIIE.Controllers
 {
     [RoutePrefix("Curso")]
-    [SessionAuthorize]
     public class CourseController : Controller
     {
-        private ReinscriptionEngine REngine;
-        private InscriptionEngine IEngine;
+        private StudentEngine StudentEngine;
 
         // GET: Course
         [Route("")]
+        [SessionAuthorize]
         public ActionResult Index()
         {
             return View();
         }
 
-        [Route("Inscripcion")]
-        [InscriptionAuthorize]
-        public ActionResult Inscripcion()
+        [Route("Cursando")]
+        [SessionAuthorize(Users = "3")]
+        public ActionResult SemesterSchedule()
         {
-                return View();
+            StudentEngine = new StudentEngine(Convert.ToInt32(Session["controlNumber"]));
+            var S=StudentEngine.getSchedule();
+            return View(S);
         }
 
-        /// <summary>
-        /// Recibe informacion de alumno de nuevo ingreso
-        /// </summary>
-        /// <param name="Data"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("Inscripcion")]
-        [InscriptionAuthorize]
-        public JsonResult Inscripcion(CourseModels.InscriptionData Data)
+        [Route("Cursando/{controlNumber:int}")]
+        [SessionAuthorize(Users ="1,2")]
+        public ActionResult SemesterSchedule(int controlNumber)
         {
-            if (IEngine.GetStatus())
-                return Json(new { status=HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
-            else
-                return Json(new { status=HttpStatusCode.Unauthorized}, JsonRequestBehavior.AllowGet);
+            StudentEngine = new StudentEngine(controlNumber);
+            var Schedule=StudentEngine.getSchedule();
+            return View(Schedule);
         }
 
-        [Route("Inscripcion/Update")]
-        [SessionAuthorize(Users ="1")]
-        public ActionResult InscriptionUpdate()
+        [Route("Historial_Academico")]
+        [SessionAuthorize(Users ="3")]
+        public ActionResult AcademicHistory()
         {
-            return View();
+            StudentEngine = new StudentEngine(Convert.ToInt32(Session["controlNumber"]));
+            var AH = StudentEngine.getAcademicHistory();
+            return View(AH);
         }
 
-        /// <summary>
-        /// Actualizar fechas de Inscripcion
-        /// </summary>
-        /// <param name="Data"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("Inscripcion/Update")]
-        [SessionAuthorize(Users ="1")]
-        public JsonResult InscriptionUpdate(CourseModels.InscriptionUpdate Data)
+        [Route("Historial_Academico/{controlNumber:int}")]
+        [SessionAuthorize(Users = "1,2")]
+        public ActionResult AcademicHistory(int controlNumber)
         {
-            return Json(new { status = HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
+            StudentEngine = new StudentEngine(controlNumber);
+            var AH = StudentEngine.getAcademicHistory();
+            return View(AH);
         }
 
-        [Route("Reinscripcion")]
-        [ReinscriptionAuthorize]
-        public ActionResult Reinscripcion()
-        {
-            if (Session["userType"].ToString() != "3")
-                return View("~/Views/ReinscripcionNoStudent.cshtml");
-            else
-                return View();
-        }
-
-        /// <summary>
-        /// Ingresar materias de reinscripcion
-        /// </summary>
-        /// <param name="Data"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("Reinscripcion")]
-        [ReinscriptionAuthorize]
-        public JsonResult Reinscripcion(CourseModels.ReinscriptionData Data)
-        {
-            return Json(new { status = HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
-        }
-
-        [Route("Reinscripcion/Update")]
-        [SessionAuthorize(Users="1")]
-        public ActionResult ReinscriptionUpdate()
-        {
-            return View();
-        }
-
-        /// <summary>
-        /// Definir fechas, precios y limites para la reinscripcion de este semestre
-        /// </summary>
-        /// <param name="Data"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("Reinscripcion/Update")]
-        [SessionAuthorize(Users="1")]
-        public JsonResult ReinscriptionUpdate(CourseModels.ReinscriptionUpdate Data)
-        {
-            REngine.UpdateStatus(Data);
-            return Json(new { message="Guardado",status= HttpStatusCode.OK}, JsonRequestBehavior.AllowGet);
-        }
-
-        /// <summary>
-        /// Obtener ficha de reinscripcion para alumnos
-        /// </summary>
-        /// <param name="UserData"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("Reinscripcion/Ficha")]
-        [SessionAuthorize]
-        public ActionResult ReinscriptionFoil(string controlNumber = "")
-        {
-            DocumentsManager Dm = new Helpers.DocumentsManager();
-            string fileName = Dm.ReinscriptionFoil(controlNumber);
-            Response.AddHeader("Content-Disposition", "attachment;filename=" + fileName);
-            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            Response.WriteFile(AppDomain.CurrentDomain.BaseDirectory + "Content\\Templates\\" + fileName);
-            Response.End();
-            FileInfo fileInfo = new FileInfo(AppDomain.CurrentDomain.BaseDirectory + "Content\\Templates\\" + fileName);
-            fileInfo.Delete();
-            return null;
-        }
-
-        /// <summary>
-        /// Obtener materias en formato json
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("ReinscripcionData")]
-        public JsonResult GetReinscriptionSubjects()
-        {
-            return Json(new { subjects = "" }, JsonRequestBehavior.AllowGet);
-        }
 
     }
 }

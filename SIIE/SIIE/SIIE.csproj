@@ -251,22 +251,24 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
+    <Compile Include="Controllers\Engine\AdminEngine.cs" />
+    <Compile Include="Controllers\Engine\StudentEngine.cs" />
     <Compile Include="Controllers\Engine\InscriptionEngine.cs" />
     <Compile Include="Controllers\Engine\ReinscriptionEngine.cs" />
-    <Compile Include="Controllers\Engine\SemesterEngine.cs" />
     <Compile Include="Controllers\Helpers\DatabaseManager.cs" />
     <Compile Include="Controllers\Helpers\DocumentsManager.cs" />
     <Compile Include="Controllers\Helpers\SessionAuthorize.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PollsController.cs" />
-    <Compile Include="Controllers\SettingsController.cs" />
-    <Compile Include="Controllers\SubjectController.cs" />
+    <Compile Include="Controllers\InscriptionController.cs" />
+    <Compile Include="Controllers\ReinscriptionController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CourseModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\InscriptionModels.cs" />
+    <Compile Include="Models\ReinscriptionModels.cs" />
     <Compile Include="Models\UserModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -370,7 +372,9 @@
     <Folder Include="Scripts\Course\" />
     <Folder Include="Scripts\Home\" />
     <Folder Include="Scripts\User\" />
+    <Folder Include="Views\Inscription\" />
     <Folder Include="Views\Polls\" />
+    <Folder Include="Views\Reinscription\" />
     <Folder Include="Views\Settings\" />
     <Folder Include="Views\Subject\" />
   </ItemGroup>

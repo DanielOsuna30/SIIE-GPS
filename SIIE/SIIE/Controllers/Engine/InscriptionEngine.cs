@@ -3,11 +3,24 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using static SIIE.Models.InscriptionModels;
 
 namespace SIIE.Controllers.Engine
 {
     public class InscriptionEngine
     {
+        private int controlNumber;
+
+        public InscriptionEngine()
+        {
+
+        }
+
+        public InscriptionEngine(int controlNumber)
+        {
+            this.controlNumber = controlNumber;
+        }
+
         /// <summary>
         /// Revisar si ya es fecha de inscripcion
         /// </summary>
@@ -21,9 +34,24 @@ namespace SIIE.Controllers.Engine
         /// Actualizar status para inscripcion
         /// </summary>
         /// <returns></returns>
-        public bool UpdateStatus(CourseModels.InscriptionUpdate Data)
+        public bool UpdateStatus(InscriptionUpdate Data)
         {
             return false;
+        }
+
+        /// <summary>
+        /// Guardar datos de inscripcion
+        /// </summary>
+        /// <param name="Data"></param>
+        /// <returns></returns>
+        public bool Finish(InscriptionData Data)
+        {
+            if (ValidateData(Data))
+            {
+                return true;
+            }
+            else
+                return false;
         }
 
         /// <summary>
@@ -31,9 +59,10 @@ namespace SIIE.Controllers.Engine
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public bool Validate(CourseModels.InscriptionData Data)
+        private bool ValidateData(InscriptionData Data)
         {
             return false;
         }
+
     }
 }

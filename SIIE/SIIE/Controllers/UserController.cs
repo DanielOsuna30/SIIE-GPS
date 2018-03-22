@@ -8,14 +8,16 @@ using System.IO;
 using SIIE.Models;
 using SIIE.Controllers.Helpers;
 using Newtonsoft.Json;
+using SIIE.Controllers.Engine;
+using static SIIE.Models.UserModels;
 
 namespace SIIE.Controllers
 {
     [RoutePrefix("Users")]
     public class UserController : Controller
     {
-        UserModels.Admin AdminController;
-        UserModels.Student StudentController;
+        private StudentEngine SEngine;
+        private AdminEngine AEngine;
 
         // GET: User
         [Route("")]
@@ -34,7 +36,7 @@ namespace SIIE.Controllers
         [SessionAuthorize]
         public JsonResult Get()
         {
-            UserModels.User UserData = new UserModels.User();
+            SEngine = new StudentEngine(Convert.ToInt32(Session["controlNumber"]));
             return Json(new { controlNumber=Session["controlNumber"], success = true, status = HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
         }
 
@@ -47,7 +49,7 @@ namespace SIIE.Controllers
         [SessionAuthorize(Users ="1,2")]
         public JsonResult Get(int controlNumber)
         {
-            UserModels.User UserData = new UserModels.User();
+            SEngine = new StudentEngine(controlNumber);
             return Json(new { controlNumber=controlNumber, success = true, status = HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
         }
 
@@ -55,15 +57,7 @@ namespace SIIE.Controllers
         [SessionAuthorize(Users = "1,2")]
         public ActionResult Search()
         {
-            List<UserModels.Student> Students = new List<UserModels.Student>();
-            UserModels.Student a = new UserModels.Student();
-            for (int i = 0; i > 5; i ++)
-            {
-                a.ControlNumber = i;
-                Students.Add(a);
-            }
-            var results = JsonConvert.SerializeObject(Students);
-            return View(Students);
+            return View();
         }
 
         /// <summary>
@@ -74,16 +68,10 @@ namespace SIIE.Controllers
         [HttpPost]
         [Route("Search")]
         [SessionAuthorize(Users = "1,2")]
-        public JsonResult Search(UserModels.User filters)
+        public JsonResult Search(UserData filters)
         {
-            string filtersQuery = "Where ";
-            filtersQuery += filters.Type != -1 ? "Type=" + filters.Type.ToString() : "";
-            filtersQuery += filters.FirstName != null ? "FirstName='" + filters.FirstName + "'" : "";
-            filtersQuery += filters.ControlNumber != 0 ? "ControlNumber=" + filters.ControlNumber : "";
-            filtersQuery += filters.Semester != null ? "Semester=" + filters.Semester : "";
-            filtersQuery += filters.Carrer != -1 ? "Carrer=" + filters.Carrer : "";
-
-            List<UserModels.User> Users = new List<UserModels.User>();
+            AEngine = new AdminEngine();
+            var resultsJson = AEngine.SearchStudent(filters);
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
 
@@ -95,7 +83,7 @@ namespace SIIE.Controllers
         [HttpPost]
         [Route("")]
         [SessionAuthorize(Users ="1")]
-        public JsonResult Post(UserModels.User UserData)
+        public JsonResult Post(UserData UserData)
         {
             if(Session["userType"].ToString()=="1")
             {
@@ -110,23 +98,24 @@ namespace SIIE.Controllers
         /// <summary>
         /// Modificar usuario
         /// </summary>
-        /// <param name="UserData"></param>
         /// <returns></returns>
         [HttpPatch]
         [Route("")]
-        public JsonResult Patch(UserModels.User UserData)
+        [SessionAuthorize(Users ="3")]
+        public JsonResult Patch(UserData Data)
         {
+            SEngine = new StudentEngine(Convert.ToInt32(Session["controlNumber"]));
+            var status = SEngine.Update(Data);
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
         /// Eliminar usuario
         /// </summary>
-        /// <param name="UserData"></param>
         /// <returns></returns>
         [HttpDelete]
         [SessionAuthorize(Users ="1")]
-        public JsonResult Delete(UserModels.User UserData)
+        public JsonResult Delete(UserData Data)
         {
             
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);

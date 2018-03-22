@@ -10,31 +10,47 @@ namespace SIIE.Controllers.Helpers
 {
     public class DocumentsManager
     {
+        DocX doc;
+        HttpResponseBase Response;
         string fileName ="";
         string filePath = (AppDomain.CurrentDomain.BaseDirectory + "Content\\Templates\\" );
+
+        public DocumentsManager(HttpResponseBase Response)
+        { 
+            this.Response = Response;
+        }
+
+        private void setResponseInfo()
+        {
+            doc.SaveAs(AppDomain.CurrentDomain.BaseDirectory + "Content\\Templates\\" + fileName);
+            Response.AddHeader("Content-Disposition", "attachment;filename=" + fileName);
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            Response.WriteFile(AppDomain.CurrentDomain.BaseDirectory + "Content\\Templates\\" + fileName);
+            Response.End();
+            FileInfo fileInfo = new FileInfo(AppDomain.CurrentDomain.BaseDirectory + "Content\\Templates\\" + fileName);
+            fileInfo.Delete();
+        }
 
         /// <summary>
         /// Crear pdf para la ficha de inscripcion
         /// </summary>
-        public string InscriptionFoil(string CN)
+        public void InscriptionFoil(string CN)
         {
             filePath += "inscriptionTemplate.docx";
             fileName += "FolioReinscripcion"+CN+".docx";
-            DocX doc = DocX.Load(filePath);
-            doc.SaveAs(AppDomain.CurrentDomain.BaseDirectory + "Content\\Templates\\" + fileName);
-            return fileName;
+            doc = DocX.Load(filePath);
+            setResponseInfo();
         }
 
         /// <summary>
         /// Crear pdf para ficha de reinscripcion
         /// </summary>
-        public string ReinscriptionFoil(string CN)
+        public void ReinscriptionFoil(string CN)
         {
             filePath += "reinscriptionTemplate.docx";
             fileName += "FolioReinscripcion"+CN+".docx";
-            DocX doc = DocX.Load(filePath);
-            doc.SaveAs(AppDomain.CurrentDomain.BaseDirectory + "Content\\Templates\\"+fileName);
-            return fileName;
+            doc = DocX.Load(filePath);
+            setResponseInfo();
         }
 
         /// <summary>

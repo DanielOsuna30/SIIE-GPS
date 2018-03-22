@@ -9,7 +9,7 @@ namespace SIIE.Models
 {
     public class UserModels
     {
-        public class User
+        public class UserData
         {
             public int ControlNumber { get; set; }
             public string Password { get; set; }
@@ -22,33 +22,21 @@ namespace SIIE.Models
             public DateTime BirthDate { get; set; }
         }
 
-        public class Student : User
-        {
-            public void Get()
-            {
-            }
-        }
-        public class Admin : User
-        {
-            public void Get()
-            {
-
-            }
-        }
-
-        public class TypeUsers
-        {
-            public int id { get; set; }
-            public string Name { get; set; }
-            public int PermissionsLevel { get; set; }
-        }
-
-        public class GenericUserValidator : AbstractValidator<User>
+        public class GenericUserValidator : AbstractValidator<UserData>
         {
             public GenericUserValidator()
             {
                 RuleFor(x => x.FirstName).NotNull();
             }
+        }
+
+        public class Student : UserData
+        {
+
+        }
+        public class Admin : UserData
+        {
+
         }
     }
 }

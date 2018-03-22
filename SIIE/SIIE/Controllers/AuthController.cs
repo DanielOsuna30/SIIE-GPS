@@ -29,7 +29,7 @@ namespace SIIE.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("")]
-        public JsonResult Login(UserModels.User Data)
+        public JsonResult Login(UserModels.UserData Data)
         {
             if (VerifyCredentials(Data.ControlNumber, Data.Password))
             {
@@ -39,6 +39,13 @@ namespace SIIE.Controllers
             }
             else
                 return Json(new { status=HttpStatusCode.Unauthorized, message="Usuario o contraseña incorrectos" }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [Route("Logout")]
+        public JsonResult Logout()
+        {
+            return Json(new {status=HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
