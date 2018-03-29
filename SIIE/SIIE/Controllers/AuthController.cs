@@ -18,6 +18,7 @@ namespace SIIE.Controllers
 
         [HttpGet]
         [Route("")]
+        [NotLoggedAuthorize]
         public ActionResult Index()
         {
             if (HttpContext.Session["userType"] == null)

@@ -9,14 +9,14 @@ namespace SIIE.Controllers.Engine
 {
     public class ReinscriptionEngine:MainEngine
     {
-        private int controlNumber;
+        private string controlNumber;
 
         public ReinscriptionEngine()
         {
 
         }
 
-        public ReinscriptionEngine(int controlNumber)
+        public ReinscriptionEngine(string controlNumber)
         {
             this.controlNumber = controlNumber;
         }

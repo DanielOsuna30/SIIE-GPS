@@ -25,14 +25,14 @@ namespace SIIE.Controllers
         [SessionAuthorize(Users = "3")]
         public ActionResult SemesterSchedule()
         {
-            StudentEngine = new StudentEngine(Convert.ToInt32(Session["controlNumber"]));
+            StudentEngine = new StudentEngine(Session["controlNumber"].ToString());
             var S=StudentEngine.getSchedule();
             return View(S);
         }
 
-        [Route("Cursando/{controlNumber:int}")]
+        [Route("Cursando/{controlNumber:string}")]
         [SessionAuthorize(Users ="1,2")]
-        public ActionResult SemesterSchedule(int controlNumber)
+        public ActionResult SemesterSchedule(string controlNumber)
         {
             StudentEngine = new StudentEngine(controlNumber);
             var Schedule=StudentEngine.getSchedule();
@@ -43,14 +43,14 @@ namespace SIIE.Controllers
         [SessionAuthorize(Users ="3")]
         public ActionResult AcademicHistory()
         {
-            StudentEngine = new StudentEngine(Convert.ToInt32(Session["controlNumber"]));
+            StudentEngine = new StudentEngine(Session["controlNumber"].ToString());
             var AH = StudentEngine.getAcademicHistory();
             return View(AH);
         }
 
-        [Route("Historial_Academico/{controlNumber:int}")]
+        [Route("Historial_Academico/{controlNumber:string}")]
         [SessionAuthorize(Users = "1,2")]
-        public ActionResult AcademicHistory(int controlNumber)
+        public ActionResult AcademicHistory(string controlNumber)
         {
             StudentEngine = new StudentEngine(controlNumber);
             var AH = StudentEngine.getAcademicHistory();

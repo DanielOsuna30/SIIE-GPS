@@ -45,9 +45,9 @@ namespace SIIE.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("GetData/{controlNumber:int}")]
+        [Route("GetData/{controlNumber:string}")]
         [ReinscriptionAuthorize(Users = "1,2")]
-        public JsonResult GetReinscriptionSubjects(int controlNumber)
+        public JsonResult GetReinscriptionSubjects(string controlNumber)
         {
             Engine = new ReinscriptionEngine(controlNumber);
             return Json(new { subjects = "" }, JsonRequestBehavior.AllowGet);
@@ -63,7 +63,7 @@ namespace SIIE.Controllers
         [ReinscriptionAuthorize]
         public JsonResult FinishStudent(ReinscriptionData Data)
         {
-            Engine = new ReinscriptionEngine(Convert.ToInt32(Session["controlNumber"]));
+            Engine = new ReinscriptionEngine(Session["controlNumber"].ToString());
             Engine.Finish(Data);
             return Json(new { status = HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
         }
@@ -75,8 +75,8 @@ namespace SIIE.Controllers
         /// <param name="Data"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("Finish/{controlNumber:int}")]
-        public JsonResult Finish(int controlNumber, ReinscriptionData Data)
+        [Route("Finish/{controlNumber:string}")]
+        public JsonResult Finish(string controlNumber, ReinscriptionData Data)
         {
             Engine = new ReinscriptionEngine(controlNumber);
             Engine.Finish(Data);

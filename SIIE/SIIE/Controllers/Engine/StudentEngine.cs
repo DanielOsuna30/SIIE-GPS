@@ -1,15 +1,26 @@
 ﻿using SIIE.Models;
 using Newtonsoft.Json;
+using System;
+using System.Linq;
 
 namespace SIIE.Controllers.Engine
 {
     public class StudentEngine:MainEngine
     {
-        private int controlNumber;
+        private string controlNumber;
 
-        public StudentEngine(int cn)
+        public StudentEngine(string cn)
         {
             controlNumber = cn;
+        }
+
+        public object UserData()
+        {
+            var Data = db.Alumno.FirstOrDefault(x => x.noControl == controlNumber);
+            if (Data == null)
+                return db.Maestro.FirstOrDefault(x => x.idMaestro == controlNumber);
+            else
+                return Data;
         }
 
         /// <summary>

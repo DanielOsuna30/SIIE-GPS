@@ -36,7 +36,7 @@ namespace SIIE.Controllers
         [InscriptionAuthorize]
         public JsonResult Data(InscriptionData Data)
         {
-            Engine = new InscriptionEngine(Convert.ToInt32(Session["controlNumber"]));
+            Engine = new InscriptionEngine(Session["controlNumber"].ToString());
             return Json(new { status = HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
         }
 

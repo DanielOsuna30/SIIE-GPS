@@ -36,8 +36,10 @@ namespace SIIE.Controllers
         [SessionAuthorize]
         public JsonResult Get()
         {
-            SEngine = new StudentEngine(Convert.ToInt32(Session["controlNumber"]));
-            return Json(new { controlNumber=Session["controlNumber"], success = true, status = HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
+            SEngine = new StudentEngine(Session["controlNumber"].ToString());
+            var Data =SEngine.UserData();
+            var json = JsonConvert.SerializeObject(Data);
+            return Json(json, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -45,12 +47,13 @@ namespace SIIE.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("Data/{controlNumber:int}")]
+        [Route("Data/{controlNumber:string}")]
         [SessionAuthorize(Users ="1,2")]
-        public JsonResult Get(int controlNumber)
+        public JsonResult Get(string controlNumber)
         {
             SEngine = new StudentEngine(controlNumber);
-            return Json(new { controlNumber=controlNumber, success = true, status = HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
+            var data = SEngine.UserData();
+            return Json(new { data=data, success = true, status = HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
         }
 
         [Route("Search")]
@@ -104,9 +107,9 @@ namespace SIIE.Controllers
         [SessionAuthorize(Users ="3")]
         public JsonResult Patch(UserData Data)
         {
-            SEngine = new StudentEngine(Convert.ToInt32(Session["controlNumber"]));
+            SEngine = new StudentEngine(Session["controlNumber"].ToString());
             var status = SEngine.Update(Data);
-            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = true,status=HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
