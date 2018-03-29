@@ -125,12 +125,12 @@ namespace SIIE.Controllers
         /// <param name="UserData"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("Ficha/{controlNumber:int}")]
+        [Route("Ficha/{controlNumber:string}")]
         [SessionAuthorize]
-        public ActionResult ReinscriptionFoil(int controlNumber = -1)
+        public ActionResult ReinscriptionFoil(string controlNumber)
         {
             DocumentsManager Dm = new DocumentsManager(Response);
-            Dm.ReinscriptionFoil(controlNumber.ToString());
+            Dm.ReinscriptionFoil(controlNumber);
             return null;
         }
 

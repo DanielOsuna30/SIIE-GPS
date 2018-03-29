@@ -80,12 +80,12 @@ namespace SIIE.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("Ficha/{controlNumber:int}")]
+        [Route("Ficha/{controlNumber:string}")]
         [SessionAuthorize]
-        public ActionResult Foil(int controlNumber = -1)
+        public ActionResult Foil(string controlNumber)
         {
             DocumentsManager Dm = new DocumentsManager(Response);
-            Dm.InscriptionFoil(controlNumber.ToString());
+            Dm.InscriptionFoil(controlNumber);
             return null;
         }
 
