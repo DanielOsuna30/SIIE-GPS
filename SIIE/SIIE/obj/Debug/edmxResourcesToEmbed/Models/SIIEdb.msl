@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SIIEModelStoreContainer" CdmEntityContainer="SIIEEntities">
+    <EntitySetMapping Name="Alumno">
+      <EntityTypeMapping TypeName="SIIEModel.Alumno">
+        <MappingFragment StoreEntitySet="Alumno">
+          <ScalarProperty Name="idAlumno" ColumnName="idAlumno" />
+          <ScalarProperty Name="idCarrera" ColumnName="idCarrera" />
+          <ScalarProperty Name="HistorialAcademico" ColumnName="HistorialAcademico" />
+          <ScalarProperty Name="Cursando" ColumnName="Cursando" />
+          <ScalarProperty Name="noControl" ColumnName="noControl" />
+          <ScalarProperty Name="Semestre" ColumnName="Semestre" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="ApellidoP" ColumnName="ApellidoP" />
+          <ScalarProperty Name="ApellidoM" ColumnName="ApellidoM" />
+          <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="Nacionalidad" ColumnName="Nacionalidad" />
+          <ScalarProperty Name="Preparatoria" ColumnName="Preparatoria" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Colonia" ColumnName="Colonia" />
+          <ScalarProperty Name="CP" ColumnName="CP" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="NombrePadre" ColumnName="NombrePadre" />
+          <ScalarProperty Name="NombreMadre" ColumnName="NombreMadre" />
+          <ScalarProperty Name="TelefonoPadre" ColumnName="TelefonoPadre" />
+          <ScalarProperty Name="TelefonoMadre" ColumnName="TelefonoMadre" />
+          <ScalarProperty Name="OtroContacto" ColumnName="OtroContacto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carrera">
+      <EntityTypeMapping TypeName="SIIEModel.Carrera">
+        <MappingFragment StoreEntitySet="Carrera">
+          <ScalarProperty Name="idCarrera" ColumnName="idCarrera" />
+          <ScalarProperty Name="NombreCarrera" ColumnName="NombreCarrera" />
+          <ScalarProperty Name="AbreviacionCarrera" ColumnName="AbreviacionCarrera" />
+          <ScalarProperty Name="Semestres" ColumnName="Semestres" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cursando">
+      <EntityTypeMapping TypeName="SIIEModel.Cursando">
+        <MappingFragment StoreEntitySet="Cursando">
+          <ScalarProperty Name="idCursando" ColumnName="idCursando" />
+          <ScalarProperty Name="idGrupo" ColumnName="idGrupo" />
+          <ScalarProperty Name="idAlumno" ColumnName="idAlumno" />
+          <ScalarProperty Name="idMateria" ColumnName="idMateria" />
+          <ScalarProperty Name="Semestre" ColumnName="Semestre" />
+          <ScalarProperty Name="Año" ColumnName="Año" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Grupo">
+      <EntityTypeMapping TypeName="SIIEModel.Grupo">
+        <MappingFragment StoreEntitySet="Grupo">
+          <ScalarProperty Name="idGrupo" ColumnName="idGrupo" />
+          <ScalarProperty Name="idMateria" ColumnName="idMateria" />
+          <ScalarProperty Name="idMaestro" ColumnName="idMaestro" />
+          <ScalarProperty Name="idSalon" ColumnName="idSalon" />
+          <ScalarProperty Name="Periodo" ColumnName="Periodo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HistorialAcademico">
+      <EntityTypeMapping TypeName="SIIEModel.HistorialAcademico">
+        <MappingFragment StoreEntitySet="HistorialAcademico">
+          <ScalarProperty Name="idHistorialAcademico" ColumnName="idHistorialAcademico" />
+          <ScalarProperty Name="idAlumno" ColumnName="idAlumno" />
+          <ScalarProperty Name="idMateria" ColumnName="idMateria" />
+          <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
+          <ScalarProperty Name="Semestre" ColumnName="Semestre" />
+          <ScalarProperty Name="Año" ColumnName="Año" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Horario">
+      <EntityTypeMapping TypeName="SIIEModel.Horario">
+        <MappingFragment StoreEntitySet="Horario">
+          <ScalarProperty Name="idHorario" ColumnName="idHorario" />
+          <ScalarProperty Name="DiaSemana" ColumnName="DiaSemana" />
+          <ScalarProperty Name="HrInicio" ColumnName="HrInicio" />
+          <ScalarProperty Name="HrFin" ColumnName="HrFin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HorarioGrupo">
+      <EntityTypeMapping TypeName="SIIEModel.HorarioGrupo">
+        <MappingFragment StoreEntitySet="HorarioGrupo">
+          <ScalarProperty Name="idHorarioGrupo" ColumnName="idHorarioGrupo" />
+          <ScalarProperty Name="idGrupo" ColumnName="idGrupo" />
+          <ScalarProperty Name="idHorario" ColumnName="idHorario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Loginn">
+      <EntityTypeMapping TypeName="SIIEModel.Loginn">
+        <MappingFragment StoreEntitySet="Loginn">
+          <ScalarProperty Name="noControl" ColumnName="noControl" />
+          <ScalarProperty Name="Constraseña" ColumnName="Constraseña" />
+          <ScalarProperty Name="Permiso" ColumnName="Permiso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Maestro">
+      <EntityTypeMapping TypeName="SIIEModel.Maestro">
+        <MappingFragment StoreEntitySet="Maestro">
+          <ScalarProperty Name="idMaestro" ColumnName="idMaestro" />
+          <ScalarProperty Name="NumEconomico" ColumnName="NumEconomico" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="ApellidoP" ColumnName="ApellidoP" />
+          <ScalarProperty Name="ApellidoM" ColumnName="ApellidoM" />
+          <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="Nacionalidad" ColumnName="Nacionalidad" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Colonia" ColumnName="Colonia" />
+          <ScalarProperty Name="CP" ColumnName="CP" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Materia">
+      <EntityTypeMapping TypeName="SIIEModel.Materia">
+        <MappingFragment StoreEntitySet="Materia">
+          <ScalarProperty Name="idMateria" ColumnName="idMateria" />
+          <ScalarProperty Name="idCarrera" ColumnName="idCarrera" />
+          <ScalarProperty Name="NombreMateria" ColumnName="NombreMateria" />
+          <ScalarProperty Name="Semestre" ColumnName="Semestre" />
+          <ScalarProperty Name="AbreviacionMateria" ColumnName="AbreviacionMateria" />
+          <ScalarProperty Name="Clave" ColumnName="Clave" />
+          <ScalarProperty Name="Creditos" ColumnName="Creditos" />
+          <ScalarProperty Name="HrsTeoricas" ColumnName="HrsTeoricas" />
+          <ScalarProperty Name="HrsPracticas" ColumnName="HrsPracticas" />
+          <ScalarProperty Name="PlanEstudios" ColumnName="PlanEstudios" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Salon">
+      <EntityTypeMapping TypeName="SIIEModel.Salon">
+        <MappingFragment StoreEntitySet="Salon">
+          <ScalarProperty Name="idSalon" ColumnName="idSalon" />
+          <ScalarProperty Name="NombreSalon" ColumnName="NombreSalon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

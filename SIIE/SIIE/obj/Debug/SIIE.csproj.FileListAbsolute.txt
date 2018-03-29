@@ -128,4 +128,3 @@
 \\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE\obj\Debug\SIIE.dll
 \\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE\obj\Debug\SIIE.pdb
 \\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE\bin\DocX.dll
-\\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE\obj\Debug\SIIE.csprojResolveAssemblyReference.cache

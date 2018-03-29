@@ -18,7 +18,7 @@ namespace SIIE.Controllers.Helpers
     {
         protected override void HandleUnauthorizedRequest(AuthorizationContext Context)
         {
-            if (Context.HttpContext.Session["userType"] == null)
+            if (Context.HttpContext.Session["controlNumber"] == null)
                 Context.Result = new RedirectToRouteResult(
                     new RouteValueDictionary(new { controller = "Auth", action = "Index" })
                 );
@@ -30,10 +30,10 @@ namespace SIIE.Controllers.Helpers
 
         public bool getLoginData(HttpContextBase httpContext)
         {
-            if (httpContext.Session["userType"] == null)
+            if (httpContext.Session["controlNumber"] == null)
                 return false;
             if (Users != "")
-                if (Users.Contains(httpContext.Session["userType"].ToString()))
+                if (Users.Contains(httpContext.Session["level"].ToString()))
                     return true;
                 else
                     return false;
@@ -50,6 +50,20 @@ namespace SIIE.Controllers.Helpers
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
             return getLoginData(httpContext);
+        }
+    }
+
+    /// <summary>
+    /// Revision que no haya un usuario loggeado
+    /// </summary>
+    public class NotLoggedAuthorize:AuthorizeGeneral
+    {
+        protected override bool AuthorizeCore(HttpContextBase httpContext)
+        {
+            if (httpContext.Session["controlNumber"] == null)
+                return true;
+            else
+                return false;
         }
     }
 

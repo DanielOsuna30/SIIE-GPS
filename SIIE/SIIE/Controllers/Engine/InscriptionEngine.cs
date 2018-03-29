@@ -7,7 +7,7 @@ using static SIIE.Models.InscriptionModels;
 
 namespace SIIE.Controllers.Engine
 {
-    public class InscriptionEngine
+    public class InscriptionEngine:MainEngine
     {
         private int controlNumber;
 

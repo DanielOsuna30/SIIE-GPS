@@ -1,4 +1,6 @@
-﻿using SIIE.Models;
+﻿using SIIE.Controllers.Engine;
+using SIIE.Controllers.Helpers;
+using SIIE.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -12,6 +14,8 @@ namespace SIIE.Controllers
     [RoutePrefix("Login")]
     public class AuthController : Controller
     {
+        AuthEngine Engine=new AuthEngine();
+
         [HttpGet]
         [Route("")]
         public ActionResult Index()
@@ -29,34 +33,28 @@ namespace SIIE.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("")]
-        public JsonResult Login(UserModels.UserData Data)
+        [NotLoggedAuthorize]
+        public JsonResult Login(Loginn Data)
         {
-            if (VerifyCredentials(Data.ControlNumber, Data.Password))
+            Engine.VerifyCredentials(ref Data);
+            if (Data!=null)
             {
-                Session["controlNumber"] = Data.ControlNumber;
-                Session["userType"] = 1;
+                Session["controlNumber"] = Data.noControl;
+                Session["level"] = Data.Permiso;
                 return Json(new { status=HttpStatusCode.OK, route= ConfigurationManager.AppSettings["MainRoute"] }, JsonRequestBehavior.AllowGet);
             }
             else
-                return Json(new { status=HttpStatusCode.Unauthorized, message="Usuario o contraseña incorrectos" }, JsonRequestBehavior.AllowGet);
+                return Json(new { status=HttpStatusCode.BadRequest, message="Usuario o contraseña incorrectos" }, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
+        [HttpPatch]
         [Route("Logout")]
+        [SessionAuthorize]
         public JsonResult Logout()
         {
+            Session.Clear();
             return Json(new {status=HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
         }
 
-        /// <summary>
-        /// Verificar credenciales de login en la db
-        /// </summary>
-        /// <param name="user"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        private bool VerifyCredentials(int user,string password)
-        {
-            return true;
-        }
     }
 }

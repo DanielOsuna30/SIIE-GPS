@@ -11,7 +11,7 @@ namespace SIIE.Models
     {
         public class UserData
         {
-            public int ControlNumber { get; set; }
+            public string ControlNumber { get; set; }
             public string Password { get; set; }
             public string Semester { get; set; } 
             public int Carrer { get; set; } = -1;

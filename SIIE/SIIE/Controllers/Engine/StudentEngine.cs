@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using SIIE.Models;
+﻿using SIIE.Models;
 using Newtonsoft.Json;
-using static SIIE.Models.UserModels;
 
 namespace SIIE.Controllers.Engine
 {
-    public class StudentEngine
+    public class StudentEngine:MainEngine
     {
         private int controlNumber;
 
@@ -20,7 +15,7 @@ namespace SIIE.Controllers.Engine
         /// <summary>
         /// Actualizar informacion de usuario logeado
         /// </summary>
-        public bool Update(UserData Data)
+        public bool Update(UserModels.UserData Data)
         {
             return true;
         }

@@ -7,7 +7,7 @@ using static SIIE.Models.ReinscriptionModels;
 
 namespace SIIE.Controllers.Engine
 {
-    public class ReinscriptionEngine
+    public class ReinscriptionEngine:MainEngine
     {
         private int controlNumber;
 
