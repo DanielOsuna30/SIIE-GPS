@@ -335,13 +335,21 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\close.png" />
+    <Content Include="Content\Images\descarga.png" />
     <Content Include="Content\Images\favicon.ico" />
+    <Content Include="Content\Images\freddie-marriage-264214-unsplash.jpg" />
+    <Content Include="Content\Images\home.jpg" />
+    <Content Include="Content\Images\Home.png" />
+    <Content Include="Content\Images\libros.png" />
+    <Content Include="Content\MainStyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="gruntfile.js" />
     <Content Include="Models\SIIEdb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SIIEdb.edmx</DependentUpon>
@@ -356,6 +364,8 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Engine\Auth\AuthEngine.js" />
+    <Content Include="Scripts\Engine\engine.min.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -382,6 +392,7 @@
     <Content Include="Models\SIIEdb.edmx.diagram">
       <DependentUpon>SIIEdb.edmx</DependentUpon>
     </Content>
+    <Content Include="package.json" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -441,9 +452,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\Course\" />
-    <Folder Include="Scripts\Home\" />
-    <Folder Include="Scripts\User\" />
+    <Folder Include="Scripts\Engine\Course\" />
+    <Folder Include="Scripts\Engine\Home\" />
+    <Folder Include="Scripts\Engine\Inscription\" />
+    <Folder Include="Scripts\Engine\Reinscription\" />
+    <Folder Include="Scripts\Engine\User\" />
     <Folder Include="Views\Inscription\" />
     <Folder Include="Views\Polls\" />
     <Folder Include="Views\Reinscription\" />

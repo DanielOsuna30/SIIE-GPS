@@ -9,9 +9,9 @@ namespace SIIE.Controllers.Engine
     {
         private string controlNumber;
 
-        public StudentEngine(string cn)
+        public StudentEngine(int cn)
         {
-            controlNumber = cn;
+            controlNumber = cn.ToString();
         }
 
         public object UserData()

@@ -71,7 +71,7 @@ namespace SIIE.Controllers
         public ActionResult Foil()
         {
             DocumentsManager Dm = new DocumentsManager(Response);
-            Dm.InscriptionFoil(Session["controlNumber"].ToString());
+            Dm.InscriptionFoil(Convert.ToInt32(Session["controlNumber"]));
             return null;
         }
 
@@ -80,9 +80,9 @@ namespace SIIE.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("Ficha/{controlNumber:string}")]
+        [Route("Ficha/{controlNumber:int}")]
         [SessionAuthorize]
-        public ActionResult Foil(string controlNumber)
+        public ActionResult Foil(int controlNumber)
         {
             DocumentsManager Dm = new DocumentsManager(Response);
             Dm.InscriptionFoil(controlNumber);

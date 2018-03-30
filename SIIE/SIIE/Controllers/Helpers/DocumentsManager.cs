@@ -34,7 +34,7 @@ namespace SIIE.Controllers.Helpers
         /// <summary>
         /// Crear pdf para la ficha de inscripcion
         /// </summary>
-        public void InscriptionFoil(string CN)
+        public void InscriptionFoil(int CN)
         {
             filePath += "inscriptionTemplate.docx";
             fileName += "FolioReinscripcion"+CN+".docx";
@@ -45,7 +45,7 @@ namespace SIIE.Controllers.Helpers
         /// <summary>
         /// Crear pdf para ficha de reinscripcion
         /// </summary>
-        public void ReinscriptionFoil(string CN)
+        public void ReinscriptionFoil(int CN)
         {
             filePath += "reinscriptionTemplate.docx";
             fileName += "FolioReinscripcion"+CN+".docx";
@@ -56,7 +56,7 @@ namespace SIIE.Controllers.Helpers
         /// <summary>
         /// Crear pdf para historial academico
         /// </summary>
-        public string CarrerHistory(string CN)
+        public string CarrerHistory(int CN)
         {
             filePath += "carrerTemplate.docx";
             fileName += "HistorialAcademico" + CN + ".docx";
@@ -68,7 +68,7 @@ namespace SIIE.Controllers.Helpers
         /// <summary>
         /// Crear pdf para boleta de semestre
         /// </summary>
-        public string SemesterHistory(string CN)
+        public string SemesterHistory(int CN)
         {
             filePath += "semesterTemplate.docx";
             fileName += "Boleta" + CN + ".docx";
@@ -80,7 +80,7 @@ namespace SIIE.Controllers.Helpers
         /// <summary>
         /// Crear pdf para horario de alumno
         /// </summary>
-        public string Schedule(string CN)
+        public string Schedule(int CN)
         {
             filePath += "scheduleTemplate.docx";
             fileName += "Horario" + CN + ".docx";

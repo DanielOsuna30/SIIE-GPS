@@ -45,11 +45,11 @@ namespace SIIE.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("GetData/{controlNumber:string}")]
+        [Route("GetData/{controlNumber:int}")]
         [ReinscriptionAuthorize(Users = "1,2")]
-        public JsonResult GetReinscriptionSubjects(string controlNumber)
+        public JsonResult GetReinscriptionSubjects(int controlNumber)
         {
-            Engine = new ReinscriptionEngine(controlNumber);
+            Engine = new ReinscriptionEngine(controlNumber.ToString());
             return Json(new { subjects = "" }, JsonRequestBehavior.AllowGet);
         }
 
@@ -75,10 +75,10 @@ namespace SIIE.Controllers
         /// <param name="Data"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("Finish/{controlNumber:string}")]
-        public JsonResult Finish(string controlNumber, ReinscriptionData Data)
+        [Route("Finish/{controlNumber:int}")]
+        public JsonResult Finish(int controlNumber, ReinscriptionData Data)
         {
-            Engine = new ReinscriptionEngine(controlNumber);
+            Engine = new ReinscriptionEngine(controlNumber.ToString());
             Engine.Finish(Data);
             return Json(new { }, JsonRequestBehavior.AllowGet);
         }
@@ -115,7 +115,7 @@ namespace SIIE.Controllers
         public ActionResult ReinscriptionFoil()
         {
             DocumentsManager Dm = new DocumentsManager(Response);
-            Dm.ReinscriptionFoil(Session["controlNumber"].ToString());
+            Dm.ReinscriptionFoil(Convert.ToInt32(Session["controlNumber"]));
             return null;
         }
 
@@ -125,9 +125,9 @@ namespace SIIE.Controllers
         /// <param name="UserData"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("Ficha/{controlNumber:string}")]
+        [Route("Ficha/{controlNumber:int}")]
         [SessionAuthorize]
-        public ActionResult ReinscriptionFoil(string controlNumber)
+        public ActionResult ReinscriptionFoil(int controlNumber)
         {
             DocumentsManager Dm = new DocumentsManager(Response);
             Dm.ReinscriptionFoil(controlNumber);

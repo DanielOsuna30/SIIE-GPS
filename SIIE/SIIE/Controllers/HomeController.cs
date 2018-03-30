@@ -40,7 +40,7 @@ namespace SIIE.Controllers
         [Route("Dashboard/{userId:int}")]
         public JsonResult GetDashboardData(int userId)
         {
-            if (userId == -1)
+            if (userId != -1)
                 userId = Convert.ToInt32(Session["userId"]);
             return Json(new { }, JsonRequestBehavior.AllowGet);
         }
