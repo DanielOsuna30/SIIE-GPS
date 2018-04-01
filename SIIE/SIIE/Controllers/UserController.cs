@@ -113,14 +113,31 @@ namespace SIIE.Controllers
         }
 
         /// <summary>
+        /// Modificar usuario para admins
+        /// </summary>
+        /// <param name="controlNumber"></param>
+        /// <param name="Data"></param>
+        /// <returns></returns>
+        [HttpPatch]
+        [Route("{controlNumber:int}")]
+        [SessionAuthorize(Users = "1")]
+        public JsonResult Patch(int controlNumber,UserData Data)
+        {
+            SEngine = new StudentEngine(controlNumber));
+            var status = SEngine.Update(Data);
+            return Json(new { success = true, status = HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
         /// Eliminar usuario
         /// </summary>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpDelete,Route("{controlNumber:int}"]
         [SessionAuthorize(Users ="1")]
-        public JsonResult Delete(UserData Data)
+        public JsonResult Delete(int controlNumber)
         {
-            
+            SEngine = new StudentEngine(controlNumber);
+            SEngine.Delete();
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
     }

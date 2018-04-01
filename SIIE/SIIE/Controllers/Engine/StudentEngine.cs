@@ -2,13 +2,16 @@
 using Newtonsoft.Json;
 using System;
 using System.Linq;
+using AutoMapper;
+using SIIE.Controllers.Helpers;
 
 namespace SIIE.Controllers.Engine
 {
     public class StudentEngine:MainEngine
     {
         private string controlNumber;
-
+        private ModelsMapper MapperEngine = new ModelsMapper();
+        
         public StudentEngine(int cn)
         {
             controlNumber = cn.ToString();
@@ -24,11 +27,40 @@ namespace SIIE.Controllers.Engine
         }
 
         /// <summary>
-        /// Actualizar informacion de usuario logeado
+        /// Actualizar informacion de usuario
         /// </summary>
         public bool Update(UserModels.UserData Data)
         {
-            return true;
+            Alumno A = db.Alumno.FirstOrDefault(x => x.noControl == controlNumber);
+            int aluNum = db.Alumno.ToArray().Count();
+            if (A != null)
+            {
+                A = MapperEngine.convertAlumno(Data, A);
+                db.SaveChanges();
+                return true;
+            }
+            else
+                return false;
+        }
+
+
+        /// <summary>
+        /// Dar de baja alumno
+        /// </summary>
+        /// <returns></returns>
+        public bool Delete()
+        {
+            try
+            {
+                var a = db.Alumno.FirstOrDefault(x => x.noControl == controlNumber);
+                db.Alumno.Remove(a);
+                db.SaveChanges();
+                return true;
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
         }
 
         /// <summary>

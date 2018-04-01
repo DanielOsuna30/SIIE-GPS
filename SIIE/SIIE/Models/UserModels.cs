@@ -11,14 +11,13 @@ namespace SIIE.Models
     {
         public class UserData
         {
-            public string ControlNumber { get; set; }
-            public string Password { get; set; }
             public string Semester { get; set; } 
             public int Carrer { get; set; } = -1;
             public int Specialty { get; set; } = -1;
             public int Type { get; set; } = -1;
             public string FirstName { get; set; }
-            public string LastName { get; set; }
+            public string LastNameP { get; set; }
+            public string LastNameM { get; set; }
             public DateTime BirthDate { get; set; }
         }
 
