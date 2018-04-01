@@ -10,7 +10,6 @@ namespace SIIE.Controllers.Engine
     public class StudentEngine:MainEngine
     {
         private string controlNumber;
-        private ModelsMapper MapperEngine = new ModelsMapper();
         
         public StudentEngine(int cn)
         {

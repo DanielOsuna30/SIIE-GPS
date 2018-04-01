@@ -30,5 +30,16 @@ namespace SIIE.Controllers.Helpers
             Alumno MappedData = map.CreateMapper().Map(UpdateData, AlumnoData);
             return MappedData;
         }
+
+        public Alumno convertInscription(InscriptionModels.InscriptionData Data)
+        {
+            map = new MapperConfiguration(cfg =>
+              {
+                  cfg.CreateMap<InscriptionModels.InscriptionData, Alumno>()
+                  .ForMember(x => x.Nombre, opts => opts.MapFrom(x => x.Name));
+              });
+            Alumno MappedData = map.CreateMapper().Map<InscriptionModels.InscriptionData, Alumno>(Data);
+            return MappedData;
+        }
     }
 }
