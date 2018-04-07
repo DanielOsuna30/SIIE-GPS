@@ -80,7 +80,20 @@ namespace SIIE.Controllers.Engine
         public string getAcademicHistory()
         {
             CourseModels.AcademicHistory SemesterSchedule = new CourseModels.AcademicHistory();
-            var a = JsonConvert.SerializeObject(SemesterSchedule);
+            var HistorialAcad = db.HistorialAcademico.Where(x => x.idAlumno == controlNumber).ToArray();
+            SemesterSchedule.semester = Convert.ToInt32(HistorialAcad.First().Semestre);
+            var result = new CourseModels.AcademicHistory();
+            result.semester = Convert.ToInt32( HistorialAcad.First().Semestre);
+            foreach (var materia in HistorialAcad)
+            {
+                var m = new CourseModels.AcademicHistory.Materia();
+                m.name = db.Materia.First(x => x.idMateria == materia.idMateria).NombreMateria;
+                m.status = Convert.ToString( materia.Estado);
+                m.calificacion = materia.Calificacion;
+
+                result.Cursando.Add(m);
+            }
+            var a = JsonConvert.SerializeObject(result);
             return a.ToString();
         }
 

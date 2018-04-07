@@ -21,6 +21,7 @@ namespace SIIE.Models
             public string EgressDate { get; set; }
             public Double GeneralAverage { get; set; }
             public string Address { get; set; }
+            public string Nationality { get; set; }
             public string State { get; set; }
             public string Municipality { get; set; }
             public int PostalCode { get; set; }
@@ -34,9 +35,11 @@ namespace SIIE.Models
             public string FatherLastNameP { get; set; }
             public string FatherLastNameM { get; set; }
             public string FatherName { get; set; }
+            public string FatherPhoneNumber { get; set; }
             public string MotherLastNameP { get; set; }
             public string MotherLastNameM { get; set; }
             public string MotherName { get; set; }
+            public string MotherPhoneNumber { get; set; }
             public string FatherJob { get; set; }
             public string FatherJobOther { get; set; }
             public string MotherJob { get; set; }
@@ -49,6 +52,9 @@ namespace SIIE.Models
             public string EmergenciesPhoneNumber { get; set; }
             public string EmergenciesJobAdress { get; set; }
             public string EmergenciesJobPhoneNumber { get; set; }
+
+            public string Password { get; set; }
+            
         }
 
         public class InscriptionUpdate

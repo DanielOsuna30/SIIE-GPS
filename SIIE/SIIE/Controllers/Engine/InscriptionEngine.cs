@@ -48,10 +48,43 @@ namespace SIIE.Controllers.Engine
         {
             if (ValidateData(Data))
             {
-                Alumno A = MapperEngine.convertInscription(Data);
-                A.noControl = setControlNumber(Data);
-                db.Alumno.Add(A);
+                Loginn NewLogin = new Loginn();
+                NewLogin.noControl = Convert.ToString(setControlNumber(Data));
+                NewLogin.Constraseña = Data.Password;
+                NewLogin.Permiso = "3";
+
+                db.Loginn.Add(NewLogin);
                 db.SaveChanges();
+
+                Alumno Alu = new Alumno();
+                Alu.idCarrera = CarrerNumber(Data.CareerOption1);
+                Alu.Cursando = "0";
+                Alu.HistorialAcademico = "0";
+                Alu.noControl = NewLogin.noControl;
+                Alu.Semestre = "0";
+
+                Alu.ApellidoP = Data.LastNameP;
+                Alu.ApellidoM = Data.LastNameM;
+                Alu.Nombre = Data.Name;
+                Alu.FechaNacimiento = Data.Date;
+                Alu.Sexo = Convert.ToString(Data.Gender);
+                Alu.Nacionalidad = Data.Nationality;
+                Alu.Preparatoria = Data.PrevSchool;
+                Alu.Estado = Data.State;
+                Alu.Municipio = Data.Municipality;
+                Alu.Direccion = Data.Address;
+                Alu.Colonia = Data.Suburb;
+                Alu.CP = Convert.ToString( Data.PostalCode);
+                Alu.Telefono = Data.PhoneNumber;
+                Alu.Correo = Data.Email;
+                Alu.NombrePadre = Data.FatherName + Data.FatherLastNameP + Data.FatherLastNameM;
+                Alu.NombreMadre = Data.MotherName + Data.MotherLastNameP + Data.MotherLastNameM;
+                Alu.TelefonoPadre = Data.FatherPhoneNumber;
+                Alu.TelefonoMadre = Data.MotherPhoneNumber;
+                Alu.OtroContacto = Data.EmergenciesName + "  " + Data.EmergenciesPhoneNumber;
+
+         
+
                 return true;
             }
             else

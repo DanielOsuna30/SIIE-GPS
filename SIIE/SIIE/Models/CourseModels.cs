@@ -59,11 +59,22 @@ namespace SIIE.Models
             public int id { get; set; }
             public int StudentId { get; set; }
             public string Subjects { get; set; }
+            
         }
 
         public class AcademicHistory
         {
+            public int semester { get; set; }
+            public List<Materia> Cursando { get; set; }
 
+            public class Materia
+            {
+                public string name { get; set; }
+                public string status { get; set; }
+                public string calificacion { get; set; }
+            }
         }
+
+        
     }
 }
