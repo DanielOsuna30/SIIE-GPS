@@ -260,3 +260,5 @@ C:\Users\dell\Desktop\SIIE\SIIE\SIIE\bin\Microsoft.AspNet.Identity.EntityFramewo
 C:\Users\dell\Desktop\SIIE\SIIE\SIIE\obj\Debug\SIIE.csprojResolveAssemblyReference.cache
 C:\Users\dell\Desktop\SIIE\SIIE\SIIE\obj\Debug\SIIE.dll
 C:\Users\dell\Desktop\SIIE\SIIE\SIIE\obj\Debug\SIIE.pdb
+\\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE\bin\AutoMapper.dll
+\\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE\bin\AutoMapper.xml

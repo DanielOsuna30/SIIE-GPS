@@ -75,6 +75,30 @@ namespace SIIE.Models
             }
         }
 
-        
+        public class materias
+        {
+            public string nombremateria { get; set; }
+            public string nombremaestro { get; set; }
+
+            public string nombresalon { get; set; }
+
+            public List<horario> horas { get; set; }
+            public class horario
+            {
+                public string diassem { get; set; }
+
+                public string horainicio { get; set; }
+
+                public string horafinal { get; set; }
+            }
+        }
+
+        public class cursando
+        {
+            public int semestre { get; set; }
+            public List<materias> materias { get; set; }
+        }
+
+
     }
 }

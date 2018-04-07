@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SIIEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SIIEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Alumno">
           <Key>
             <PropertyRef Name="idAlumno" />
@@ -13,7 +13,7 @@
           <Property Name="idCarrera" Type="varchar" MaxLength="5" Nullable="false" />
           <Property Name="HistorialAcademico" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="Cursando" Type="varchar" MaxLength="40" Nullable="false" />
-          <Property Name="noControl" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="noControl" Type="varchar" MaxLength="8" Nullable="false" />
           <Property Name="Semestre" Type="varchar" MaxLength="2" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="ApellidoP" Type="varchar" MaxLength="25" Nullable="false" />
@@ -75,6 +75,7 @@
           <Property Name="Calificacion" Type="varchar" MaxLength="3" Nullable="false" />
           <Property Name="Semestre" Type="varchar" MaxLength="2" Nullable="false" />
           <Property Name="Año" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="Estado" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Horario">
           <Key>
@@ -97,7 +98,7 @@
           <Key>
             <PropertyRef Name="noControl" />
           </Key>
-          <Property Name="noControl" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="noControl" Type="varchar" MaxLength="8" Nullable="false" />
           <Property Name="Constraseña" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="Permiso" Type="varchar" MaxLength="1" Nullable="false" />
         </EntityType>
@@ -106,7 +107,7 @@
             <PropertyRef Name="idMaestro" />
           </Key>
           <Property Name="idMaestro" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="NumEconomico" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="NumEconomico" Type="varchar" MaxLength="8" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="ApellidoP" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="ApellidoM" Type="varchar" MaxLength="25" />
@@ -380,8 +381,7 @@
             <End Role="HistorialAcademico" EntitySet="HistorialAcademico" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SIIEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -393,7 +393,7 @@
           <Property Name="idCarrera" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="HistorialAcademico" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Cursando" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="noControl" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="noControl" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Semestre" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ApellidoP" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
@@ -471,6 +471,7 @@
           <Property Name="Año" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Alumno" Relationship="Self.FK2_Inscritos" FromRole="HistorialAcademico" ToRole="Alumno" />
           <NavigationProperty Name="Materia" Relationship="Self.FK3_Inscritos" FromRole="HistorialAcademico" ToRole="Materia" />
+          <Property Name="Estado" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Horario">
           <Key>
@@ -496,7 +497,7 @@
           <Key>
             <PropertyRef Name="noControl" />
           </Key>
-          <Property Name="noControl" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="noControl" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Constraseña" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Permiso" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Alumno" Relationship="Self.FK2_Alumno" FromRole="Loginn" ToRole="Alumno" />
@@ -507,7 +508,7 @@
             <PropertyRef Name="idMaestro" />
           </Key>
           <Property Name="idMaestro" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NumEconomico" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NumEconomico" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ApellidoP" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ApellidoM" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
@@ -861,6 +862,7 @@
           <EntitySetMapping Name="HistorialAcademico">
             <EntityTypeMapping TypeName="SIIEModel.HistorialAcademico">
               <MappingFragment StoreEntitySet="HistorialAcademico">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="idHistorialAcademico" ColumnName="idHistorialAcademico" />
                 <ScalarProperty Name="idAlumno" ColumnName="idAlumno" />
                 <ScalarProperty Name="idMateria" ColumnName="idMateria" />

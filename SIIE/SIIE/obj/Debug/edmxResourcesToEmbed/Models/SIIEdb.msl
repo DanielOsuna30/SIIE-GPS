@@ -68,6 +68,7 @@
     <EntitySetMapping Name="HistorialAcademico">
       <EntityTypeMapping TypeName="SIIEModel.HistorialAcademico">
         <MappingFragment StoreEntitySet="HistorialAcademico">
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
           <ScalarProperty Name="idHistorialAcademico" ColumnName="idHistorialAcademico" />
           <ScalarProperty Name="idAlumno" ColumnName="idAlumno" />
           <ScalarProperty Name="idMateria" ColumnName="idMateria" />

@@ -7,10 +7,10 @@ using SIIE.Controllers.Helpers;
 
 namespace SIIE.Controllers.Engine
 {
-    public class StudentEngine:MainEngine
+    public class StudentEngine : MainEngine
     {
         private string controlNumber;
-        
+
         public StudentEngine(int cn)
         {
             controlNumber = cn.ToString();
@@ -34,7 +34,7 @@ namespace SIIE.Controllers.Engine
             int aluNum = db.Alumno.ToArray().Count();
             if (A != null)
             {
-                A = MapperEngine.convertAlumno(Data, A);
+                //A = MapperEngine.convertAlumno(Data, A);
                 db.SaveChanges();
                 return true;
             }
@@ -56,7 +56,7 @@ namespace SIIE.Controllers.Engine
                 db.SaveChanges();
                 return true;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return false;
             }
@@ -68,9 +68,32 @@ namespace SIIE.Controllers.Engine
         /// <returns></returns>
         public string getSchedule()
         {
-            CourseModels.SemesterSchedule SemesterSchedule= new CourseModels.SemesterSchedule();
-            var a= JsonConvert.SerializeObject(SemesterSchedule);
-            return a.ToString();
+            var sem = db.Alumno.First(x => x.noControl == controlNumber);
+            var mat = db.Cursando.Where(x => x.idAlumno == sem.idAlumno && x.Semestre == sem.Semestre).ToArray();
+            var cur = new CourseModels.cursando();
+            foreach (var materias in mat)
+            {
+                var m = new CourseModels.materias();
+                m.nombremateria = db.Materia.First(x => x.idMateria == materias.idMateria).NombreMateria;
+                var idmaestro = db.Grupo.First(x => x.idGrupo == materias.idGrupo).idMaestro;
+                m.nombremaestro = db.Maestro.First(x => x.idMaestro == idmaestro).Nombre;
+                var idgrupo = db.Grupo.First(x => x.idGrupo == materias.idGrupo).idSalon;
+                m.nombresalon = db.Salon.First(x => x.idSalon == idgrupo).NombreSalon;
+
+                var idhorario = db.HorarioGrupo.First(x => x.idGrupo == materias.idGrupo).idHorario;
+                var horarios = db.Horario.Where(x => x.idHorario == idhorario).ToArray();
+                foreach (var n in horarios)
+                {
+                    var hora = new CourseModels.materias.horario();
+                    hora.diassem = n.DiaSemana;
+                    hora.horainicio = n.HrInicio;
+                    hora.horafinal = n.HrFin;
+                    m.horas.Add(hora);
+                }
+
+                cur.materias.Add(m);
+            }
+            return JsonConvert.SerializeObject(cur);
         }
 
         /// <summary>
@@ -79,22 +102,19 @@ namespace SIIE.Controllers.Engine
         /// <returns></returns>
         public string getAcademicHistory()
         {
-            CourseModels.AcademicHistory SemesterSchedule = new CourseModels.AcademicHistory();
             var HistorialAcad = db.HistorialAcademico.Where(x => x.idAlumno == controlNumber).ToArray();
-            SemesterSchedule.semester = Convert.ToInt32(HistorialAcad.First().Semestre);
             var result = new CourseModels.AcademicHistory();
-            result.semester = Convert.ToInt32( HistorialAcad.First().Semestre);
+            result.semester = Convert.ToInt32(HistorialAcad.First().Semestre);
             foreach (var materia in HistorialAcad)
             {
                 var m = new CourseModels.AcademicHistory.Materia();
                 m.name = db.Materia.First(x => x.idMateria == materia.idMateria).NombreMateria;
-                m.status = Convert.ToString( materia.Estado);
+                m.status = Convert.ToString(materia.Estado);
                 m.calificacion = materia.Calificacion;
 
                 result.Cursando.Add(m);
             }
-            var a = JsonConvert.SerializeObject(result);
-            return a.ToString();
+            return JsonConvert.SerializeObject(result);
         }
 
         public string getDashboardData()

@@ -8,7 +8,7 @@
     <Property Name="idCarrera" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="HistorialAcademico" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Cursando" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="noControl" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="noControl" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Semestre" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="ApellidoP" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
@@ -86,6 +86,7 @@
     <Property Name="Año" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Alumno" Relationship="Self.FK2_Inscritos" FromRole="HistorialAcademico" ToRole="Alumno" />
     <NavigationProperty Name="Materia" Relationship="Self.FK3_Inscritos" FromRole="HistorialAcademico" ToRole="Materia" />
+    <Property Name="Estado" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Horario">
     <Key>
@@ -111,7 +112,7 @@
     <Key>
       <PropertyRef Name="noControl" />
     </Key>
-    <Property Name="noControl" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="noControl" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Constraseña" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Permiso" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Alumno" Relationship="Self.FK2_Alumno" FromRole="Loginn" ToRole="Alumno" />
@@ -122,7 +123,7 @@
       <PropertyRef Name="idMaestro" />
     </Key>
     <Property Name="idMaestro" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="NumEconomico" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NumEconomico" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="ApellidoP" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="ApellidoM" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />

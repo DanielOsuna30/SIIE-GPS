@@ -74,7 +74,7 @@ namespace SIIE.Controllers
         public JsonResult Search(UserData filters)
         {
             AEngine = new AdminEngine();
-            var resultsJson = AEngine.SearchStudent(filters);
+            //var resultsJson = AEngine.SearchStudent(filters);
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
 
@@ -123,7 +123,7 @@ namespace SIIE.Controllers
         [SessionAuthorize(Users = "1")]
         public JsonResult Patch(int controlNumber,UserData Data)
         {
-            SEngine = new StudentEngine(controlNumber));
+            SEngine = new StudentEngine(controlNumber);
             var status = SEngine.Update(Data);
             return Json(new { success = true, status = HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
         }
@@ -132,7 +132,7 @@ namespace SIIE.Controllers
         /// Eliminar usuario
         /// </summary>
         /// <returns></returns>
-        [HttpDelete,Route("{controlNumber:int}"]
+        [HttpDelete,Route("{controlNumber:int}")]
         [SessionAuthorize(Users ="1")]
         public JsonResult Delete(int controlNumber)
         {

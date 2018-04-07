@@ -8,7 +8,7 @@
     <Property Name="idCarrera" Type="varchar" MaxLength="5" Nullable="false" />
     <Property Name="HistorialAcademico" Type="varchar" MaxLength="40" Nullable="false" />
     <Property Name="Cursando" Type="varchar" MaxLength="40" Nullable="false" />
-    <Property Name="noControl" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="noControl" Type="varchar" MaxLength="8" Nullable="false" />
     <Property Name="Semestre" Type="varchar" MaxLength="2" Nullable="false" />
     <Property Name="Nombre" Type="varchar" MaxLength="40" Nullable="false" />
     <Property Name="ApellidoP" Type="varchar" MaxLength="25" Nullable="false" />
@@ -70,6 +70,7 @@
     <Property Name="Calificacion" Type="varchar" MaxLength="3" Nullable="false" />
     <Property Name="Semestre" Type="varchar" MaxLength="2" Nullable="false" />
     <Property Name="Año" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="Estado" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Horario">
     <Key>
@@ -92,7 +93,7 @@
     <Key>
       <PropertyRef Name="noControl" />
     </Key>
-    <Property Name="noControl" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="noControl" Type="varchar" MaxLength="8" Nullable="false" />
     <Property Name="Constraseña" Type="varchar" MaxLength="15" Nullable="false" />
     <Property Name="Permiso" Type="varchar" MaxLength="1" Nullable="false" />
   </EntityType>
@@ -101,7 +102,7 @@
       <PropertyRef Name="idMaestro" />
     </Key>
     <Property Name="idMaestro" Type="varchar" MaxLength="5" Nullable="false" />
-    <Property Name="NumEconomico" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="NumEconomico" Type="varchar" MaxLength="8" Nullable="false" />
     <Property Name="Nombre" Type="varchar" MaxLength="40" Nullable="false" />
     <Property Name="ApellidoP" Type="varchar" MaxLength="25" Nullable="false" />
     <Property Name="ApellidoM" Type="varchar" MaxLength="25" />

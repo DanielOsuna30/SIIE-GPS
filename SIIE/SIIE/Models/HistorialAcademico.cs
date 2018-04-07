@@ -20,6 +20,7 @@ namespace SIIE.Models
         public string Calificacion { get; set; }
         public string Semestre { get; set; }
         public string Año { get; set; }
+        public int Estado { get; set; }
     
         public virtual Alumno Alumno { get; set; }
         public virtual Materia Materia { get; set; }

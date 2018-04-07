@@ -83,7 +83,8 @@ namespace SIIE.Controllers.Engine
                 Alu.TelefonoMadre = Data.MotherPhoneNumber;
                 Alu.OtroContacto = Data.EmergenciesName + "  " + Data.EmergenciesPhoneNumber;
 
-         
+                db.Alumno.Add(Alu);
+                db.SaveChanges();
 
                 return true;
             }
