@@ -7,7 +7,7 @@ using static SIIE.Models.InscriptionModels;
 
 namespace SIIE.Controllers.Engine
 {
-    public class InscriptionEngine:MainEngine
+    public class InscriptionEngine : MainEngine
     {
         private string controlNumber;
 
@@ -23,7 +23,7 @@ namespace SIIE.Controllers.Engine
             return Carrer;
         }
 
-        public string GenerationNumber (String Egress)
+        public string GenerationNumber(String Egress)
         {
             String Generation = "00";
             String año = Convert.ToString(DateTime.Today.Year);
@@ -33,10 +33,10 @@ namespace SIIE.Controllers.Engine
             return Generation;
         }
 
-        public String AluNumber ()
+        public String AluNumber()
         {
             String Num = "000";
-            Num=Convert.ToString ((db.Alumno.ToArray().Count() + 1));
+            Num = Convert.ToString((db.Alumno.ToArray().Count() + 1));
             return Num;
         }
 
@@ -95,76 +95,43 @@ namespace SIIE.Controllers.Engine
         /// <returns></returns>
         private bool ValidateData(InscriptionData Data)
         {
-            Boolean Valid = true;
-
-            if(Data.LastNameP == null)
-            {
-
-                Valid = false;
-            }
-            for(int i=0;i > Data.LastNameP.Length;i++)
-            {
-                if (!char.IsDigit(Data.LastNameP[i])) ;
-                Valid = false;
-            }
+            if (Data.LastNameP == null)
+                return false;
+            for (int i = 0; i > Data.LastNameP.Length; i++)
+                if (!char.IsDigit(Data.LastNameP[i]))
+                    return false;
             if (Data.LastNameM == null)
-            {
-                Valid = false;
-            }
+                return false;
             for (int i = 0; i > Data.LastNameM.Length; i++)
-            {
-                if (!char.IsDigit(Data.LastNameM[i])) 
-                Valid = false;
-            }
+                if (!char.IsDigit(Data.LastNameM[i]))
+                    return false;
             if (Data.Name == null)
-            {
-                Valid = false;
-            }
+                return false;
             for (int i = 0; i > Data.Name.Length; i++)
-            {
-                if (!char.IsDigit(Data.Name[i])) 
-                Valid = false;
-            }
+                if (!char.IsDigit(Data.Name[i]))
+                    return false;
             if (Data.Date == null)
-            {
-                Valid = false;
-            }           
+                return false;
             if (Data.CURP == null)
-            {
-                Valid = false;
-            }
+                return false;
             if (Data.CareerOption1 == null)
-            {
-                Valid = false;
-            }
+                return false;
             for (int i = 0; i > Data.CareerOption1.Length; i++)
-            {
                 if (!char.IsDigit(Data.CareerOption1[i]))
-                Valid = false;
-            }
+                    return false;
             if (Data.CareerOption2 == null)
-            {
-                Valid = false;
-            }
+                return false;
             for (int i = 0; i > Data.CareerOption2.Length; i++)
-            {
-                if (!char.IsDigit(Data.CareerOption2[i])) 
-                Valid = false;
-            }
+                if (!char.IsDigit(Data.CareerOption2[i]))
+                    return false;
             if (Data.PrevSchool == null)
-            {
-                Valid = false;
-            }
+                return false;
 
             if (Data.EgressDate == null)
-            {
-                Valid = false;
-            }
+                return false;
             if (Data.Email == null)
-            {
-                Valid = false;
-            }
-          return Valid;
+                return false;
+            return true;
         }
 
     }
