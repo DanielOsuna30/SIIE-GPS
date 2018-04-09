@@ -21,7 +21,7 @@ namespace SIIE.Controllers
         public ActionResult Index()
         {
             if (Session["userType"].ToString() != "3")
-                return View("~/Views/ReinscripcionNoStudent.cshtml");
+                return View("~/Views/InscripcionNoStudent.cshtml");
             else
                 return View();
         }

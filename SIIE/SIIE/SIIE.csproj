@@ -368,8 +368,10 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\engine.min.js" />
     <Content Include="Scripts\Engine\Auth\AuthEngine.js" />
-    <Content Include="Scripts\Engine\engine.min.js" />
+    <Content Include="Scripts\Engine\Course\CourseEngine.js" />
+    <Content Include="Scripts\Engine\Home\HomeEngine.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -397,6 +399,7 @@
       <DependentUpon>SIIEdb.edmx</DependentUpon>
     </Content>
     <Content Include="package.json" />
+    <Content Include="Content\Raleway-Light.ttf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -453,11 +456,11 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Course\ReinscripcionNoStudent.cshtml" />
     <Content Include="Views\Course\Inscripcion.cshtml" />
+    <Content Include="Views\Course\SemesterSchedule.cshtml" />
+    <Content Include="Views\Course\AcademicHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\Engine\Course\" />
-    <Folder Include="Scripts\Engine\Home\" />
     <Folder Include="Scripts\Engine\Inscription\" />
     <Folder Include="Scripts\Engine\Reinscription\" />
     <Folder Include="Scripts\Engine\User\" />

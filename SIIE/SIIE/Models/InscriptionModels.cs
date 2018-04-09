@@ -52,7 +52,6 @@ namespace SIIE.Models
             public string EmergenciesPhoneNumber { get; set; }
             public string EmergenciesJobAdress { get; set; }
             public string EmergenciesJobPhoneNumber { get; set; }
-
             public string Password { get; set; }
             
         }

@@ -8,10 +8,9 @@
             url: '/Login',
             method: 'POST',
             data: data,
-            contentType: 'application/json; charset=utf-8',
             success: function (response) {
                 if (response.status == 200)
-                    alert("OK");
+                    window.location.href = response.route;
                 else
                     alert("BadRequest")
             }

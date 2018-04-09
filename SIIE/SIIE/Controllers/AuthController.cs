@@ -49,12 +49,12 @@ namespace SIIE.Controllers
         }
 
         [HttpPatch]
-        [Route("Logout")]
+        [Route("")]
         [SessionAuthorize]
         public JsonResult Logout()
         {
             Session.Clear();
-            return Json(new {status=HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
+            return Json(new { status = HttpStatusCode.OK, route = ConfigurationManager.AppSettings["MainRoute"] + "Login/" }, JsonRequestBehavior.AllowGet);
         }
 
     }

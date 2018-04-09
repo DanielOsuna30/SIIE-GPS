@@ -1,7 +1,129 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Informacion de usuario";
 }
 
-<h2>Index</h2>
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">
+        Inicio
+        <img src="assets/home.png" alt="" width="30" height="30">
+    </a>
+    <a href="#">Cursando</a>
+    <a href="#">Seguimiento acad&eacute;mico</a>
+    <a href="#">Historial acad&eacute;mico</a>
+    <a href="#"> Encuestas</a>
+    <a href="#"> Boletas e impresiones</a>
+</div>
+
+
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+
+<script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+</script>
+
+<h3 id="dash">Ajustes</h3>
+
+
+<div class="container">
+    <h1>Datos del alumno </h1>
+    <form action="#">
+        <label for="correo">Correo electronico</label>
+
+        <input type="text" class="form-control" name="correo" id="correo" required>
+        <a href="#">cambiar mi contrasena</a>
+        <br>
+        <label for="cel">Celular</label>
+        <input type="number" class="form-control" name="cel" id="" required>
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" name="nombre" id="" required>
+        <label for="apellidop">Apellido paterno</label>
+        <input type="text" class="form-control" name="apellidop" id="" required>
+        <label for="apellidom">Apellido Materno</label>
+        <input type="text" class="form-control" name="apellidom" id="" required>
+        <label for="fechan">Fecha de Nacimiento</label>
+        <input type="date" class="form-control" name="fechan" id="" required>
+        <label for="H">hombre</label>
+        <input type="radio" class="genero" name="gen" id="">
+        <label for="M">mujer</label>
+        <input type="radio" class="genero" name="gen" id="">
+        <br>
+        <label for="grupo">Grupo</label>
+        <input type="text" class="form-control" name="grupo" id="">
+        <label for="nac">mexicano</label>
+        <input type="radio" class="genero" name="nac" id="">
+        <label for="nac">extranjero</label>
+        <input type="radio" class="genero" name="nac" id="">
+        <br>
+        <label for="edo">estado civil</label>
+        <select name="edo" id="">
+            <option value="sol">soltero</option>
+            <option value="casado">casado</option>
+        </select>
+        <br>
+        <label for="dom">Domicilio</label>
+        <input type="text" class="form-control" name="dom" id="">
+        <br>
+        <label for="estado">Estado</label>
+        <select name="estado" id="">
+            <option value="bcs">baja california sur</option>
+            <option value="bcs">baja california norte</option>
+            <option value="bcs">jalisco</option>
+            <option value="bcs">cd mx</option>
+            <option value="bcs">nuevo leon</option>
+            <option value="bcs">chihuahua</option>
+            <option value="bcs">sonora</option>
+            <option value="bcs">sinaloa</option>
+            <option value="bcs">durango</option>
+            <option value="bcs">cohahuila</option>
+            <option value="bcs">zacatecas</option>
+            <option value="bcs">san luis potosi</option>
+            <option value="bcs">guanajuato</option>
+            <option value="bcs">hidalgo</option>
+            <option value="bcs">michoacan</option>
+            <option value="bcs">puebla</option>
+            <option value="bcs">puebla</option>
+            <option value="bcs">veracruz</option>
+            <option value="bcs">oaxaca</option>
+            <option value="bcs">chiapas</option>
+            <option value="bcs">tabasco</option>
+            <option value="bcs">campeche</option>
+            <option value="bcs">yucatan</option>
+            <option value="bcs">quintana roo</option>
+        </select>
+        <br>
+        <label for="mun">Municipio</label>
+        <input type="text" name="mun" class="form-control" id="">
+
+        <label for="col">Colonia</label>
+        <br>
+        <input type="text" name="col" class="form-control" id="">
+
+        <label for="cp">CP</label>
+        <br>
+        <input type="number" name="cp" class="form-control" maxlength="5" id="" required>
+
+        <label for="tel">Telefono</label>
+        <br>
+        <input type="number" name="tel" class="form-control" maxlength="10" id="">
+        <br>
+        <br>
+
+        <input type="submit" value="Guardar">
+
+
+
+
+    </form>
+    </form>
+
+
+</div>
 

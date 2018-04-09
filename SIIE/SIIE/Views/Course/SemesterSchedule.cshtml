@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "SemesterSchedule";
+}
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">Inicio <img src="assets/home.png" alt="" width="30" height="30"></a>
+    <a href="#">Cursando</a>
+    <a href="#">Seguimiento acad&eacute;mico</a>
+    <a href="#">Historial acad&eacute;mico</a>
+    <a href="#"> Encuestas</a>
+    <a href="#"> Boletas e impresiones</a>
+</div>
+
+
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+
+<script>
+              function openNav() {
+                  document.getElementById("mySidenav").style.width = "250px";
+              }
+
+              function closeNav() {
+                  document.getElementById("mySidenav").style.width = "0";
+              }
+</script>
+
+<h3 id="dash">Materias cursando</h3>
+
+
+<div class="container">
+    <table id="hist">
+        <tr>
+            <th>Materia</th>
+            <th>Grupo</th>
+            <th>Tipo</th>
+            <th>Lunes</th>
+            <th>martes</th>
+            <th>miercoles</th>
+            <th>jueves</th>
+            <th>viernes</th>
+            <th>sabado</th>
+            <th>opciones</th>
+
+        </tr>
+        <tr>
+            <td>lenguajes y automatas</td>
+            <td>H</td>
+            <td>CR 1 oportunidad</td>
+            <td>09:00 - 11:00 MCA</td>
+            <td></td>
+            <td>08:00 - 10:00 MCA</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <img class="ver" src="assets/ver.png" alt="ver" width="23" height="23"> <img class="pantallita" src="assets/screen.png" alt=""
+                                                                                             width="20" height="20">
+            </td>
+
+
+        </tr>
+        <tr>
+
+            <td>redes de computadoras </td>
+            <td>H</td>
+            <td>CR 1 oportunidad</td>
+            <td>11:00 - 13:00 MCA</td>
+            <td>11:00 - 13:00 MCD</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <img class="ver" src="assets/ver.png" alt="ver" width="23" height="23"> <img class="pantallita" src="assets/screen.png" alt=""
+                                                                                             width="20" height="20">
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <td>admin de bases de datos </td>
+            <td>H</td>
+            <td>CR 1 oportunidad</td>
+            <td></td>
+            <td></td>
+            <td> 10:00 - 13:00 MCB</td>
+            <td> 11:00 - 13:00 MCB</td>
+            <td></td>
+            <td></td>
+            <td>
+                <img class="ver" src="assets/ver.png" alt="ver" width="23" height="23"> <img class="pantallita" src="assets/screen.png" alt=""
+                                                                                             width="20" height="20">
+            </td>
+
+        </tr>
+    </table>
+</div>

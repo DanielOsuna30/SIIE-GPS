@@ -156,10 +156,9 @@ namespace SIIE.Controllers.Engine
             return Generation;
         }
 
-        public String AluNumber()
+        public string AluNumber()
         {
-            String Num = "000";
-            Num = Convert.ToString((db.Alumno.ToArray().Count() + 1));
+            string Num = Convert.ToString((db.Alumno.ToArray().Count() + 1));
             return Num;
         }
 

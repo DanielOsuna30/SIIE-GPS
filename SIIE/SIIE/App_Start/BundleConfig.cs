@@ -9,7 +9,7 @@ namespace SIIE
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/engine").Include(
-                        "~/Scripts/Engine/engine.min.js"));
+                        "~/Scripts/engine.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));

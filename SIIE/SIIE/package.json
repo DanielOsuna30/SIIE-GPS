@@ -13,5 +13,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Alonso Osuna",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "grunt-jquery-ready": "^0.1.0"
+  }
 }

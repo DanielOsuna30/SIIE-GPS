@@ -14,7 +14,7 @@ namespace SIIE.Controllers.Helpers
     /// Estanadar para las clases
     /// </summary>
     [AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Method, Inherited = true, AllowMultiple = true)]
-    public class AuthorizeGeneral:AuthorizeAttribute
+    public class AuthorizeGeneral : AuthorizeAttribute
     {
         protected override void HandleUnauthorizedRequest(AuthorizationContext Context)
         {
@@ -45,7 +45,7 @@ namespace SIIE.Controllers.Helpers
     /// <summary>
     /// Revision de permisos de Session
     /// </summary>
-    public class SessionAuthorize:AuthorizeGeneral
+    public class SessionAuthorize : AuthorizeGeneral
     {
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
@@ -56,7 +56,7 @@ namespace SIIE.Controllers.Helpers
     /// <summary>
     /// Revision que no haya un usuario loggeado
     /// </summary>
-    public class NotLoggedAuthorize:AuthorizeGeneral
+    public class NotLoggedAuthorize : AuthorizeGeneral
     {
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
@@ -70,15 +70,21 @@ namespace SIIE.Controllers.Helpers
     /// <summary>
     /// Revision si ya es fecha de Inscripcion
     /// </summary>
-    public class InscriptionAuthorize:AuthorizeGeneral
+    public class InscriptionAuthorize : AuthorizeGeneral
     {
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            ReinscriptionEngine Re = new ReinscriptionEngine();
+            if (httpContext.Session["controlNumber"] == null)
+            {
+                InscriptionEngine Ie = new InscriptionEngine();
 
-            if (!Re.GetStatus())
+                if (!Ie.GetStatus())
+                    return false;
+                return getLoginData(httpContext);
+            }
+            else
                 return false;
-            return getLoginData(httpContext);
+
         }
     }
 
@@ -89,11 +95,18 @@ namespace SIIE.Controllers.Helpers
     {
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            InscriptionEngine Ie = new InscriptionEngine();
+            {
+                if (httpContext.Session["controlNumber"] != null)
+                {
+                    ReinscriptionEngine Re = new ReinscriptionEngine();
 
-            if (!Ie.GetStatus())
-                return false;
-            return getLoginData(httpContext);
+                    if (!Re.GetStatus())
+                        return false;
+                    return getLoginData(httpContext);
+                }
+                else
+                    return false;
+            }
         }
     }
 }
