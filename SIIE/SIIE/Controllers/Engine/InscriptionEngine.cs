@@ -27,7 +27,7 @@ namespace SIIE.Controllers.Engine
         /// <returns></returns>
         public bool GetStatus()
         {
-            return false;
+            return true;
         }
 
         /// <summary>
@@ -39,12 +39,19 @@ namespace SIIE.Controllers.Engine
             return false;
         }
 
+        public List<Carrera> CarrerasId()
+        {
+            List<Carrera> M = db.Carrera.ToList();
+            return M;
+        }
+
+
         /// <summary>
         /// Guardar datos de inscripcion
         /// </summary>
         /// <param name="Data"></param>
         /// <returns></returns>
-        public bool Finish(InscriptionData Data)
+        public string Finish(InscriptionData Data)
         {
             if (ValidateData(Data))
             {
@@ -56,40 +63,36 @@ namespace SIIE.Controllers.Engine
                 db.Loginn.Add(NewLogin);
                 db.SaveChanges();
 
-                Alumno Alu = new Alumno();
-                Alu.idCarrera = CarrerNumber(Data.CareerOption1);
-                Alu.Cursando = "0";
-                Alu.HistorialAcademico = "0";
-                Alu.noControl = NewLogin.noControl;
-                Alu.Semestre = "0";
+                Alumno Alu = new Alumno
+                {
+                    idCarrera = Convert.ToInt32(Data.CareerOption1),
+                    noControl = NewLogin.noControl,
+                    Semestre = "0",
 
-                Alu.ApellidoP = Data.LastNameP;
-                Alu.ApellidoM = Data.LastNameM;
-                Alu.Nombre = Data.Name;
-                Alu.FechaNacimiento = Data.Date;
-                Alu.Sexo = Convert.ToString(Data.Gender);
-                Alu.Nacionalidad = Data.Nationality;
-                Alu.Preparatoria = Data.PrevSchool;
-                Alu.Estado = Data.State;
-                Alu.Municipio = Data.Municipality;
-                Alu.Direccion = Data.Address;
-                Alu.Colonia = Data.Suburb;
-                Alu.CP = Convert.ToString( Data.PostalCode);
-                Alu.Telefono = Data.PhoneNumber;
-                Alu.Correo = Data.Email;
-                Alu.NombrePadre = Data.FatherName + Data.FatherLastNameP + Data.FatherLastNameM;
-                Alu.NombreMadre = Data.MotherName + Data.MotherLastNameP + Data.MotherLastNameM;
-                Alu.TelefonoPadre = Data.FatherPhoneNumber;
-                Alu.TelefonoMadre = Data.MotherPhoneNumber;
-                Alu.OtroContacto = Data.EmergenciesName + "  " + Data.EmergenciesPhoneNumber;
-
+                    ApellidoP = Data.LastNameP,
+                    ApellidoM = Data.LastNameM,
+                    Nombre = Data.Name,
+                    Sexo = Data.Gender ? "M" : "H",
+                    Nacionalidad = Data.Nationality,
+                    Estado = Data.State,
+                    Municipio = Data.Municipality,
+                    Direccion = Data.Address,
+                    Colonia = Data.Suburb,
+                    CP = Convert.ToString(Data.PostalCode),
+                    Telefono = Data.PhoneNumber,
+                    Correo = Data.Email,
+                    FechaNacimiento="",
+                    Preparatoria="",
+                    NombrePadre="",
+                    NombreMadre=""
+               };
                 db.Alumno.Add(Alu);
                 db.SaveChanges();
 
-                return true;
+                return Alu.noControl;
             }
             else
-                return false;
+                return null;
         }
 
         /// <summary>
@@ -115,36 +118,17 @@ namespace SIIE.Controllers.Engine
             for (int i = 0; i > Data.Name.Length; i++)
                 if (!char.IsDigit(Data.Name[i]))
                     return false;
-            if (Data.Date == null)
-                return false;
-            if (Data.CURP == null)
-                return false;
+
             if (Data.CareerOption1 == null)
                 return false;
             for (int i = 0; i > Data.CareerOption1.Length; i++)
                 if (!char.IsDigit(Data.CareerOption1[i]))
                     return false;
-            if (Data.CareerOption2 == null)
-                return false;
-            for (int i = 0; i > Data.CareerOption2.Length; i++)
-                if (!char.IsDigit(Data.CareerOption2[i]))
-                    return false;
-            if (Data.PrevSchool == null)
-                return false;
-            if (Data.EgressDate == null)
-                return false;
             if (Data.Email == null)
                 return false;
-
             return true;
         }
 
-        public string CarrerNumber(String Car)
-        {
-            string Carrer = "000";
-            Carrer = db.Carrera.FirstOrDefault(x => x.NombreCarrera == Car).idCarrera;
-            return Carrer;
-        }
 
         public string GenerationNumber(String Egress)
         {
@@ -165,7 +149,7 @@ namespace SIIE.Controllers.Engine
         public string setControlNumber(InscriptionData Data)
         {
             String ConNum;
-            ConNum = CarrerNumber(Data.CareerOption1);
+            ConNum = Data.CareerOption1;
             ConNum += GenerationNumber(Data.EgressDate);
             ConNum += AluNumber();
 

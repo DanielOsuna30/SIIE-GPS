@@ -1,231 +1,83 @@
-﻿
+﻿@model SIIE.Models.CourseModels.AcademicHistory
+
 @{
-    ViewBag.Title = "AcademicHistory";
+    ViewBag.Title = "Seguimiento Academico";
 }
+@section styles{
+    <link rel="Stylesheet" href="@Href("~/Content/Styles/segAcad.css")" />
+}
+
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#">
-        Inicio
-        <img src="assets/home.png" alt="" width="30" height="30">
-    </a>
-    <a href="#">Cursando</a>
-    <a href="#">Seguimiento acad&eacute;mico</a>
-    <a href="#">Historial acad&eacute;mico</a>
-    <a href="#"> Encuestas</a>
-    <a href="#"> Boletas e impresiones</a>
+    <a href="/">Inicio <img src="~/Content/Images/Home.png" alt="" width="30" height="30"></a>
+    <a href="/Curso/Historial_Academico">Historial acad&eacute;mico</a>
+    <a href="javascript:void(0)" id="logout">Cerrar Sesion</a>
 </div>
 
 
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
 
 <script>
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "250px";
-        }
+              function openNav() {
+                  document.getElementById("mySidenav").style.width = "250px";
+              }
 
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-        }
+              function closeNav() {
+                  document.getElementById("mySidenav").style.width = "0";
+              }
 </script>
 
-<h3 id="dash">Seguimiento academico</h3>
-
-
-<div class="container">
-    <p>numero de control del alumno</p>
-    <p>nombre </p>
-    <p>carrera del alumno</p>
-    <br>
-    <p>plan</p>
-    <p>modulo de especialidad</p>
-    <p>creditos</p>
-    <p>promedio</p>
-    <p class="ult">creditos complementarios</p>
-
-    <div class="fila1">
-        <div class="materiasAp">
+<div class="jumbotron text-center" style="padding:2rem 1rem">
+    <h2>Seguimiento Academico - @Model.nombreAlumno - @Model.carrera  </h2>
+</div>
+    
+    <div class="col-sm-10" style="margin-right:auto;margin-left:auto">
+            @foreach (var materia in Model.historial.OrderBy(x=>x.semestre))
+            {
+                if (materia.status == "0")
+                {
+                <div style="background: #e9ecef;
+                    padding: 10px;
+                    margin: 10px;
+                    width: 500px;
+                    text-align: center;
+                    display: inline-block;">
+                    <h4>Materia: @materia.name</h4>
+                    <h5>Calificacion: @materia.calificacion</h5>
+                    <h5>Semestre: @materia.semestre</h5>
+                    <h5>Estado: Primera Oportunidad</h5>
+                </div>
+                    }
+                else if (materia.status == "1")
+                {
+                    <div style="background: lightblue;
+                    padding: 10px;
+                    margin: 10px;
+                    width: 500px;
+                    text-align: center;
+                    display: inline-block;">
+                        <h4>Materia: @materia.name</h4>
+                        <h5>Calificacion: @materia.calificacion</h5>
+                        <h5>Semestre: @materia.semestre</h5>
+                        <h5>Estado: Segunda Oportunidad</h5>
+                    </div>
+                }
+                else if (materia.status == "2")
+                {
+                    <div style="background: indianred;
+                    padding: 10px;
+                    margin: 10px;
+                    width: 500px;
+                    text-align: center;
+                    display: inline-block;">
+                        <h4>Materia: @materia.name</h4>
+                        <h5>Calificacion: @materia.calificacion</h5>
+                        <h5>Semestre: @materia.semestre</h5>
+                        <h5>Estado: Especial</h5>
+                    </div>
+                }
+            }
         </div>
 
-        <div class="materiasAp">
-        </div>
 
-        <div class="materiasAp">
-        </div>
 
-        <div class="materiasAp">
-        </div>
-
-        <div class="materiasAp">
-        </div>
-        <div class="materiasAp materiasCur">
-        </div>
-        <div class="materiasAp materiasPen">
-        </div>
-        <div class="materiasAp materiasPen">
-        </div>
-        <div class="materiasAp materiasPen">
-        </div>
-        <div class="materiasAp materiasPen ">
-        </div>
-        <br>
-        <div class="materiasAp ult">
-        </div>
-
-    </div>
-
-    <div class="materiasAp">
-    </div>
-
-    <div class="materiasAp">
-    </div>
-
-    <div class="materiasAp">
-    </div>
-
-    <div class="materiasAp">
-    </div>
-    <div class="materiasAp materiasCur">
-    </div>
-    <div class="materiasAp materiasPen">
-    </div>
-    <div class="materiasAp materiasPen">
-    </div>
-    <div class="materiasAp materiasPen">
-    </div>
-
-
-    <div class="fila1">
-
-        <div class="materiasAp ult ">
-        </div>
-
-    </div>
-
-
-    <div class="materiasAp">
-    </div>
-
-    <div class="materiasAp">
-    </div>
-
-    <div class="materiasAp">
-    </div>
-
-    <div class="materiasAp">
-    </div>
-    <div class="materiasAp materiasCur">
-    </div>
-    <div class="materiasAp materiasPen">
-    </div>
-    <div class="materiasAp materiasPen">
-    </div>
-    <div class="materiasAp materiasPen">
-    </div>
-
-</div>
-
-
-
-<div class="fila4">
-
-    <div class="materiasAp ult ">
-    </div>
-
-</div>
-
-
-<div class="materiasAp">
-</div>
-
-<div class="materiasAp">
-</div>
-
-<div class="materiasAp">
-</div>
-
-<div class="materiasAp">
-</div>
-<div class="materiasAp materiasCur">
-</div>
-<div class="materiasAp materiasPen">
-</div>
-<div class="materiasAp materiasPen">
-</div>
-<div class="materiasAp materiasPen">
-</div>
-
-    </div>
-
-
-
-
-<div class="fila4">
-
-    <div class="materiasAp ult ">
-    </div>
-
-</div>
-
-
-<div class="materiasAp">
-</div>
-
-<div class="materiasAp">
-</div>
-
-<div class="materiasAp">
-</div>
-
-<div class="materiasAp">
-</div>
-<div class="materiasAp materiasCur">
-</div>
-<div class="materiasAp materiasPen">
-</div>
-<div class="materiasAp materiasPen">
-</div>
-
-
-    </div>
-
-
-<div class="fila4">
-
-    <div class="materiasAp ult ">
-    </div>
-
-</div>
-
-
-<div class="materiasAp">
-</div>
-
-<div class="materiasAp">
-</div>
-
-<div class="materiasAp">
-</div>
-
-<div class="materiasAp">
-</div>
-<div class="materiasAp materiasCur">
-</div>
-<div class="materiasAp materiasPen">
-</div>
-<div class="materiasAp materiasPen">
-</div>
-
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-    </div>

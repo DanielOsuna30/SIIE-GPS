@@ -1,21 +1,22 @@
-﻿@{
-    ViewBag.Title = "Dasboard";
+﻿@model Tuple<SIIE.Models.CourseModels.cursando,SIIE.Models.Alumno>
+
+@{
+    ViewBag.Title = "Index";
+}
+@section styles{
+    <link rel="Stylesheet" href="@Href("~/Content/Styles/dashboard.css")" />
 }
 
-    <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#">Inicio <img src="~/Content/Images/Home.png" alt="" width="30" height="30"></a>
-        <a href="#">Cursando</a>
-        <a href="#">Seguimiento acad&eacute;mico</a>
-        <a href="#">Historial acad&eacute;mico</a>
-        <a href="#"> Encuestas</a>
-        <a href="#"> Boletas e impresiones</a>
-        <a href="javascript:void(0)" id="logout">Cerrar Sesion</a>
-    </div>
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="/">Inicio <img src="~/Content/Images/Home.png" alt="" width="30" height="30"></a>
+    <a href="/Curso/Historial_Academico">Historial acad&eacute;mico</a>
+    <a href="javascript:void(0)" id="logout">Cerrar Sesion</a>
+</div>
 
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
 
-    <script>
+<script>
               function openNav() {
                   document.getElementById("mySidenav").style.width = "250px";
               }
@@ -23,24 +24,86 @@
               function closeNav() {
                   document.getElementById("mySidenav").style.width = "0";
               }
-    </script>
-    <h3 id="dash">INICIO dashboard</h3>
-    <div class="jumbotron text-center">
-        <h1>DATOS DEL ALUMNO</h1>
+</script>
+<h3 id="dash">Bienvenido @Model.Item2.Nombre @Model.Item2.ApellidoP</h3>
+<div class="jumbotron text-center" style="padding:2rem 1rem">
+    <h2>Cursando - Semestre @Model.Item1.semestre</h2>
+</div>
 
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4">
-                <h3>div para calendario</h3>
-                <p>dfgdfgdfgdfgdfgdfg</p>
-                <p>dfgdfgdfgdfgdfg</p>
-            </div>
-            <div class="col-sm-4">
-                <h3>aqui se muestran materias cursando actualmente</h3>
-                <p>calculo</p>
-                <p>programacion...</p>
-            </div>
+        @*<div class="col-sm-10">
+            @foreach (var materia in Model.Item1.materias)
+            {
+                <div style="background: #e9ecef;padding: 10px;margin:10px">
+                    <h4>Materia: @materia.nombremateria</h4>
+                    <h5>Profesor: @materia.nombremaestro</h5>
+                    <h5>Grupo: @materia.nombresalon</h5>
+                    <div>
+                        @foreach (var horario in materia.horas)
+                        {
+                            <label>@horario.diassem @horario.horainicio - @horario.horafinal</label>
+                        }
+                    </div>
+                </div>
+            }
+        </div>*@
+        <div class="container" style="margin-left:auto;margin-right:auto">
+            <table id="hist">
+                <tr style="border-bottom:1px solid gray">
+                    <th>Materia</th>
+                    <th>Salon</th>
+                    <th>Tipo</th>
+                    <th>Lunes</th>
+                    <th>Martes</th>
+                    <th>Miercoles</th>
+                    <th>Jueves</th>
+                    <th>Viernes</th>
+                    <th>Sabado</th>
+                </tr>
+                @foreach (var materia in Model.Item1.materias)
+                {
+                    <tr style="border-bottom:1px solid gray">
+                        <td>@materia.nombremateria</td>
+                        <td>@materia.nombresalon</td>
+                        <td>CR 1 oportunidad</td>
+                        <td>
+                            @if (materia.horas.FirstOrDefault(x => x.diassem == "Lunes") != null)
+                            {
+                                @materia.horas.FirstOrDefault(x => x.diassem == "Lunes").hora   
+                            }
+                        </td>
+                        <td>
+                            @if (materia.horas.FirstOrDefault(x => x.diassem == "Martes") != null)
+                            {
+                                @materia.horas.FirstOrDefault(x => x.diassem == "Martes").hora
+                            }
+                        </td>
+                        <td>
+                            @if (materia.horas.FirstOrDefault(x => x.diassem == "Miercoles") != null)
+                            {
+                                @materia.horas.FirstOrDefault(x => x.diassem == "Miercoles").hora
+                            }
+                        </td>
+                        <td>
+                            @if (materia.horas.FirstOrDefault(x => x.diassem == "Jueves") != null)
+                            {
+                                @materia.horas.FirstOrDefault(x => x.diassem == "Jueves").hora
+                            }
+                        </td>
+                        <td>
+                            @if (materia.horas.FirstOrDefault(x => x.diassem == "Viernes") != null)
+                            {
+                                @materia.horas.FirstOrDefault(x => x.diassem == "Viernes").hora
+                            }
+                        </td>
+                        <td>
+                            @if (materia.horas.FirstOrDefault(x => x.diassem == "Sabado") != null)
+                            {
+                                @materia.horas.FirstOrDefault(x => x.diassem == "Sabado").hora
+                            }
+                        </td>
+                    </tr>
+                }
+            </table>
+</div>
 
-        </div>
-    </div>
+

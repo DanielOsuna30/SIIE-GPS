@@ -4,42 +4,40 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SIIEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SIIE_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Alumno">
           <Key>
             <PropertyRef Name="idAlumno" />
           </Key>
-          <Property Name="idAlumno" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="idCarrera" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="HistorialAcademico" Type="varchar" MaxLength="40" Nullable="false" />
-          <Property Name="Cursando" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="idAlumno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCarrera" Type="int" Nullable="false" />
           <Property Name="noControl" Type="varchar" MaxLength="8" Nullable="false" />
-          <Property Name="Semestre" Type="varchar" MaxLength="2" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="40" Nullable="false" />
-          <Property Name="ApellidoP" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="ApellidoM" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="Sexo" Type="varchar" MaxLength="1" Nullable="false" />
-          <Property Name="FechaNacimiento" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="Nacionalidad" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="Preparatoria" Type="varchar" MaxLength="40" Nullable="false" />
-          <Property Name="Estado" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="Municipio" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="Direccion" Type="varchar" MaxLength="80" Nullable="false" />
-          <Property Name="Colonia" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="CP" Type="varchar" MaxLength="8" Nullable="false" />
-          <Property Name="Telefono" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="Correo" Type="varchar" MaxLength="40" Nullable="false" />
-          <Property Name="NombrePadre" Type="varchar" MaxLength="80" Nullable="false" />
-          <Property Name="NombreMadre" Type="varchar" MaxLength="80" Nullable="false" />
-          <Property Name="TelefonoPadre" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="TelefonoMadre" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="OtroContacto" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Semestre" Type="varchar" MaxLength="2" />
+          <Property Name="Nombre" Type="varchar" MaxLength="255" />
+          <Property Name="ApellidoP" Type="varchar" MaxLength="255" />
+          <Property Name="ApellidoM" Type="varchar" MaxLength="255" />
+          <Property Name="Sexo" Type="varchar" MaxLength="1" />
+          <Property Name="FechaNacimiento" Type="varchar" MaxLength="15" />
+          <Property Name="Nacionalidad" Type="varchar" MaxLength="25" />
+          <Property Name="Preparatoria" Type="varchar" MaxLength="255" />
+          <Property Name="Estado" Type="varchar" MaxLength="25" />
+          <Property Name="Municipio" Type="varchar" MaxLength="25" />
+          <Property Name="Direccion" Type="varchar" MaxLength="255" />
+          <Property Name="Colonia" Type="varchar" MaxLength="25" />
+          <Property Name="CP" Type="varchar" MaxLength="8" />
+          <Property Name="Telefono" Type="varchar" MaxLength="15" />
+          <Property Name="Correo" Type="varchar" MaxLength="40" />
+          <Property Name="NombrePadre" Type="varchar" MaxLength="80" />
+          <Property Name="NombreMadre" Type="varchar" MaxLength="80" />
+          <Property Name="TelefonoPadre" Type="varchar" MaxLength="15" />
+          <Property Name="TelefonoMadre" Type="varchar" MaxLength="15" />
+          <Property Name="OtroContacto" Type="varchar" MaxLength="15" />
         </EntityType>
         <EntityType Name="Carrera">
           <Key>
             <PropertyRef Name="idCarrera" />
           </Key>
-          <Property Name="idCarrera" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="idCarrera" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NombreCarrera" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="AbreviacionCarrera" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="Semestres" Type="varchar" MaxLength="2" Nullable="false" />
@@ -48,10 +46,10 @@
           <Key>
             <PropertyRef Name="idCursando" />
           </Key>
-          <Property Name="idCursando" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="idGrupo" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="idAlumno" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="idMateria" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="idCursando" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idGrupo" Type="int" Nullable="false" />
+          <Property Name="idAlumno" Type="int" Nullable="false" />
+          <Property Name="idMateria" Type="int" Nullable="false" />
           <Property Name="Semestre" Type="varchar" MaxLength="2" Nullable="false" />
           <Property Name="Año" Type="varchar" MaxLength="4" Nullable="false" />
         </EntityType>
@@ -59,29 +57,29 @@
           <Key>
             <PropertyRef Name="idGrupo" />
           </Key>
-          <Property Name="idGrupo" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="idMateria" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="idMaestro" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="idSalon" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="idGrupo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idMateria" Type="int" Nullable="false" />
+          <Property Name="idMaestro" Type="int" Nullable="false" />
+          <Property Name="idSalon" Type="int" Nullable="false" />
           <Property Name="Periodo" Type="varchar" MaxLength="25" Nullable="false" />
         </EntityType>
         <EntityType Name="HistorialAcademico">
           <Key>
             <PropertyRef Name="idHistorialAcademico" />
           </Key>
-          <Property Name="idHistorialAcademico" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="idAlumno" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="idMateria" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="Calificacion" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="idHistorialAcademico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idAlumno" Type="int" Nullable="false" />
+          <Property Name="idMateria" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="int" Nullable="false" />
           <Property Name="Semestre" Type="varchar" MaxLength="2" Nullable="false" />
           <Property Name="Año" Type="varchar" MaxLength="4" Nullable="false" />
-          <Property Name="Estado" Type="int" Nullable="false" />
+          <Property Name="Calificacion" Type="int" />
         </EntityType>
         <EntityType Name="Horario">
           <Key>
             <PropertyRef Name="idHorario" />
           </Key>
-          <Property Name="idHorario" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="idHorario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DiaSemana" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="HrInicio" Type="varchar" MaxLength="5" Nullable="false" />
           <Property Name="HrFin" Type="varchar" MaxLength="5" Nullable="false" />
@@ -90,9 +88,9 @@
           <Key>
             <PropertyRef Name="idHorarioGrupo" />
           </Key>
-          <Property Name="idHorarioGrupo" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="idGrupo" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="idHorario" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="idHorarioGrupo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idGrupo" Type="int" Nullable="false" />
+          <Property Name="idHorario" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Loginn">
           <Key>
@@ -106,7 +104,7 @@
           <Key>
             <PropertyRef Name="idMaestro" />
           </Key>
-          <Property Name="idMaestro" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="idMaestro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NumEconomico" Type="varchar" MaxLength="8" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="ApellidoP" Type="varchar" MaxLength="25" Nullable="false" />
@@ -126,22 +124,22 @@
           <Key>
             <PropertyRef Name="idMateria" />
           </Key>
-          <Property Name="idMateria" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="idCarrera" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="NombreMateria" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="idMateria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCarrera" Type="int" Nullable="false" />
+          <Property Name="NombreMateria" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Semestre" Type="varchar" MaxLength="2" Nullable="false" />
-          <Property Name="AbreviacionMateria" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="Clave" Type="varchar" MaxLength="7" Nullable="false" />
-          <Property Name="Creditos" Type="varchar" MaxLength="1" Nullable="false" />
-          <Property Name="HrsTeoricas" Type="varchar" MaxLength="1" Nullable="false" />
-          <Property Name="HrsPracticas" Type="varchar" MaxLength="1" Nullable="false" />
-          <Property Name="PlanEstudios" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="AbreviacionMateria" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Clave" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Creditos" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="HrsTeoricas" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="HrsPracticas" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="PlanEstudios" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Salon">
           <Key>
             <PropertyRef Name="idSalon" />
           </Key>
-          <Property Name="idSalon" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="idSalon" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NombreSalon" Type="varchar" MaxLength="25" Nullable="false" />
         </EntityType>
         <Association Name="FK_Alumno">
@@ -312,7 +310,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SIIEModelStoreContainer">
+        <EntityContainer Name="SIIE_dbModelStoreContainer">
           <EntitySet Name="Alumno" EntityType="Self.Alumno" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Carrera" EntityType="Self.Carrera" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cursando" EntityType="Self.Cursando" Schema="dbo" store:Type="Tables" />
@@ -384,46 +382,44 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="SIIEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="SIIE_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Alumno">
           <Key>
             <PropertyRef Name="idAlumno" />
           </Key>
-          <Property Name="idAlumno" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="idCarrera" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="HistorialAcademico" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Cursando" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idAlumno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCarrera" Type="Int32" Nullable="false" />
           <Property Name="noControl" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Semestre" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ApellidoP" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ApellidoM" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Sexo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FechaNacimiento" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Nacionalidad" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Preparatoria" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Estado" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Municipio" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Direccion" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Colonia" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CP" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Correo" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NombrePadre" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NombreMadre" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TelefonoPadre" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TelefonoMadre" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="OtroContacto" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Semestre" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidoP" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidoM" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Sexo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="FechaNacimiento" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Nacionalidad" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Preparatoria" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Municipio" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Colonia" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="CP" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="NombrePadre" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="NombreMadre" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="TelefonoPadre" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="TelefonoMadre" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="OtroContacto" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Carrera" Relationship="Self.FK_Alumno" FromRole="Alumno" ToRole="Carrera" />
           <NavigationProperty Name="Loginn" Relationship="Self.FK2_Alumno" FromRole="Alumno" ToRole="Loginn" />
-          <NavigationProperty Name="Cursando1" Relationship="Self.FK2_Cursando" FromRole="Alumno" ToRole="Cursando" />
-          <NavigationProperty Name="HistorialAcademico1" Relationship="Self.FK2_Inscritos" FromRole="Alumno" ToRole="HistorialAcademico" />
+          <NavigationProperty Name="Cursando" Relationship="Self.FK2_Cursando" FromRole="Alumno" ToRole="Cursando" />
+          <NavigationProperty Name="HistorialAcademico" Relationship="Self.FK2_Inscritos" FromRole="Alumno" ToRole="HistorialAcademico" />
         </EntityType>
         <EntityType Name="Carrera">
           <Key>
             <PropertyRef Name="idCarrera" />
           </Key>
-          <Property Name="idCarrera" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idCarrera" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NombreCarrera" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="AbreviacionCarrera" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Semestres" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
@@ -434,10 +430,10 @@
           <Key>
             <PropertyRef Name="idCursando" />
           </Key>
-          <Property Name="idCursando" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="idGrupo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="idAlumno" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="idMateria" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idCursando" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idGrupo" Type="Int32" Nullable="false" />
+          <Property Name="idAlumno" Type="Int32" Nullable="false" />
+          <Property Name="idMateria" Type="Int32" Nullable="false" />
           <Property Name="Semestre" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Año" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Alumno" Relationship="Self.FK2_Cursando" FromRole="Cursando" ToRole="Alumno" />
@@ -448,10 +444,10 @@
           <Key>
             <PropertyRef Name="idGrupo" />
           </Key>
-          <Property Name="idGrupo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="idMateria" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="idMaestro" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="idSalon" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idGrupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idMateria" Type="Int32" Nullable="false" />
+          <Property Name="idMaestro" Type="Int32" Nullable="false" />
+          <Property Name="idSalon" Type="Int32" Nullable="false" />
           <Property Name="Periodo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Cursando" Relationship="Self.FK_Cursando" FromRole="Grupo" ToRole="Cursando" />
           <NavigationProperty Name="Materia" Relationship="Self.FK_Grupo" FromRole="Grupo" ToRole="Materia" />
@@ -463,21 +459,21 @@
           <Key>
             <PropertyRef Name="idHistorialAcademico" />
           </Key>
-          <Property Name="idHistorialAcademico" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="idAlumno" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="idMateria" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Calificacion" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idHistorialAcademico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idAlumno" Type="Int32" Nullable="false" />
+          <Property Name="idMateria" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="Semestre" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Año" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Alumno" Relationship="Self.FK2_Inscritos" FromRole="HistorialAcademico" ToRole="Alumno" />
           <NavigationProperty Name="Materia" Relationship="Self.FK3_Inscritos" FromRole="HistorialAcademico" ToRole="Materia" />
-          <Property Name="Estado" Type="Int32" Nullable="false" />
+          <Property Name="Calificacion" Type="Int32" />
         </EntityType>
         <EntityType Name="Horario">
           <Key>
             <PropertyRef Name="idHorario" />
           </Key>
-          <Property Name="idHorario" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idHorario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DiaSemana" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="HrInicio" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="HrFin" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
@@ -487,9 +483,9 @@
           <Key>
             <PropertyRef Name="idHorarioGrupo" />
           </Key>
-          <Property Name="idHorarioGrupo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="idGrupo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="idHorario" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idHorarioGrupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idGrupo" Type="Int32" Nullable="false" />
+          <Property Name="idHorario" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Grupo" Relationship="Self.FK_HorarioGrupo" FromRole="HorarioGrupo" ToRole="Grupo" />
           <NavigationProperty Name="Horario" Relationship="Self.FK2_HorarioGrupo" FromRole="HorarioGrupo" ToRole="Horario" />
         </EntityType>
@@ -507,7 +503,7 @@
           <Key>
             <PropertyRef Name="idMaestro" />
           </Key>
-          <Property Name="idMaestro" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idMaestro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NumEconomico" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ApellidoP" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
@@ -529,16 +525,16 @@
           <Key>
             <PropertyRef Name="idMateria" />
           </Key>
-          <Property Name="idMateria" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="idCarrera" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NombreMateria" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idMateria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCarrera" Type="Int32" Nullable="false" />
+          <Property Name="NombreMateria" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Semestre" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="AbreviacionMateria" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Clave" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Creditos" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="HrsTeoricas" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="HrsPracticas" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PlanEstudios" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AbreviacionMateria" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Clave" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Creditos" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HrsTeoricas" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HrsPracticas" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PlanEstudios" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Carrera" Relationship="Self.FK_Materia" FromRole="Materia" ToRole="Carrera" />
           <NavigationProperty Name="Cursando" Relationship="Self.FK3_Cursando" FromRole="Materia" ToRole="Cursando" />
           <NavigationProperty Name="Grupo" Relationship="Self.FK_Grupo" FromRole="Materia" ToRole="Grupo" />
@@ -548,7 +544,7 @@
           <Key>
             <PropertyRef Name="idSalon" />
           </Key>
-          <Property Name="idSalon" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idSalon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NombreSalon" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Grupo" Relationship="Self.FK3_Grupo" FromRole="Salon" ToRole="Grupo" />
         </EntityType>
@@ -720,7 +716,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SIIEEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SIIE_dbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Alumno" EntityType="Self.Alumno" />
           <EntitySet Name="Carrera" EntityType="Self.Carrera" />
           <EntitySet Name="Cursando" EntityType="Self.Cursando" />
@@ -794,14 +790,12 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SIIEModelStoreContainer" CdmEntityContainer="SIIEEntities">
+        <EntityContainerMapping StorageEntityContainer="SIIE_dbModelStoreContainer" CdmEntityContainer="SIIE_dbEntities">
           <EntitySetMapping Name="Alumno">
-            <EntityTypeMapping TypeName="SIIEModel.Alumno">
+            <EntityTypeMapping TypeName="SIIE_dbModel.Alumno">
               <MappingFragment StoreEntitySet="Alumno">
                 <ScalarProperty Name="idAlumno" ColumnName="idAlumno" />
                 <ScalarProperty Name="idCarrera" ColumnName="idCarrera" />
-                <ScalarProperty Name="HistorialAcademico" ColumnName="HistorialAcademico" />
-                <ScalarProperty Name="Cursando" ColumnName="Cursando" />
                 <ScalarProperty Name="noControl" ColumnName="noControl" />
                 <ScalarProperty Name="Semestre" ColumnName="Semestre" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -827,7 +821,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Carrera">
-            <EntityTypeMapping TypeName="SIIEModel.Carrera">
+            <EntityTypeMapping TypeName="SIIE_dbModel.Carrera">
               <MappingFragment StoreEntitySet="Carrera">
                 <ScalarProperty Name="idCarrera" ColumnName="idCarrera" />
                 <ScalarProperty Name="NombreCarrera" ColumnName="NombreCarrera" />
@@ -837,7 +831,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Cursando">
-            <EntityTypeMapping TypeName="SIIEModel.Cursando">
+            <EntityTypeMapping TypeName="SIIE_dbModel.Cursando">
               <MappingFragment StoreEntitySet="Cursando">
                 <ScalarProperty Name="idCursando" ColumnName="idCursando" />
                 <ScalarProperty Name="idGrupo" ColumnName="idGrupo" />
@@ -849,7 +843,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Grupo">
-            <EntityTypeMapping TypeName="SIIEModel.Grupo">
+            <EntityTypeMapping TypeName="SIIE_dbModel.Grupo">
               <MappingFragment StoreEntitySet="Grupo">
                 <ScalarProperty Name="idGrupo" ColumnName="idGrupo" />
                 <ScalarProperty Name="idMateria" ColumnName="idMateria" />
@@ -860,20 +854,20 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HistorialAcademico">
-            <EntityTypeMapping TypeName="SIIEModel.HistorialAcademico">
+            <EntityTypeMapping TypeName="SIIE_dbModel.HistorialAcademico">
               <MappingFragment StoreEntitySet="HistorialAcademico">
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
                 <ScalarProperty Name="idHistorialAcademico" ColumnName="idHistorialAcademico" />
                 <ScalarProperty Name="idAlumno" ColumnName="idAlumno" />
                 <ScalarProperty Name="idMateria" ColumnName="idMateria" />
-                <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Semestre" ColumnName="Semestre" />
                 <ScalarProperty Name="Año" ColumnName="Año" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Horario">
-            <EntityTypeMapping TypeName="SIIEModel.Horario">
+            <EntityTypeMapping TypeName="SIIE_dbModel.Horario">
               <MappingFragment StoreEntitySet="Horario">
                 <ScalarProperty Name="idHorario" ColumnName="idHorario" />
                 <ScalarProperty Name="DiaSemana" ColumnName="DiaSemana" />
@@ -883,7 +877,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HorarioGrupo">
-            <EntityTypeMapping TypeName="SIIEModel.HorarioGrupo">
+            <EntityTypeMapping TypeName="SIIE_dbModel.HorarioGrupo">
               <MappingFragment StoreEntitySet="HorarioGrupo">
                 <ScalarProperty Name="idHorarioGrupo" ColumnName="idHorarioGrupo" />
                 <ScalarProperty Name="idGrupo" ColumnName="idGrupo" />
@@ -892,7 +886,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Loginn">
-            <EntityTypeMapping TypeName="SIIEModel.Loginn">
+            <EntityTypeMapping TypeName="SIIE_dbModel.Loginn">
               <MappingFragment StoreEntitySet="Loginn">
                 <ScalarProperty Name="noControl" ColumnName="noControl" />
                 <ScalarProperty Name="Constraseña" ColumnName="Constraseña" />
@@ -901,7 +895,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Maestro">
-            <EntityTypeMapping TypeName="SIIEModel.Maestro">
+            <EntityTypeMapping TypeName="SIIE_dbModel.Maestro">
               <MappingFragment StoreEntitySet="Maestro">
                 <ScalarProperty Name="idMaestro" ColumnName="idMaestro" />
                 <ScalarProperty Name="NumEconomico" ColumnName="NumEconomico" />
@@ -922,7 +916,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Materia">
-            <EntityTypeMapping TypeName="SIIEModel.Materia">
+            <EntityTypeMapping TypeName="SIIE_dbModel.Materia">
               <MappingFragment StoreEntitySet="Materia">
                 <ScalarProperty Name="idMateria" ColumnName="idMateria" />
                 <ScalarProperty Name="idCarrera" ColumnName="idCarrera" />
@@ -938,7 +932,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Salon">
-            <EntityTypeMapping TypeName="SIIEModel.Salon">
+            <EntityTypeMapping TypeName="SIIE_dbModel.Salon">
               <MappingFragment StoreEntitySet="Salon">
                 <ScalarProperty Name="idSalon" ColumnName="idSalon" />
                 <ScalarProperty Name="NombreSalon" ColumnName="NombreSalon" />

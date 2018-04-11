@@ -13,10 +13,10 @@ namespace SIIE.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SIIEEntities : DbContext
+    public partial class SIIE_dbEntities : DbContext
     {
-        public SIIEEntities()
-            : base("name=SIIEEntities")
+        public SIIE_dbEntities()
+            : base("name=SIIE_dbEntities")
         {
         }
     

@@ -21,7 +21,7 @@ namespace SIIE.Models
             this.Materia = new HashSet<Materia>();
         }
     
-        public string idCarrera { get; set; }
+        public int idCarrera { get; set; }
         public string NombreCarrera { get; set; }
         public string AbreviacionCarrera { get; set; }
         public string Semestres { get; set; }

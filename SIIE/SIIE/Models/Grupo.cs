@@ -21,10 +21,10 @@ namespace SIIE.Models
             this.HorarioGrupo = new HashSet<HorarioGrupo>();
         }
     
-        public string idGrupo { get; set; }
-        public string idMateria { get; set; }
-        public string idMaestro { get; set; }
-        public string idSalon { get; set; }
+        public int idGrupo { get; set; }
+        public int idMateria { get; set; }
+        public int idMaestro { get; set; }
+        public int idSalon { get; set; }
         public string Periodo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

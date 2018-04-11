@@ -20,7 +20,7 @@ namespace SIIE.Models
             this.Grupo = new HashSet<Grupo>();
         }
     
-        public string idMaestro { get; set; }
+        public int idMaestro { get; set; }
         public string NumEconomico { get; set; }
         public string Nombre { get; set; }
         public string ApellidoP { get; set; }

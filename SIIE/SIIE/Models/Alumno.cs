@@ -17,14 +17,12 @@ namespace SIIE.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Alumno()
         {
-            this.Cursando1 = new HashSet<Cursando>();
-            this.HistorialAcademico1 = new HashSet<HistorialAcademico>();
+            this.Cursando = new HashSet<Cursando>();
+            this.HistorialAcademico = new HashSet<HistorialAcademico>();
         }
     
-        public string idAlumno { get; set; }
-        public string idCarrera { get; set; }
-        public string HistorialAcademico { get; set; }
-        public string Cursando { get; set; }
+        public int idAlumno { get; set; }
+        public int idCarrera { get; set; }
         public string noControl { get; set; }
         public string Semestre { get; set; }
         public string Nombre { get; set; }
@@ -50,8 +48,8 @@ namespace SIIE.Models
         public virtual Carrera Carrera { get; set; }
         public virtual Loginn Loginn { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cursando> Cursando1 { get; set; }
+        public virtual ICollection<Cursando> Cursando { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HistorialAcademico> HistorialAcademico1 { get; set; }
+        public virtual ICollection<HistorialAcademico> HistorialAcademico { get; set; }
     }
 }

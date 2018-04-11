@@ -14,9 +14,9 @@ namespace SIIE.Models
     
     public partial class HorarioGrupo
     {
-        public string idHorarioGrupo { get; set; }
-        public string idGrupo { get; set; }
-        public string idHorario { get; set; }
+        public int idHorarioGrupo { get; set; }
+        public int idGrupo { get; set; }
+        public int idHorario { get; set; }
     
         public virtual Grupo Grupo { get; set; }
         public virtual Horario Horario { get; set; }

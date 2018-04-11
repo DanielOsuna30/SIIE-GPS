@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="SIIEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="SIIE_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Alumno">
     <Key>
       <PropertyRef Name="idAlumno" />
@@ -7,23 +7,23 @@
     <Property Name="idAlumno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="idCarrera" Type="int" Nullable="false" />
     <Property Name="noControl" Type="varchar" MaxLength="8" Nullable="false" />
-    <Property Name="Semestre" Type="varchar" MaxLength="2" Nullable="false" />
-    <Property Name="Nombre" Type="varchar" MaxLength="255" Nullable="false" />
-    <Property Name="ApellidoP" Type="varchar" MaxLength="255" Nullable="false" />
-    <Property Name="ApellidoM" Type="varchar" MaxLength="255" Nullable="false" />
-    <Property Name="Sexo" Type="varchar" MaxLength="1" Nullable="false" />
-    <Property Name="FechaNacimiento" Type="varchar" MaxLength="15" Nullable="false" />
-    <Property Name="Nacionalidad" Type="varchar" MaxLength="25" Nullable="false" />
-    <Property Name="Preparatoria" Type="varchar" MaxLength="255" Nullable="false" />
-    <Property Name="Estado" Type="varchar" MaxLength="25" Nullable="false" />
-    <Property Name="Municipio" Type="varchar" MaxLength="25" Nullable="false" />
-    <Property Name="Direccion" Type="varchar" MaxLength="255" Nullable="false" />
-    <Property Name="Colonia" Type="varchar" MaxLength="25" Nullable="false" />
-    <Property Name="CP" Type="varchar" MaxLength="8" Nullable="false" />
-    <Property Name="Telefono" Type="varchar" MaxLength="15" Nullable="false" />
-    <Property Name="Correo" Type="varchar" MaxLength="40" Nullable="false" />
-    <Property Name="NombrePadre" Type="varchar" MaxLength="80" Nullable="false" />
-    <Property Name="NombreMadre" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="Semestre" Type="varchar" MaxLength="2" />
+    <Property Name="Nombre" Type="varchar" MaxLength="255" />
+    <Property Name="ApellidoP" Type="varchar" MaxLength="255" />
+    <Property Name="ApellidoM" Type="varchar" MaxLength="255" />
+    <Property Name="Sexo" Type="varchar" MaxLength="1" />
+    <Property Name="FechaNacimiento" Type="varchar" MaxLength="15" />
+    <Property Name="Nacionalidad" Type="varchar" MaxLength="25" />
+    <Property Name="Preparatoria" Type="varchar" MaxLength="255" />
+    <Property Name="Estado" Type="varchar" MaxLength="25" />
+    <Property Name="Municipio" Type="varchar" MaxLength="25" />
+    <Property Name="Direccion" Type="varchar" MaxLength="255" />
+    <Property Name="Colonia" Type="varchar" MaxLength="25" />
+    <Property Name="CP" Type="varchar" MaxLength="8" />
+    <Property Name="Telefono" Type="varchar" MaxLength="15" />
+    <Property Name="Correo" Type="varchar" MaxLength="40" />
+    <Property Name="NombrePadre" Type="varchar" MaxLength="80" />
+    <Property Name="NombreMadre" Type="varchar" MaxLength="80" />
     <Property Name="TelefonoPadre" Type="varchar" MaxLength="15" />
     <Property Name="TelefonoMadre" Type="varchar" MaxLength="15" />
     <Property Name="OtroContacto" Type="varchar" MaxLength="15" />
@@ -68,6 +68,7 @@
     <Property Name="Estado" Type="int" Nullable="false" />
     <Property Name="Semestre" Type="varchar" MaxLength="2" Nullable="false" />
     <Property Name="Año" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="Calificacion" Type="int" />
   </EntityType>
   <EntityType Name="Horario">
     <Key>
@@ -304,7 +305,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="SIIEModelStoreContainer">
+  <EntityContainer Name="SIIE_dbModelStoreContainer">
     <EntitySet Name="Alumno" EntityType="Self.Alumno" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Carrera" EntityType="Self.Carrera" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Cursando" EntityType="Self.Cursando" Schema="dbo" store:Type="Tables" />

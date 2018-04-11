@@ -12,13 +12,16 @@ namespace SIIE.Controllers
     [SessionAuthorize]
     public class HomeController : Controller
     {
-        private StudentEngine SEngine;
+        private StudentEngine StudentEngine;
         private AdminEngine AEngine;
 
         [Route("")]
         public ActionResult Index()
         {
-            return View();
+            StudentEngine = new StudentEngine(Convert.ToInt32(Session["controlNumber"]));
+            var Data = StudentEngine.UserData();
+            var Schedule = StudentEngine.getSchedule();
+            return View(Tuple.Create(Schedule,Data));
         }
 
         [Route("About")]

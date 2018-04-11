@@ -80,7 +80,7 @@ namespace SIIE.Controllers.Helpers
 
                 if (!Ie.GetStatus())
                     return false;
-                return getLoginData(httpContext);
+                return true;
             }
             else
                 return false;

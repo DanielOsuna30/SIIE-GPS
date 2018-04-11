@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using AutoMapper;
 using SIIE.Controllers.Helpers;
+using System.Collections.Generic;
 
 namespace SIIE.Controllers.Engine
 {
@@ -16,13 +17,10 @@ namespace SIIE.Controllers.Engine
             controlNumber = cn.ToString();
         }
 
-        public object UserData()
+        public Alumno UserData()
         {
             var Data = db.Alumno.FirstOrDefault(x => x.noControl == controlNumber);
-            if (Data == null)
-                return db.Maestro.FirstOrDefault(x => x.idMaestro == controlNumber);
-            else
-                return Data;
+            return Data;
         }
 
         /// <summary>
@@ -66,17 +64,18 @@ namespace SIIE.Controllers.Engine
         /// Obtener horario de semestre actual
         /// </summary>
         /// <returns></returns>
-        public string getSchedule()
+        public CourseModels.cursando getSchedule()
         {
             var sem = db.Alumno.First(x => x.noControl == controlNumber);
             var mat = db.Cursando.Where(x => x.idAlumno == sem.idAlumno && x.Semestre == sem.Semestre).ToArray();
-            var cur = new CourseModels.cursando();
+            var cur = new CourseModels.cursando { semestre = Convert.ToInt32(sem.Semestre) };
             foreach (var materias in mat)
             {
                 var m = new CourseModels.materias();
                 m.nombremateria = db.Materia.First(x => x.idMateria == materias.idMateria).NombreMateria;
                 var idmaestro = db.Grupo.First(x => x.idGrupo == materias.idGrupo).idMaestro;
-                m.nombremaestro = db.Maestro.First(x => x.idMaestro == idmaestro).Nombre;
+                var maestro = db.Maestro.First(x => x.idMaestro == idmaestro);
+                m.nombremaestro = maestro.Nombre + " " + maestro.ApellidoP;
                 var idgrupo = db.Grupo.First(x => x.idGrupo == materias.idGrupo).idSalon;
                 m.nombresalon = db.Salon.First(x => x.idSalon == idgrupo).NombreSalon;
 
@@ -86,36 +85,42 @@ namespace SIIE.Controllers.Engine
                 {
                     var hora = new CourseModels.materias.horario();
                     hora.diassem = n.DiaSemana;
-                    hora.horainicio = n.HrInicio;
-                    hora.horafinal = n.HrFin;
+                    hora.hora = n.HrInicio+"-"+n.HrFin;
                     m.horas.Add(hora);
                 }
 
                 cur.materias.Add(m);
             }
-            return JsonConvert.SerializeObject(cur);
+            return cur;
         }
 
         /// <summary>
         /// Obtener historial academico
         /// </summary>
         /// <returns></returns>
-        public string getAcademicHistory()
+        public CourseModels.AcademicHistory getAcademicHistory()
         {
-            var HistorialAcad = db.HistorialAcademico.Where(x => x.idAlumno == controlNumber).ToArray();
+            
+            int controlN = Convert.ToInt32(controlNumber);
+            var HistorialAcad = db.HistorialAcademico.Where(x => x.idAlumno == controlN).ToArray();
             var result = new CourseModels.AcademicHistory();
-            result.semester = Convert.ToInt32(HistorialAcad.First().Semestre);
+            var alumno = db.Alumno.FirstOrDefault(x => x.noControl == controlNumber);
+            result.carrera =alumno.Carrera.NombreCarrera;
+            result.nombreAlumno = alumno.Nombre +" "+ alumno.ApellidoP;
             foreach (var materia in HistorialAcad)
             {
                 var m = new CourseModels.AcademicHistory.Materia();
-                m.name = db.Materia.First(x => x.idMateria == materia.idMateria).NombreMateria;
-                m.status = Convert.ToString(materia.Estado);
-                m.calificacion = materia.Calificacion;
+                var Materia = db.Materia.First(x => x.idMateria == materia.idMateria);
+                m.name = Materia.NombreMateria;
+                m.semestre = Materia.Semestre;
+                m.status = materia.Estado.ToString();
+                m.calificacion = materia.Calificacion.ToString();
 
-                result.Cursando.Add(m);
+                result.historial.Add(m);
             }
-            return JsonConvert.SerializeObject(result);
+            return result;
         }
+
 
         public string getDashboardData()
         {

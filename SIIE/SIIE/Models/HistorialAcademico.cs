@@ -14,13 +14,13 @@ namespace SIIE.Models
     
     public partial class HistorialAcademico
     {
-        public string idHistorialAcademico { get; set; }
-        public string idAlumno { get; set; }
-        public string idMateria { get; set; }
-        public string Calificacion { get; set; }
+        public int idHistorialAcademico { get; set; }
+        public int idAlumno { get; set; }
+        public int idMateria { get; set; }
+        public int Estado { get; set; }
         public string Semestre { get; set; }
         public string Año { get; set; }
-        public int Estado { get; set; }
+        public Nullable<int> Calificacion { get; set; }
     
         public virtual Alumno Alumno { get; set; }
         public virtual Materia Materia { get; set; }

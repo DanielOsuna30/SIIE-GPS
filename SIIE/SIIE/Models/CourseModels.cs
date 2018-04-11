@@ -64,37 +64,49 @@ namespace SIIE.Models
 
         public class AcademicHistory
         {
-            public int semester { get; set; }
-            public List<Materia> Cursando { get; set; }
-
+            public AcademicHistory()
+            {
+                this.historial = new List<Materia>();
+            }
+            public string carrera { get; set; }
+            public string nombreAlumno { get; set; }
+            public List<Materia> historial { get; set; }
             public class Materia
             {
                 public string name { get; set; }
                 public string status { get; set; }
                 public string calificacion { get; set; }
+                public string semestre { get; set; }
             }
         }
 
         public class materias
         {
+            public materias()
+            {
+                this.horas = new List<horario>();
+            }
             public string nombremateria { get; set; }
             public string nombremaestro { get; set; }
 
             public string nombresalon { get; set; }
 
             public List<horario> horas { get; set; }
+
             public class horario
             {
                 public string diassem { get; set; }
 
-                public string horainicio { get; set; }
-
-                public string horafinal { get; set; }
+                public string hora { get; set; }
             }
         }
 
         public class cursando
         {
+            public cursando()
+            {
+                this.materias = new List<CourseModels.materias>();
+            }
             public int semestre { get; set; }
             public List<materias> materias { get; set; }
         }

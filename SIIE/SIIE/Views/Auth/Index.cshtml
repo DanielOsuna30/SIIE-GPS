@@ -2,22 +2,12 @@
 @{
     ViewBag.Title = "Login";
 }
-
+@section styles{
+    <link rel="Stylesheet" href="@Href("~/Content/MainStyle.css")" />
+}
 <div class="modal"></div>
 <img id="cerrar" src="~/Content/Images/close.png" title="Cerrar">
 <img id="libs" src="~/Content/Images/libros.png" title="">
-<div class="registro">
-    <form action="#" id="registro">
-        <label for="registrarNombre" class="registrar">Nombre de usuario</label><br><br>
-        <input type="text" class="registrar" name="registrarNombre" id="rn" required><br><br>
-        <label for="registrarContra" class="registrar">contrasena</label><br><br>
-        <input type="text" class="registrar" name="registrarConta" id="rc" required><br><br>
-
-        <label for="confirmarContra" class="registrar">Confirmar contrasena</label><br><br>
-        <input type="text" class="registrar" name="confimarConta" id="rc"><br><br><br>
-        <input type="submit" id="r" value="Registrar"><br>
-    </form>
-</div>
 <div class="login">
 
     <img src="~/Content/Images/descarga.png" alt="">
@@ -27,18 +17,14 @@
         <label for="username">Nombre de usuario</label><br><br>
         <input type="text" id="controlNumber" placeholder="No. de Control" required><br><br>
         <label for="contra" id="con">Contrasena</label><br><br>
-        <input type="text" id="password" placeholder="Contrasena" required><br><br>
+        <input type="password" id="password" placeholder="Contrasena" required><br><br>
         <label for="recordar"></label>
-
         <input type="button" id="login" value="Entrar"><br>
-        <a href="#">Olvidaste tu contrasena?</a><br><br><br>
-        <a href="#" id="regis">A&uacute;n no tienes cuenta? Reg&iacute;strate aqu&iacute;.</a>
+        <a href="/Inscripcion">Reg&iacute;strarse</a>
     </form>
 </div>
 <div class="main">
-
     <h1 class="content">SIIE</h1>
-
     <h2 class="content">TOMA EL CONTROL DE TUS MATERIAS</h2>
     <h2 class="content"> GESTIONA EL PROGRESO DE TU INFORMACION ACADEMICA</h2>
     <h2 class="content">OBTEN AYUDA DE ACERCA DE TUS CLASES, RETICULA Y PROFESORES</h2>

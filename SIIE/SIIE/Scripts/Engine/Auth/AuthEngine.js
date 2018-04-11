@@ -12,7 +12,7 @@
                 if (response.status == 200)
                     window.location.href = response.route;
                 else
-                    alert("BadRequest")
+                    alert("Usuario o contraseña incorrecto")
             }
         });
     });

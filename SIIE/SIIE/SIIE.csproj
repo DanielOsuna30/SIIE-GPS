@@ -277,56 +277,56 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Alumno.cs">
-      <DependentUpon>SIIEdb.tt</DependentUpon>
+      <DependentUpon>SIIENewDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Carrera.cs">
-      <DependentUpon>SIIEdb.tt</DependentUpon>
+      <DependentUpon>SIIENewDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CourseModels.cs" />
     <Compile Include="Models\Cursando.cs">
-      <DependentUpon>SIIEdb.tt</DependentUpon>
+      <DependentUpon>SIIENewDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Grupo.cs">
-      <DependentUpon>SIIEdb.tt</DependentUpon>
+      <DependentUpon>SIIENewDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HistorialAcademico.cs">
-      <DependentUpon>SIIEdb.tt</DependentUpon>
+      <DependentUpon>SIIENewDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Horario.cs">
-      <DependentUpon>SIIEdb.tt</DependentUpon>
+      <DependentUpon>SIIENewDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HorarioGrupo.cs">
-      <DependentUpon>SIIEdb.tt</DependentUpon>
+      <DependentUpon>SIIENewDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\InscriptionModels.cs" />
     <Compile Include="Models\Loginn.cs">
-      <DependentUpon>SIIEdb.tt</DependentUpon>
+      <DependentUpon>SIIENewDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Maestro.cs">
-      <DependentUpon>SIIEdb.tt</DependentUpon>
+      <DependentUpon>SIIENewDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Materia.cs">
-      <DependentUpon>SIIEdb.tt</DependentUpon>
+      <DependentUpon>SIIENewDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ReinscriptionModels.cs" />
     <Compile Include="Models\Salon.cs">
-      <DependentUpon>SIIEdb.tt</DependentUpon>
+      <DependentUpon>SIIENewDb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SIIEdb.Context.cs">
+    <Compile Include="Models\SIIENewDb.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SIIEdb.Context.tt</DependentUpon>
+      <DependentUpon>SIIENewDb.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SIIEdb.cs">
+    <Compile Include="Models\SIIENewDb.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SIIEdb.tt</DependentUpon>
+      <DependentUpon>SIIENewDb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SIIEdb.Designer.cs">
+    <Compile Include="Models\SIIENewDb.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SIIEdb.edmx</DependentUpon>
+      <DependentUpon>SIIENewDb.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\UserModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -347,6 +347,10 @@
     <Content Include="Content\Images\Home.png" />
     <Content Include="Content\Images\libros.png" />
     <Content Include="Content\MainStyle.css" />
+    <Content Include="Content\Styles\ajustes.css" />
+    <Content Include="Content\Styles\dashboard.css" />
+    <Content Include="Content\Styles\materiasCursando.css" />
+    <Content Include="Content\Styles\segAcad.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -354,15 +358,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="gruntfile.js" />
-    <Content Include="Models\SIIEdb.Context.tt">
+    <Content Include="Models\SIIENewDb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SIIEdb.edmx</DependentUpon>
-      <LastGenOutput>SIIEdb.Context.cs</LastGenOutput>
+      <DependentUpon>SIIENewDb.edmx</DependentUpon>
+      <LastGenOutput>SIIENewDb.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\SIIEdb.tt">
+    <Content Include="Models\SIIENewDb.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SIIEdb.edmx</DependentUpon>
-      <LastGenOutput>SIIEdb.cs</LastGenOutput>
+      <DependentUpon>SIIENewDb.edmx</DependentUpon>
+      <LastGenOutput>SIIENewDb.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -391,15 +395,15 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Content\Templates\inscriptionTemplate.docx" />
-    <EntityDeploy Include="Models\SIIEdb.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SIIEdb.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\SIIEdb.edmx.diagram">
-      <DependentUpon>SIIEdb.edmx</DependentUpon>
-    </Content>
     <Content Include="package.json" />
-    <Content Include="Content\Raleway-Light.ttf" />
+    <Content Include="Content\Styles\Raleway-Light.ttf" />
+    <EntityDeploy Include="Models\SIIENewDb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SIIENewDb.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\SIIENewDb.edmx.diagram">
+      <DependentUpon>SIIENewDb.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -437,7 +441,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
@@ -458,13 +461,14 @@
     <Content Include="Views\Course\Inscripcion.cshtml" />
     <Content Include="Views\Course\SemesterSchedule.cshtml" />
     <Content Include="Views\Course\AcademicHistory.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Inscription\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\Engine\Inscription\" />
     <Folder Include="Scripts\Engine\Reinscription\" />
     <Folder Include="Scripts\Engine\User\" />
-    <Folder Include="Views\Inscription\" />
     <Folder Include="Views\Polls\" />
     <Folder Include="Views\Reinscription\" />
     <Folder Include="Views\Settings\" />

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="SIIEModelStoreContainer" CdmEntityContainer="SIIEEntities">
+  <EntityContainerMapping StorageEntityContainer="SIIE_dbModelStoreContainer" CdmEntityContainer="SIIE_dbEntities">
     <EntitySetMapping Name="Alumno">
-      <EntityTypeMapping TypeName="SIIEModel.Alumno">
+      <EntityTypeMapping TypeName="SIIE_dbModel.Alumno">
         <MappingFragment StoreEntitySet="Alumno">
           <ScalarProperty Name="idAlumno" ColumnName="idAlumno" />
           <ScalarProperty Name="idCarrera" ColumnName="idCarrera" />
@@ -31,7 +31,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Carrera">
-      <EntityTypeMapping TypeName="SIIEModel.Carrera">
+      <EntityTypeMapping TypeName="SIIE_dbModel.Carrera">
         <MappingFragment StoreEntitySet="Carrera">
           <ScalarProperty Name="idCarrera" ColumnName="idCarrera" />
           <ScalarProperty Name="NombreCarrera" ColumnName="NombreCarrera" />
@@ -41,7 +41,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Cursando">
-      <EntityTypeMapping TypeName="SIIEModel.Cursando">
+      <EntityTypeMapping TypeName="SIIE_dbModel.Cursando">
         <MappingFragment StoreEntitySet="Cursando">
           <ScalarProperty Name="idCursando" ColumnName="idCursando" />
           <ScalarProperty Name="idGrupo" ColumnName="idGrupo" />
@@ -53,7 +53,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Grupo">
-      <EntityTypeMapping TypeName="SIIEModel.Grupo">
+      <EntityTypeMapping TypeName="SIIE_dbModel.Grupo">
         <MappingFragment StoreEntitySet="Grupo">
           <ScalarProperty Name="idGrupo" ColumnName="idGrupo" />
           <ScalarProperty Name="idMateria" ColumnName="idMateria" />
@@ -64,19 +64,20 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="HistorialAcademico">
-      <EntityTypeMapping TypeName="SIIEModel.HistorialAcademico">
+      <EntityTypeMapping TypeName="SIIE_dbModel.HistorialAcademico">
         <MappingFragment StoreEntitySet="HistorialAcademico">
-          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
           <ScalarProperty Name="idHistorialAcademico" ColumnName="idHistorialAcademico" />
           <ScalarProperty Name="idAlumno" ColumnName="idAlumno" />
           <ScalarProperty Name="idMateria" ColumnName="idMateria" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
           <ScalarProperty Name="Semestre" ColumnName="Semestre" />
           <ScalarProperty Name="Año" ColumnName="Año" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Horario">
-      <EntityTypeMapping TypeName="SIIEModel.Horario">
+      <EntityTypeMapping TypeName="SIIE_dbModel.Horario">
         <MappingFragment StoreEntitySet="Horario">
           <ScalarProperty Name="idHorario" ColumnName="idHorario" />
           <ScalarProperty Name="DiaSemana" ColumnName="DiaSemana" />
@@ -86,7 +87,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="HorarioGrupo">
-      <EntityTypeMapping TypeName="SIIEModel.HorarioGrupo">
+      <EntityTypeMapping TypeName="SIIE_dbModel.HorarioGrupo">
         <MappingFragment StoreEntitySet="HorarioGrupo">
           <ScalarProperty Name="idHorarioGrupo" ColumnName="idHorarioGrupo" />
           <ScalarProperty Name="idGrupo" ColumnName="idGrupo" />
@@ -95,7 +96,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Loginn">
-      <EntityTypeMapping TypeName="SIIEModel.Loginn">
+      <EntityTypeMapping TypeName="SIIE_dbModel.Loginn">
         <MappingFragment StoreEntitySet="Loginn">
           <ScalarProperty Name="noControl" ColumnName="noControl" />
           <ScalarProperty Name="Constraseña" ColumnName="Constraseña" />
@@ -104,7 +105,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Maestro">
-      <EntityTypeMapping TypeName="SIIEModel.Maestro">
+      <EntityTypeMapping TypeName="SIIE_dbModel.Maestro">
         <MappingFragment StoreEntitySet="Maestro">
           <ScalarProperty Name="idMaestro" ColumnName="idMaestro" />
           <ScalarProperty Name="NumEconomico" ColumnName="NumEconomico" />
@@ -125,7 +126,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Materia">
-      <EntityTypeMapping TypeName="SIIEModel.Materia">
+      <EntityTypeMapping TypeName="SIIE_dbModel.Materia">
         <MappingFragment StoreEntitySet="Materia">
           <ScalarProperty Name="idMateria" ColumnName="idMateria" />
           <ScalarProperty Name="idCarrera" ColumnName="idCarrera" />
@@ -141,7 +142,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Salon">
-      <EntityTypeMapping TypeName="SIIEModel.Salon">
+      <EntityTypeMapping TypeName="SIIE_dbModel.Salon">
         <MappingFragment StoreEntitySet="Salon">
           <ScalarProperty Name="idSalon" ColumnName="idSalon" />
           <ScalarProperty Name="NombreSalon" ColumnName="NombreSalon" />

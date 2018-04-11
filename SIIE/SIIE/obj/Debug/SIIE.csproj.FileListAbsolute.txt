@@ -128,7 +128,6 @@
 \\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE\obj\Debug\SIIE.dll
 \\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE\obj\Debug\SIIE.pdb
 \\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE\bin\DocX.dll
-\\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE\obj\Debug\SIIE.csprojResolveAssemblyReference.cache
 C:\Users\dell\Desktop\SIIE\SIIE\SIIE\bin\ApplicationInsights.config
 C:\Users\dell\Desktop\SIIE\SIIE\SIIE\bin\SIIE.dll.config
 C:\Users\dell\Desktop\SIIE\SIIE\SIIE\bin\SIIE.dll

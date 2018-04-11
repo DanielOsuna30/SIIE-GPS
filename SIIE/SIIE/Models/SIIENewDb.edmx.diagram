@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fe0f24f0f03f46d98ba266414f3b6821" Name="Diagram1">
+        <EntityTypeShape EntityType="SIIE_dbModel.Alumno" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIIE_dbModel.Carrera" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIIE_dbModel.Cursando" Width="1.5" PointX="7.5" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIIE_dbModel.Grupo" Width="1.5" PointX="5.25" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIIE_dbModel.HistorialAcademico" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIIE_dbModel.Horario" Width="1.5" PointX="5.25" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIIE_dbModel.HorarioGrupo" Width="1.5" PointX="7.5" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIIE_dbModel.Loginn" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIIE_dbModel.Maestro" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIIE_dbModel.Materia" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIIE_dbModel.Salon" Width="1.5" PointX="3" PointY="18.75" IsExpanded="true" />
+        <AssociationConnector Association="SIIE_dbModel.FK_Alumno" ManuallyRouted="false" />
+        <AssociationConnector Association="SIIE_dbModel.FK2_Alumno" ManuallyRouted="false" />
+        <AssociationConnector Association="SIIE_dbModel.FK2_Cursando" ManuallyRouted="false" />
+        <AssociationConnector Association="SIIE_dbModel.FK2_Inscritos" ManuallyRouted="false" />
+        <AssociationConnector Association="SIIE_dbModel.FK_Materia" ManuallyRouted="false" />
+        <AssociationConnector Association="SIIE_dbModel.FK_Cursando" ManuallyRouted="false" />
+        <AssociationConnector Association="SIIE_dbModel.FK3_Cursando" ManuallyRouted="false" />
+        <AssociationConnector Association="SIIE_dbModel.FK_Grupo" ManuallyRouted="false" />
+        <AssociationConnector Association="SIIE_dbModel.FK_HorarioGrupo" ManuallyRouted="false" />
+        <AssociationConnector Association="SIIE_dbModel.FK2_Grupo" ManuallyRouted="false" />
+        <AssociationConnector Association="SIIE_dbModel.FK3_Grupo" ManuallyRouted="false" />
+        <AssociationConnector Association="SIIE_dbModel.FK3_Inscritos" ManuallyRouted="false" />
+        <AssociationConnector Association="SIIE_dbModel.FK2_HorarioGrupo" ManuallyRouted="false" />
+        <AssociationConnector Association="SIIE_dbModel.FK_Maestro" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

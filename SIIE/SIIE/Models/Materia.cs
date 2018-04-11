@@ -22,8 +22,8 @@ namespace SIIE.Models
             this.HistorialAcademico = new HashSet<HistorialAcademico>();
         }
     
-        public string idMateria { get; set; }
-        public string idCarrera { get; set; }
+        public int idMateria { get; set; }
+        public int idCarrera { get; set; }
         public string NombreMateria { get; set; }
         public string Semestre { get; set; }
         public string AbreviacionMateria { get; set; }

@@ -20,7 +20,7 @@ namespace SIIE.Models
             this.HorarioGrupo = new HashSet<HorarioGrupo>();
         }
     
-        public string idHorario { get; set; }
+        public int idHorario { get; set; }
         public string DiaSemana { get; set; }
         public string HrInicio { get; set; }
         public string HrFin { get; set; }

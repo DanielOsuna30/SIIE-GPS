@@ -23,20 +23,20 @@ namespace SIIE.Controllers
 
         [Route("Cursando")]
         [SessionAuthorize(Users = "3")]
-        public ActionResult SemesterSchedule()
+        public JsonResult SemesterSchedule()
         {
             StudentEngine = new StudentEngine(Convert.ToInt32(Session["controlNumber"]));
             var S=StudentEngine.getSchedule();
-            return View(S);
+            return Json(S);
         }
 
         [Route("Cursando/{controlNumber:int}")]
         [SessionAuthorize(Users ="1,2")]
-        public ActionResult SemesterSchedule(int controlNumber)
+        public JsonResult SemesterSchedule(int controlNumber)
         {
             StudentEngine = new StudentEngine(controlNumber);
             var Schedule=StudentEngine.getSchedule();
-            return View(Schedule);
+            return Json(Schedule);
         }
 
         [Route("Historial_Academico")]
@@ -50,11 +50,11 @@ namespace SIIE.Controllers
 
         [Route("Historial_Academico/{controlNumber:int}")]
         [SessionAuthorize(Users = "1,2")]
-        public ActionResult AcademicHistory(int controlNumber)
+        public JsonResult AcademicHistory(int controlNumber)
         {
             StudentEngine = new StudentEngine(controlNumber);
             var AH = StudentEngine.getAcademicHistory();
-            return View(AH);
+            return Json(AH);
         }
 
 

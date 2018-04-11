@@ -11,7 +11,7 @@ namespace SIIE.Controllers.Engine
 {
     public class MainEngine
     {
-        protected SIIEEntities db = new SIIEEntities();
+        protected SIIE_dbEntities db = new SIIE_dbEntities();
         //protected ModelsMapper MapperEngine = new ModelsMapper();
 
     }

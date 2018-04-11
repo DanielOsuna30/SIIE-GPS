@@ -14,10 +14,10 @@ namespace SIIE.Models
     
     public partial class Cursando
     {
-        public string idCursando { get; set; }
-        public string idGrupo { get; set; }
-        public string idAlumno { get; set; }
-        public string idMateria { get; set; }
+        public int idCursando { get; set; }
+        public int idGrupo { get; set; }
+        public int idAlumno { get; set; }
+        public int idMateria { get; set; }
         public string Semestre { get; set; }
         public string Año { get; set; }
     

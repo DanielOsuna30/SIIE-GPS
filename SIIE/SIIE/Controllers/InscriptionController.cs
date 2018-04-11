@@ -17,13 +17,11 @@ namespace SIIE.Controllers
         InscriptionEngine Engine;
 
         [Route("")]
-        [InscriptionAuthorize]
+        [NotLoggedAuthorize]
         public ActionResult Index()
         {
-            if (Session["userType"].ToString() != "3")
-                return View("~/Views/InscripcionNoStudent.cshtml");
-            else
-                return View();
+            Engine = new InscriptionEngine();
+            return View(Engine.CarrerasId());
         }
 
         /// <summary>
@@ -36,8 +34,12 @@ namespace SIIE.Controllers
         [InscriptionAuthorize]
         public JsonResult Data(InscriptionData Data)
         {
-            Engine = new InscriptionEngine(Session["controlNumber"].ToString());
-            return Json(new { status = HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
+            Engine = new InscriptionEngine();
+            var controlNumber=Engine.Finish(Data);
+            if (controlNumber != null)
+                return Json(new { controlNumber = controlNumber, status = HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
+            else
+                return Json(new { status = HttpStatusCode.BadRequest }, JsonRequestBehavior.AllowGet);
         }
 
         [Route("Update")]

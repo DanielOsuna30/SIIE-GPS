@@ -20,7 +20,7 @@ namespace SIIE.Models
             this.Grupo = new HashSet<Grupo>();
         }
     
-        public string idSalon { get; set; }
+        public int idSalon { get; set; }
         public string NombreSalon { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
