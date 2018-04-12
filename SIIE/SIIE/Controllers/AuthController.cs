@@ -42,7 +42,7 @@ namespace SIIE.Controllers
             {
                 Session["controlNumber"] = Data.noControl;
                 Session["level"] = Data.Permiso;
-                return Json(new { status=HttpStatusCode.OK, route= ConfigurationManager.AppSettings["MainRoute"] }, JsonRequestBehavior.AllowGet);
+                return Json(new { status=HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
             }
             else
                 return Json(new { status=HttpStatusCode.BadRequest, message="Usuario o contraseña incorrectos" }, JsonRequestBehavior.AllowGet);

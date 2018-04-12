@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+﻿$(function () {
     $('#InscriptionSumbit').click(function () {
         var data = {
             LastNameP: $('#LastNameP').val(),
@@ -9,7 +9,7 @@
             Address: $('#Address').val(),
             State: $('#State').val(),
             Municipality: $('#Municipality').val(),
-            Nationality:"Mexicano",
+            Nationality: "Mexicano",
             PostalCode: $('#PostalCode').val(),
             Suburb: $('#Suburb').val(),
             PhoneNumber: $('#PhoneNumber').val(),
@@ -30,6 +30,5 @@
                     alert("Error, intentelo mas tarde")
             }
         });
-    }
-    )
+    })
 });

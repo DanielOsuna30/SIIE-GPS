@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="~/Content/Images/favicon.ico" type="image/x-icon" sizes="16x16">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@ViewBag.Title - SIIE</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/engine")
+    @Styles.Render("~/Content/css")
+    @RenderSection("styles", false)
+    </head>
+    <body>
+        <div class="wrapper">
+            <!-- Sidebar Holder -->
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <img id="loguito" src="~/Content/Images/Logo_Mesa de trabajo 1.png" alt="">
+                </div>
+                <ul class="list-unstyled components">
+                    <li>
+                        <a href="/Admin">Alumnos</a>
+                        <ul>
+                            <li>
+                                <a href="/Admin/Create">Crear</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/Admin/Maestros">Maestros</a>
+                        <ul>
+                            <li>
+                                <a href="/Admin/Create">Crear</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/Admin/Materias">Materias</a>
+                    </li>
+                </ul>
+
+                <ul class="list-unstyled CTAs">
+                    <li><a id="logout" class="default">Cerrar Sesión</a></li>
+                </ul>
+            </nav>
+            @RenderBody()
+        </div>
+        <!-- jQuery CDN -->
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <!-- Bootstrap Js CDN -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar').toggleClass('active');
+                    $(this).toggleClass('active');
+                });
+            });
+        </script>
+    </body>
+
+</html>

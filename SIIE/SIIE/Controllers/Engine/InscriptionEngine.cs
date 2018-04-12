@@ -39,9 +39,9 @@ namespace SIIE.Controllers.Engine
             return false;
         }
 
-        public List<Carrera> CarrerasId()
+        public Carrera[] CarrerasId()
         {
-            List<Carrera> M = db.Carrera.ToList();
+            Carrera[] M = db.Carrera.ToArray();
             return M;
         }
 
@@ -145,14 +145,17 @@ namespace SIIE.Controllers.Engine
             string Num = Convert.ToString((db.Alumno.ToArray().Count() + 1));
             return Num;
         }
+        public string MaNumber()
+        {
+            string Num = Convert.ToString((db.Maestro.ToArray().Count() + 1));
+            return Num;
+        }
 
         public string setControlNumber(InscriptionData Data)
         {
             String ConNum;
-            ConNum = Data.CareerOption1;
-            ConNum += GenerationNumber(Data.EgressDate);
-            ConNum += AluNumber();
-
+            ConNum = Data.Level==3?Data.CareerOption1:"MA";
+            ConNum += Data.Level==3? AluNumber() : MaNumber();
             return ConNum;
         }
 

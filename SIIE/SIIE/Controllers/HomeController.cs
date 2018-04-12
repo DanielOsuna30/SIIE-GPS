@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using SIIE.Controllers.Helpers;
 using SIIE.Controllers.Engine;
+using SIIE.Models;
 
 namespace SIIE.Controllers
 {
@@ -13,15 +14,22 @@ namespace SIIE.Controllers
     public class HomeController : Controller
     {
         private StudentEngine StudentEngine;
-        private AdminEngine AEngine;
 
         [Route("")]
+        [SessionAuthorize]
         public ActionResult Index()
         {
-            StudentEngine = new StudentEngine(Convert.ToInt32(Session["controlNumber"]));
-            var Data = StudentEngine.UserData();
-            var Schedule = StudentEngine.getSchedule();
-            return View(Tuple.Create(Schedule,Data));
+            if (Session["level"].ToString() == "1")
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+            else
+            {
+                StudentEngine = new StudentEngine(Convert.ToInt32(Session["controlNumber"]));
+                var Data = StudentEngine.UserData();
+                var Schedule = StudentEngine.getSchedule();
+                return View(Tuple.Create(Schedule, Data));
+            }
         }
 
         [Route("About")]

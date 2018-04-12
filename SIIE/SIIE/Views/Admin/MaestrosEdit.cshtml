@@ -1,0 +1,73 @@
+﻿@model SIIE.Models.Maestro
+
+@{
+    ViewBag.Title = "Editar Maestro";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section styles{
+    <link rel="Stylesheet" href="@Href("~/Content/Styles/materias.css")" />
+}
+<div id="content">
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <button type="button" id="sidebarCollapse" class="navbar-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+    <h1>Editar Maestro</h1>
+    <div class="nuevoMaestro">
+            <label for="ide">Num. Economico</label>
+            <input type="number" class="form-control" name="ids" id="NumEconomico" value="@Model.NumEconomico" readonly required>
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" name="nombre" id="Nombre" value="@Model.Nombre" required>
+            <label for="apellidop">Apellido paterno</label>
+            <input type="text" class="form-control" name="apellidop" id="ApellidoP" value="@Model.ApellidoP" required>
+            <label for="apellidom">Apellido Materno</label>
+            <input type="text" class="form-control" name="apellidom" id="ApellidoM" value="@Model.ApellidoM" required>
+            <label for="dom">Direccion</label>
+            <input type="text" class="form-control" name="dom" value="@Model.Direccion" id="Direccion"><br>
+            <label for="estado">Estado</label>
+            <select name="estado" value="@Model.Estado" id="Estado">
+                <option value="bcs">baja california sur</option>
+                <option value="bc">baja california norte</option>
+                <option value="jal">jalisco</option>
+                <option value="cdmx">cd mx</option>
+                <option value="nl">nuevo leon</option>
+                <option value="chi">chihuahua</option>
+                <option value="son">sonora</option>
+                <option value="sin">sinaloa</option>
+                <option value="dur">durango</option>
+                <option value="coa">cohahuila</option>
+                <option value="zac">zacatecas</option>
+                <option value="slp">san luis potosi</option>
+                <option value="gua">guanajuato</option>
+                <option value="hid">hidalgo</option>
+                <option value="mic">michoacan</option>
+                <option value="pue">puebla</option>
+                <option value="ver">veracruz</option>
+                <option value="oax">oaxaca</option>
+                <option value="chi">chiapas</option>
+                <option value="tab">tabasco</option>
+                <option value="cam">campeche</option>
+                <option value="yuc">yucatan</option>
+                <option value="qui">quintana roo</option>
+            </select><br>
+            <label for="mun">Municipio</label>
+            <input type="text" name="mun" class="form-control" value="@Model.Municipio" id="Municipio">
+            <label for="col">Colonia</label><br>
+            <input type="text" name="col" class="form-control" value="@Model.Colonia" id="Colonia">
+            <label for="cp">Codigo postal</label><br>
+            <input type="number" name="cp" class="form-control" value="@Model.CP" maxlength="5" id="CP" required>
+            <label for="tel">Telefono</label><br>
+            <input type="number" name="tel" class="form-control" maxlength="10" value="@Model.Telefono" id="Telefono"><br><br>
+            <label for="co">correo electronico</label><br>
+            <input type="text" name="co" class="form-control" maxlength="10" value="@Model.Correo" id="Correo"><br><br>
+            <label for="col">Contraseña</label><br>
+            <input type="text" name="contraseña" class="form-control" value="@Model.Loginn.Constraseña" maxlength="15" id="Password">
+
+            <input type="submit" id="editTeacher" value="MODIFICAR">
+    </div>
+</div>

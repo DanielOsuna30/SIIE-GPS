@@ -598,7 +598,8 @@
         </Association>
         <Association Name="FK_Materia">
           <End Role="Carrera" Type="Self.Carrera" Multiplicity="1" />
-          <End Role="Materia" Type="Self.Materia" Multiplicity="*" />
+          <End Role="Materia" Type="Self.Materia" Multiplicity="*" >
+          </End>
           <ReferentialConstraint>
             <Principal Role="Carrera">
               <PropertyRef Name="idCarrera" />
@@ -622,7 +623,8 @@
         </Association>
         <Association Name="FK3_Cursando">
           <End Role="Materia" Type="Self.Materia" Multiplicity="1" />
-          <End Role="Cursando" Type="Self.Cursando" Multiplicity="*" />
+          <End Role="Cursando" Type="Self.Cursando" Multiplicity="*" >
+          </End>
           <ReferentialConstraint>
             <Principal Role="Materia">
               <PropertyRef Name="idMateria" />
@@ -634,7 +636,8 @@
         </Association>
         <Association Name="FK_Grupo">
           <End Role="Materia" Type="Self.Materia" Multiplicity="1" />
-          <End Role="Grupo" Type="Self.Grupo" Multiplicity="*" />
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="*" >
+          </End>
           <ReferentialConstraint>
             <Principal Role="Materia">
               <PropertyRef Name="idMateria" />
@@ -682,7 +685,8 @@
         </Association>
         <Association Name="FK3_Inscritos">
           <End Role="Materia" Type="Self.Materia" Multiplicity="1" />
-          <End Role="HistorialAcademico" Type="Self.HistorialAcademico" Multiplicity="*" />
+          <End Role="HistorialAcademico" Type="Self.HistorialAcademico" Multiplicity="*" >
+          </End>
           <ReferentialConstraint>
             <Principal Role="Materia">
               <PropertyRef Name="idMateria" />

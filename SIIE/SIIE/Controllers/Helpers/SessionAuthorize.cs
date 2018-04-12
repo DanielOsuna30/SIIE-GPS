@@ -18,7 +18,7 @@ namespace SIIE.Controllers.Helpers
     {
         protected override void HandleUnauthorizedRequest(AuthorizationContext Context)
         {
-            if (Context.HttpContext.Session["controlNumber"] == null)
+            if (Context.HttpContext.Session["level"] == null)
                 Context.Result = new RedirectToRouteResult(
                     new RouteValueDictionary(new { controller = "Auth", action = "Index" })
                 );
@@ -30,7 +30,7 @@ namespace SIIE.Controllers.Helpers
 
         public bool getLoginData(HttpContextBase httpContext)
         {
-            if (httpContext.Session["controlNumber"] == null)
+            if (httpContext.Session["level"] == null)
                 return false;
             if (Users != "")
                 if (Users.Contains(httpContext.Session["level"].ToString()))
@@ -60,7 +60,7 @@ namespace SIIE.Controllers.Helpers
     {
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            if (httpContext.Session["controlNumber"] == null)
+            if (httpContext.Session["level"] == null)
                 return true;
             else
                 return false;
@@ -74,7 +74,7 @@ namespace SIIE.Controllers.Helpers
     {
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            if (httpContext.Session["controlNumber"] == null)
+            if (httpContext.Session["level"] == null)
             {
                 InscriptionEngine Ie = new InscriptionEngine();
 
@@ -96,7 +96,7 @@ namespace SIIE.Controllers.Helpers
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
             {
-                if (httpContext.Session["controlNumber"] != null)
+                if (httpContext.Session["level"] != null)
                 {
                     ReinscriptionEngine Re = new ReinscriptionEngine();
 

@@ -1,0 +1,86 @@
+﻿@model SIIE.Models.Carrera[]
+
+@{
+    ViewBag.Title = "CreateUser";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section styles{
+    <link rel="Stylesheet" href="@Href("~/Content/Styles/materias.css")" />
+}
+<div class="container">
+    <h1>Crear Usuario</h1>
+    <div class="col-sm-12">
+        <label for="Name">Nombre</label>
+        <input type="text" class="form-control" id="Name" required>
+        <label for="apellidop">Apellido paterno</label>
+        <input type="text" class="form-control" id="LastNameP"  required>
+        <label for="apellidom">Apellido Materno</label>
+        <input type="text" class="form-control" id="LastNameM"  required>
+        <label for="correo">Correo electronico</label>
+        <input type="text" class="form-control" id="Email"  required>
+
+        <label for="dom">Domicilio</label>
+        <input type="text" class="form-control"  id="Address">
+        
+        <label for="estado">Estado</label><br>
+        <select name="estado" id="State" >
+            <option value="bcs">baja california sur</option>
+            <option value="bc">baja california norte</option>
+            <option value="jal">jalisco</option>
+            <option value="cdmx">cd mx</option>
+            <option value="nl">nuevo leon</option>
+            <option value="chi">chihuahua</option>
+            <option value="son">sonora</option>
+            <option value="sin">sinaloa</option>
+            <option value="dur">durango</option>
+            <option value="coa">cohahuila</option>
+            <option value="zac">zacatecas</option>
+            <option value="slp">san luis potosi</option>
+            <option value="gua">guanajuato</option>
+            <option value="hid">hidalgo</option>
+            <option value="mic">michoacan</option>
+            <option value="pue">puebla</option>
+            <option value="ver">veracruz</option>
+            <option value="oax">oaxaca</option>
+            <option value="chi">chiapas</option>
+            <option value="tab">tabasco</option>
+            <option value="cam">campeche</option>
+            <option value="yuc">yucatan</option>
+            <option value="qui">quintana roo</option>
+        </select>
+        <br>
+        <br>
+
+        <label for="mun">Municipio</label>
+        <input type="text" name="mun" class="form-control" id="Municipality">
+
+        <label for="col">Colonia</label><br>
+        <input type="text" name="col" class="form-control"  id="Suburb">
+
+        <label for="cp">CP</label><br>
+        <input type="number" name="cp" class="form-control" maxlength="5" id="PostalCode" required>
+
+        <label for="tel">Telefono</label><br>
+        <input type="number" name="tel" class="form-control" maxlength="10" id="PhoneNumber">
+
+        <label for="col">Contraseña</label><br>
+        <input type="text" name="contraseña" class="form-control" maxlength="15" id="Password">
+
+        <label for="Level">Tipo de Usuario</label><br>
+        <select id="Level">
+            <option value="3">Estudiante</option>
+            <option value="2">Maestro</option>
+        </select>
+        <br />
+
+        <label id="CarrerOptionLabel" for="CarrerOption1">Carrera</label><br>
+        <select id="CarrerOption1">
+            @foreach (var Carrera in @Model)
+            {
+                <option value="@Carrera.idCarrera">@Carrera.NombreCarrera</option>
+            }
+        </select>        
+        <br />
+        <input type="submit" id="createUser" value="Guardar">
+    </div>
+</div>

@@ -1,0 +1,42 @@
+﻿@model SIIE.Models.Materia
+
+@{
+    ViewBag.Title = "Editar Materia";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section styles{
+    <link rel="Stylesheet" href="@Href("~/Content/Styles/materias.css")" />
+}
+<div id="content">
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <button type="button" id="sidebarCollapse" class="navbar-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+    <h1>Editar Materia</h1>
+    <div class="nuevoMaestro">
+            <label for="ide">id </label>
+            <input type="number" class="form-control" name="ide" value="@Model.idMateria" readonly id="idMateria" required>
+            <label for="carrera">id carrera</label>
+            <input type="text" class="form-control" name="carrera" value="@Model.idCarrera" readonly id="idCarrera" required>
+            <label for="nombre">nombre</label>
+            <input type="text" class="form-control" name="nombre" value="@Model.NombreMateria" id="NombreMateria" required>
+            <label for="ab">abreviacion</label>
+            <input type="text" class="form-control" name="ab" value="@Model.AbreviacionMateria" id="AbreviacionMateria"><br>
+            <label for="cl">clave</label>
+            <input type="text" name="cl" class="form-control" value="@Model.Clave" id="Clave">
+            <label for="cre">creditos</label><br>
+            <input type="text" name="cre" class="form-control" value="@Model.Creditos" id="Creditos">
+            <label for="ht">horas teoricas</label><br>
+            <input type="number" name="ht" class="form-control" maxlength="5" value="@Model.HrsTeoricas" id="HrsTeoricas" required>
+            <label for="hp">horas practicas</label><br>
+            <input type="text" name="hp" class="form-control" maxlength="10" value="@Model.HrsPracticas" id="HrsPracticas"><br><br>
+            <label for="pe">plan de estudio</label><br>
+            <input type="text" name="pe" class="form-control" maxlength="10" value="@Model.PlanEstudios" id="PlanEstudios"><br><br>
+            <input type="submit" id="editMateria" value="Guardar materia">
+    </div>
+</div>

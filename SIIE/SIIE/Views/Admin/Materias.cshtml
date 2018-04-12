@@ -1,0 +1,59 @@
+﻿@model SIIE.Models.Materia[]
+
+@{
+    ViewBag.Title = "Materias";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section styles{
+    <link rel="Stylesheet" href="@Href("~/Content/Styles/materias.css")" />
+}
+<div id="content">
+
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <button type="button" id="sidebarCollapse" class="navbar-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+    </nav>
+
+    <h1>Materias</h1>
+    <table border="1">
+        <tr id="encabezado">
+            <th>ID</th>
+            <th>IDCARRERA</th>
+            <th>NOMBRE</th>
+            <th>SEMESTRE</th>
+            <th>ABREVIACION</th>
+            <th>CLAVE</th>
+            <th>CREDITOS</th>
+            <th>HORAS TEORICAS</th>
+            <th>HORAS PRACTICAS</th>
+            <th>PLAN DE ESTUDIO</th>
+            <th>EDITAR</th>
+        </tr>
+        @foreach (var materia in Model)
+        {
+            <tr>
+                <td>@materia.idMateria</td>
+                <td>@materia.idCarrera</td>
+                <td>@materia.NombreMateria</td>
+                <td>@materia.Semestre</td>
+                <td>@materia.AbreviacionMateria</td>
+                <td>@materia.Clave</td>
+                <td>@materia.Creditos</td>
+                <td>@materia.HrsTeoricas</td>
+                <td>@materia.HrsPracticas</td>
+                <td>@materia.PlanEstudios</td>
+                <td> <a href="/Admin/Materias/@materia.idMateria/Edit"><img class="btn" src="~/Content/Images/Edit_48px.png" alt=""></a> </td>
+            </tr>
+        }
+        
+    </table>
+</div>
+
+
+

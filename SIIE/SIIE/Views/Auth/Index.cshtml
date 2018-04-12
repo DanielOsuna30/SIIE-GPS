@@ -3,61 +3,67 @@
     ViewBag.Title = "Login";
 }
 @section styles{
-    <link rel="Stylesheet" href="@Href("~/Content/MainStyle.css")" />
+    <link rel="Stylesheet" href="@Href("~/Content/Styles/login.css")" />
 }
-<div class="modal"></div>
-<img id="cerrar" src="~/Content/Images/close.png" title="Cerrar">
-<img id="libs" src="~/Content/Images/libros.png" title="">
-<div class="login">
+<div class="container">
+    <aside>
+        <div id="encabezado">
+            <img id="logotecNac" src="~/Content/Images/logoTNM.png" alt="">
+            <div class="texto">
+                <p id="p1">TECNOLÓGICO NACIONAL DE MÉXICO</p>
+                <P id="p2">INSTITUTO TECNOLÓGICO DE LA PAZ </P>
+            </div>
+        </div>
 
-    <img src="~/Content/Images/descarga.png" alt="">
-    <h1>Bienvenido</h1>
-    <h3>Inicia ses&iacute;on abajo para ver el contenido de tus materias, historial, y otras funciones.</h3>
-    <form action="#">
-        <label for="username">Nombre de usuario</label><br><br>
-        <input type="text" id="controlNumber" placeholder="No. de Control" required><br><br>
-        <label for="contra" id="con">Contrasena</label><br><br>
-        <input type="password" id="password" placeholder="Contrasena" required><br><br>
-        <label for="recordar"></label>
-        <input type="button" id="login" value="Entrar"><br>
-        <a href="/Inscripcion">Reg&iacute;strarse</a>
-    </form>
+        <div class="texto">
+            <p id="p3">Bienvenido</p>
+            <P id="p4">Inicia sesión abajo para ver el contenido de tus materias, historial y otras funciones</P>
+        </div>
+
+        <div>
+            <form>
+                <input class="txt" id="controlNumber" type="text"  placeholder="No. de control">
+                <input class="txt" id="password" type="password"  placeholder="Contraseña">
+                <input id="loginButton" class="boton" type="button" value="ENTRAR">
+            </form>
+        </div>
+
+        <p id="registro">
+            <a style="color:white" href="/Inscripcion">¿No tienes cuenta? Registrate aquí</a>
+        </p>
+    </aside>
+    <main>
+        <div id="logo">
+            <img src="~/Content/Images/Logo_Mesa de trabajo 1.png" alt="">
+        </div>
+
+        <div id="presentacion">
+            <div class="imgtext">
+                <img class="imagen" src="~/Content/Images/Timetable_500px.png" alt="">
+                <P class="textp">Toma el control de tus materias</P>
+            </div>
+            <div class="imgtext">
+                <img class="imagen" src="~/Content/Images/Combo Chart_520px.png" alt="">
+                <P class="textp">Gestiona el progreso de tu formación academica</P>
+            </div>
+            <div class="imgtext">
+                <img class="imagen" src="~/Content/Images/Helping Hand_500px.png" alt="">
+                <P class="textp">Ontén ayuda acerca de tus clases, retícula y profesores</P>
+            </div>
+
+        </div>
+
+    </main>
+    <footer>
+        <img id="logotec" src="~/Content/Images/logo-instituto-tecnologico-de-la-paz Mejorado.png" alt="">
+        <p id="copyRight">
+            ©2011-Instituto Tecnológico de La Paz
+            Boulevard Forjadores de Baja California Sur No.4720 Apdo. Postal 43-B, C.P. 23080 La Paz, B.C.S., México.
+            Tels. (612) 12-104-24, 12-104-26, 12-107-05 Fax (612) 12-112-95
+        </p>
+        <p class="textofooter">Acerca de</p>
+        <p class="textofooter">Términos y condiciones</p>
+        <p class="textofooter">SIIE 2018</p>
+    </footer>
 </div>
-<div class="main">
-    <h1 class="content">SIIE</h1>
-    <h2 class="content">TOMA EL CONTROL DE TUS MATERIAS</h2>
-    <h2 class="content"> GESTIONA EL PROGRESO DE TU INFORMACION ACADEMICA</h2>
-    <h2 class="content">OBTEN AYUDA DE ACERCA DE TUS CLASES, RETICULA Y PROFESORES</h2>
-</div>
-<script type="text/javascript">
 
-    $(document).ready(function(){
-
-
-        $("#regis").click(function(){
-
-                $(".modal").fadeIn();
-                $(".registro").fadeIn();
-                $("#cerrar").fadeIn();
-
-        });
-        $(".modal").click(function(){
-            $(".registro").fadeOut();
-            $(this).fadeOut();
-            $("#cerrar").fadeOut();
-        });
-
-        $("#cerrar").click(function(){
-            $(".registro").fadeOut();
-            $(this).fadeOut();
-            $(".modal").fadeOut();
-        });
-
-
-
-        });
-</script>
-
-<footer>
-    Boulevard forjadores, Instituto tecnologico de La Paz B.C.S,Mexico. 2018
-</footer>

@@ -12,6 +12,7 @@ namespace SIIE.Controllers
     public class CourseController : Controller
     {
         private StudentEngine StudentEngine;
+        private AdminEngine AEngine;
 
         // GET: Course
         [Route("")]
@@ -56,7 +57,5 @@ namespace SIIE.Controllers
             var AH = StudentEngine.getAcademicHistory();
             return Json(AH);
         }
-
-
     }
 }
