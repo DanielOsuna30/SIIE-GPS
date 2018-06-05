@@ -1,4 +1,5 @@
-﻿
+﻿@model List<SIIE.Models.Tutores>
+
 @{
     ViewBag.Title = "Listado Tutores";
     ViewBag.MainBreadcrumb = "Tutores";
@@ -6,5 +7,32 @@
     Layout = "~/Views/Shared/_LayoutTutorias.cshtml";
 }
 
-<h2>ListaTutores</h2>
-
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-user"></i>&nbsp; Tutores
+        <button class="btn btn-primary" style="float:right" onclick="location.href='/Tutorias/Tutores/Create'">Ingresar Tutor</button>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Nombre(es)</th>
+                        <th>Apellido</th>
+                        <th>Tutorias</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    @foreach(var tutor in Model)
+                    { 
+                    <tr>
+                        <td>tutor.Loginn.Maestro.FirstOrDefault().Nombre</td>
+                        <td>tutor.Loginn.Maestro.FirstOrDefault().ApellidoP</td>
+                        <td><a href="Tutorias/Lista/1">Ver Tutorias</a></td>
+                    </tr>
+                    }
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

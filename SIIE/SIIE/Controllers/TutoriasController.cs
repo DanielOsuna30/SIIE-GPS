@@ -1,4 +1,5 @@
-﻿using SIIE.Controllers.Helpers;
+﻿using SIIE.Controllers.Engine;
+using SIIE.Controllers.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace SIIE.Controllers
     [SessionAuthorize]
     public class TutoriasController : Controller
     {
+        TutoriaEngine Engine = new TutoriaEngine();
+
         // GET: Tutorias
         [Route("")]
         public ActionResult Index()
@@ -62,7 +65,8 @@ namespace SIIE.Controllers
         [Route("List")]
         public ActionResult ListaTutorias()
         {
-            return View();
+            var listTutorias = Engine.getTutorias();
+            return View(listTutorias);
         }
 
         [Route("Horario")]

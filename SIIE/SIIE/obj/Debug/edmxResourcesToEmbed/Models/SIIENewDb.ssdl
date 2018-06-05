@@ -28,8 +28,6 @@
     <Property Name="TelefonoMadre" Type="varchar" MaxLength="15" />
     <Property Name="OtroContacto" Type="varchar" MaxLength="15" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'SIIE_db.dbo.AlumnosTutoriaRelationship' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="AlumnosTutoriaRelationship">
     <Key>
       <PropertyRef Name="IdAlumno" />
@@ -98,8 +96,6 @@ warning 6002: The table/view 'SIIE_db.dbo.AlumnosTutoriaRelationship' does not h
     <Property Name="idGrupo" Type="int" Nullable="false" />
     <Property Name="idHorario" Type="int" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'SIIE_db.dbo.HorarioTutorias' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="HorarioTutorias">
     <Key>
       <PropertyRef Name="TutoriaId" />
@@ -224,6 +220,102 @@ warning 6002: The table/view 'SIIE_db.dbo.HorarioTutorias' does not have a prima
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_FK2_Alumno">
+    <End Role="Loginn" Type="Self.Loginn" Multiplicity="1" />
+    <End Role="Alumno" Type="Self.Alumno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Loginn">
+        <PropertyRef Name="noControl" />
+      </Principal>
+      <Dependent Role="Alumno">
+        <PropertyRef Name="noControl" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FK2_Cursando">
+    <End Role="Alumno" Type="Self.Alumno" Multiplicity="1" />
+    <End Role="Cursando" Type="Self.Cursando" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alumno">
+        <PropertyRef Name="idAlumno" />
+      </Principal>
+      <Dependent Role="Cursando">
+        <PropertyRef Name="idAlumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FK2_Grupo">
+    <End Role="Maestro" Type="Self.Maestro" Multiplicity="1" />
+    <End Role="Grupo" Type="Self.Grupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Maestro">
+        <PropertyRef Name="idMaestro" />
+      </Principal>
+      <Dependent Role="Grupo">
+        <PropertyRef Name="idMaestro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FK2_HorarioGrupo">
+    <End Role="Horario" Type="Self.Horario" Multiplicity="1" />
+    <End Role="HorarioGrupo" Type="Self.HorarioGrupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Horario">
+        <PropertyRef Name="idHorario" />
+      </Principal>
+      <Dependent Role="HorarioGrupo">
+        <PropertyRef Name="idHorario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FK2_Inscritos">
+    <End Role="Alumno" Type="Self.Alumno" Multiplicity="1" />
+    <End Role="HistorialAcademico" Type="Self.HistorialAcademico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alumno">
+        <PropertyRef Name="idAlumno" />
+      </Principal>
+      <Dependent Role="HistorialAcademico">
+        <PropertyRef Name="idAlumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FK3_Cursando">
+    <End Role="Materia" Type="Self.Materia" Multiplicity="1" />
+    <End Role="Cursando" Type="Self.Cursando" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Materia">
+        <PropertyRef Name="idMateria" />
+      </Principal>
+      <Dependent Role="Cursando">
+        <PropertyRef Name="idMateria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FK3_Grupo">
+    <End Role="Salon" Type="Self.Salon" Multiplicity="1" />
+    <End Role="Grupo" Type="Self.Grupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Salon">
+        <PropertyRef Name="idSalon" />
+      </Principal>
+      <Dependent Role="Grupo">
+        <PropertyRef Name="idSalon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FK3_Inscritos">
+    <End Role="Materia" Type="Self.Materia" Multiplicity="1" />
+    <End Role="HistorialAcademico" Type="Self.HistorialAcademico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Materia">
+        <PropertyRef Name="idMateria" />
+      </Principal>
+      <Dependent Role="HistorialAcademico">
+        <PropertyRef Name="idMateria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Grupo">
     <End Role="Materia" Type="Self.Materia" Multiplicity="1" />
     <End Role="Grupo" Type="Self.Grupo" Multiplicity="*" />
@@ -257,6 +349,18 @@ warning 6002: The table/view 'SIIE_db.dbo.HorarioTutorias' does not have a prima
       </Principal>
       <Dependent Role="HorarioTutorias">
         <PropertyRef Name="TutoriaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Maestro">
+    <End Role="Loginn" Type="Self.Loginn" Multiplicity="1" />
+    <End Role="Maestro" Type="Self.Maestro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Loginn">
+        <PropertyRef Name="noControl" />
+      </Principal>
+      <Dependent Role="Maestro">
+        <PropertyRef Name="NumEconomico" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -308,118 +412,22 @@ warning 6002: The table/view 'SIIE_db.dbo.HorarioTutorias' does not have a prima
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK2_Cursando">
-    <End Role="Alumno" Type="Self.Alumno" Multiplicity="1" />
-    <End Role="Cursando" Type="Self.Cursando" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Alumno">
-        <PropertyRef Name="idAlumno" />
-      </Principal>
-      <Dependent Role="Cursando">
-        <PropertyRef Name="idAlumno" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK2_Grupo">
-    <End Role="Maestro" Type="Self.Maestro" Multiplicity="1" />
-    <End Role="Grupo" Type="Self.Grupo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Maestro">
-        <PropertyRef Name="idMaestro" />
-      </Principal>
-      <Dependent Role="Grupo">
-        <PropertyRef Name="idMaestro" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK2_HorarioGrupo">
-    <End Role="Horario" Type="Self.Horario" Multiplicity="1" />
-    <End Role="HorarioGrupo" Type="Self.HorarioGrupo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Horario">
-        <PropertyRef Name="idHorario" />
-      </Principal>
-      <Dependent Role="HorarioGrupo">
-        <PropertyRef Name="idHorario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK2_Inscritos">
-    <End Role="Alumno" Type="Self.Alumno" Multiplicity="1" />
-    <End Role="HistorialAcademico" Type="Self.HistorialAcademico" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Alumno">
-        <PropertyRef Name="idAlumno" />
-      </Principal>
-      <Dependent Role="HistorialAcademico">
-        <PropertyRef Name="idAlumno" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK3_Cursando">
-    <End Role="Materia" Type="Self.Materia" Multiplicity="1" />
-    <End Role="Cursando" Type="Self.Cursando" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Materia">
-        <PropertyRef Name="idMateria" />
-      </Principal>
-      <Dependent Role="Cursando">
-        <PropertyRef Name="idMateria" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK3_Grupo">
-    <End Role="Salon" Type="Self.Salon" Multiplicity="1" />
-    <End Role="Grupo" Type="Self.Grupo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Salon">
-        <PropertyRef Name="idSalon" />
-      </Principal>
-      <Dependent Role="Grupo">
-        <PropertyRef Name="idSalon" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK3_Inscritos">
-    <End Role="Materia" Type="Self.Materia" Multiplicity="1" />
-    <End Role="HistorialAcademico" Type="Self.HistorialAcademico" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Materia">
-        <PropertyRef Name="idMateria" />
-      </Principal>
-      <Dependent Role="HistorialAcademico">
-        <PropertyRef Name="idMateria" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="SIIE_dbModelStoreContainer">
     <EntitySet Name="Alumno" EntityType="Self.Alumno" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AlumnosTutoriaRelationship" EntityType="Self.AlumnosTutoriaRelationship" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Carrera" EntityType="Self.Carrera" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Cursando" EntityType="Self.Cursando" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Grupo" EntityType="Self.Grupo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HistorialAcademico" EntityType="Self.HistorialAcademico" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Horario" EntityType="Self.Horario" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HorarioGrupo" EntityType="Self.HorarioGrupo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HorarioTutorias" EntityType="Self.HorarioTutorias" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Loginn" EntityType="Self.Loginn" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Maestro" EntityType="Self.Maestro" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Materia" EntityType="Self.Materia" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Salon" EntityType="Self.Salon" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tutores" EntityType="Self.Tutores" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tutorias" EntityType="Self.Tutorias" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="AlumnosTutoriaRelationship" EntityType="Self.AlumnosTutoriaRelationship" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [AlumnosTutoriaRelationship].[IdAlumno] AS [IdAlumno], 
-    [AlumnosTutoriaRelationship].[IdTutoria] AS [IdTutoria], 
-    [AlumnosTutoriaRelationship].[Calificacion] AS [Calificacion]
-    FROM [dbo].[AlumnosTutoriaRelationship] AS [AlumnosTutoriaRelationship]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="HorarioTutorias" EntityType="Self.HorarioTutorias" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [HorarioTutorias].[TutoriaId] AS [TutoriaId], 
-    [HorarioTutorias].[Dia] AS [Dia], 
-    [HorarioTutorias].[Horario] AS [Horario]
-    FROM [dbo].[HorarioTutorias] AS [HorarioTutorias]</DefiningQuery>
-    </EntitySet>
     <AssociationSet Name="FK_Alumno" Association="Self.FK_Alumno">
       <End Role="Carrera" EntitySet="Carrera" />
       <End Role="Alumno" EntitySet="Alumno" />
@@ -436,6 +444,38 @@ warning 6002: The table/view 'SIIE_db.dbo.HorarioTutorias' does not have a prima
       <End Role="Grupo" EntitySet="Grupo" />
       <End Role="Cursando" EntitySet="Cursando" />
     </AssociationSet>
+    <AssociationSet Name="FK_FK2_Alumno" Association="Self.FK_FK2_Alumno">
+      <End Role="Loginn" EntitySet="Loginn" />
+      <End Role="Alumno" EntitySet="Alumno" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FK2_Cursando" Association="Self.FK_FK2_Cursando">
+      <End Role="Alumno" EntitySet="Alumno" />
+      <End Role="Cursando" EntitySet="Cursando" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FK2_Grupo" Association="Self.FK_FK2_Grupo">
+      <End Role="Maestro" EntitySet="Maestro" />
+      <End Role="Grupo" EntitySet="Grupo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FK2_HorarioGrupo" Association="Self.FK_FK2_HorarioGrupo">
+      <End Role="Horario" EntitySet="Horario" />
+      <End Role="HorarioGrupo" EntitySet="HorarioGrupo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FK2_Inscritos" Association="Self.FK_FK2_Inscritos">
+      <End Role="Alumno" EntitySet="Alumno" />
+      <End Role="HistorialAcademico" EntitySet="HistorialAcademico" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FK3_Cursando" Association="Self.FK_FK3_Cursando">
+      <End Role="Materia" EntitySet="Materia" />
+      <End Role="Cursando" EntitySet="Cursando" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FK3_Grupo" Association="Self.FK_FK3_Grupo">
+      <End Role="Salon" EntitySet="Salon" />
+      <End Role="Grupo" EntitySet="Grupo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FK3_Inscritos" Association="Self.FK_FK3_Inscritos">
+      <End Role="Materia" EntitySet="Materia" />
+      <End Role="HistorialAcademico" EntitySet="HistorialAcademico" />
+    </AssociationSet>
     <AssociationSet Name="FK_Grupo" Association="Self.FK_Grupo">
       <End Role="Materia" EntitySet="Materia" />
       <End Role="Grupo" EntitySet="Grupo" />
@@ -447,6 +487,10 @@ warning 6002: The table/view 'SIIE_db.dbo.HorarioTutorias' does not have a prima
     <AssociationSet Name="FK_HorarioTutorias_Tutorias" Association="Self.FK_HorarioTutorias_Tutorias">
       <End Role="Tutorias" EntitySet="Tutorias" />
       <End Role="HorarioTutorias" EntitySet="HorarioTutorias" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Maestro" Association="Self.FK_Maestro">
+      <End Role="Loginn" EntitySet="Loginn" />
+      <End Role="Maestro" EntitySet="Maestro" />
     </AssociationSet>
     <AssociationSet Name="FK_Materia" Association="Self.FK_Materia">
       <End Role="Carrera" EntitySet="Carrera" />
@@ -463,34 +507,6 @@ warning 6002: The table/view 'SIIE_db.dbo.HorarioTutorias' does not have a prima
     <AssociationSet Name="FK_Tutorias_Tutores" Association="Self.FK_Tutorias_Tutores">
       <End Role="Tutores" EntitySet="Tutores" />
       <End Role="Tutorias" EntitySet="Tutorias" />
-    </AssociationSet>
-    <AssociationSet Name="FK2_Cursando" Association="Self.FK2_Cursando">
-      <End Role="Alumno" EntitySet="Alumno" />
-      <End Role="Cursando" EntitySet="Cursando" />
-    </AssociationSet>
-    <AssociationSet Name="FK2_Grupo" Association="Self.FK2_Grupo">
-      <End Role="Maestro" EntitySet="Maestro" />
-      <End Role="Grupo" EntitySet="Grupo" />
-    </AssociationSet>
-    <AssociationSet Name="FK2_HorarioGrupo" Association="Self.FK2_HorarioGrupo">
-      <End Role="Horario" EntitySet="Horario" />
-      <End Role="HorarioGrupo" EntitySet="HorarioGrupo" />
-    </AssociationSet>
-    <AssociationSet Name="FK2_Inscritos" Association="Self.FK2_Inscritos">
-      <End Role="Alumno" EntitySet="Alumno" />
-      <End Role="HistorialAcademico" EntitySet="HistorialAcademico" />
-    </AssociationSet>
-    <AssociationSet Name="FK3_Cursando" Association="Self.FK3_Cursando">
-      <End Role="Materia" EntitySet="Materia" />
-      <End Role="Cursando" EntitySet="Cursando" />
-    </AssociationSet>
-    <AssociationSet Name="FK3_Grupo" Association="Self.FK3_Grupo">
-      <End Role="Salon" EntitySet="Salon" />
-      <End Role="Grupo" EntitySet="Grupo" />
-    </AssociationSet>
-    <AssociationSet Name="FK3_Inscritos" Association="Self.FK3_Inscritos">
-      <End Role="Materia" EntitySet="Materia" />
-      <End Role="HistorialAcademico" EntitySet="HistorialAcademico" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -8,3 +8,12 @@
 \\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE-Tutorias\obj\Debug\SIIE-Tutorias.csprojResolveAssemblyReference.cache
 \\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE-Tutorias\obj\Debug\SIIE-Tutorias.dll
 \\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE-Tutorias\obj\Debug\SIIE-Tutorias.pdb
+C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE-Tutorias\bin\Debug\SIIE-Tutorias.dll.config
+C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE-Tutorias\bin\Debug\SIIE-Tutorias.dll
+C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE-Tutorias\bin\Debug\SIIE-Tutorias.pdb
+C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE-Tutorias\bin\Debug\EntityFramework.dll
+C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE-Tutorias\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE-Tutorias\bin\Debug\EntityFramework.xml
+C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE-Tutorias\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE-Tutorias\obj\Debug\SIIE-Tutorias.dll
+C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE-Tutorias\obj\Debug\SIIE-Tutorias.pdb
