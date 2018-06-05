@@ -20,6 +20,7 @@ namespace SIIE.Models
             this.Cursando = new HashSet<Cursando>();
             this.Grupo = new HashSet<Grupo>();
             this.HistorialAcademico = new HashSet<HistorialAcademico>();
+            this.Tutorias = new HashSet<Tutorias>();
         }
     
         public int idMateria { get; set; }
@@ -40,5 +41,7 @@ namespace SIIE.Models
         public virtual ICollection<Grupo> Grupo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HistorialAcademico> HistorialAcademico { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tutorias> Tutorias { get; set; }
     }
 }

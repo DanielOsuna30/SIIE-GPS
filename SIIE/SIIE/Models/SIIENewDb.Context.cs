@@ -36,5 +36,9 @@ namespace SIIE.Models
         public virtual DbSet<Maestro> Maestro { get; set; }
         public virtual DbSet<Materia> Materia { get; set; }
         public virtual DbSet<Salon> Salon { get; set; }
+        public virtual DbSet<Tutores> Tutores { get; set; }
+        public virtual DbSet<Tutorias> Tutorias { get; set; }
+        public virtual DbSet<AlumnosTutoriaRelationship> AlumnosTutoriaRelationship { get; set; }
+        public virtual DbSet<HorarioTutorias> HorarioTutorias { get; set; }
     }
 }

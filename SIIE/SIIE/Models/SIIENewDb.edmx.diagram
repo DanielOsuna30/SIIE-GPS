@@ -30,7 +30,17 @@
         <AssociationConnector Association="SIIE_dbModel.FK3_Inscritos" ManuallyRouted="false" />
         <AssociationConnector Association="SIIE_dbModel.FK2_HorarioGrupo" ManuallyRouted="false" />
         <AssociationConnector Association="SIIE_dbModel.FK_Maestro" ManuallyRouted="false" />
-      </Diagram>
+        <EntityTypeShape EntityType="SIIE_dbModel.Tutores" Width="1.5" PointX="3" PointY="21.875" />
+        <EntityTypeShape EntityType="SIIE_dbModel.Tutorias" Width="1.5" PointX="5.25" PointY="11.125" />
+        <EntityTypeShape EntityType="SIIE_dbModel.AlumnosTutoriaRelationship" Width="1.5" PointX="5.25" PointY="4.75" />
+        <AssociationConnector Association="SIIE_dbModel.FK_AlumnosTutoriaRelationship_Tutorias" />
+        <AssociationConnector Association="SIIE_dbModel.FK_Tutores_Tutores" />
+        <AssociationConnector Association="SIIE_dbModel.FK_Tutorias_Materia" />
+        <AssociationConnector Association="SIIE_dbModel.FK_Tutorias_Tutores" />
+        <EntityTypeShape EntityType="SIIE_dbModel.HorarioTutorias" Width="1.5" PointX="7.5" PointY="6.5" />
+        <AssociationConnector Association="SIIE_dbModel.FK_AlumnosTutoriaRelationship_Tutorias1" />
+        <AssociationConnector Association="SIIE_dbModel.FK_HorarioTutorias_Tutorias" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

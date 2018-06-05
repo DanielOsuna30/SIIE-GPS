@@ -33,6 +33,17 @@
           <Property Name="TelefonoMadre" Type="varchar" MaxLength="15" />
           <Property Name="OtroContacto" Type="varchar" MaxLength="15" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SIIE_db.dbo.AlumnosTutoriaRelationship' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="AlumnosTutoriaRelationship">
+          <Key>
+            <PropertyRef Name="IdAlumno" />
+            <PropertyRef Name="IdTutoria" />
+          </Key>
+          <Property Name="IdAlumno" Type="int" Nullable="false" />
+          <Property Name="IdTutoria" Type="int" Nullable="false" />
+          <Property Name="Calificacion" Type="float" />
+        </EntityType>
         <EntityType Name="Carrera">
           <Key>
             <PropertyRef Name="idCarrera" />
@@ -92,6 +103,18 @@
           <Property Name="idGrupo" Type="int" Nullable="false" />
           <Property Name="idHorario" Type="int" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SIIE_db.dbo.HorarioTutorias' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="HorarioTutorias">
+          <Key>
+            <PropertyRef Name="TutoriaId" />
+            <PropertyRef Name="Dia" />
+            <PropertyRef Name="Horario" />
+          </Key>
+          <Property Name="TutoriaId" Type="int" Nullable="false" />
+          <Property Name="Dia" Type="int" Nullable="false" />
+          <Property Name="Horario" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Loginn">
           <Key>
             <PropertyRef Name="noControl" />
@@ -142,6 +165,22 @@
           <Property Name="idSalon" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NombreSalon" Type="varchar" MaxLength="25" Nullable="false" />
         </EntityType>
+        <EntityType Name="Tutores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="8" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tutorias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MateriaId" Type="int" Nullable="false" />
+          <Property Name="TutorId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Alumno">
           <End Role="Carrera" Type="Self.Carrera" Multiplicity="1" />
           <End Role="Alumno" Type="Self.Alumno" Multiplicity="*" />
@@ -151,6 +190,30 @@
             </Principal>
             <Dependent Role="Alumno">
               <PropertyRef Name="idCarrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AlumnosTutoriaRelationship_Tutorias">
+          <End Role="Alumno" Type="Self.Alumno" Multiplicity="1" />
+          <End Role="AlumnosTutoriaRelationship" Type="Self.AlumnosTutoriaRelationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alumno">
+              <PropertyRef Name="idAlumno" />
+            </Principal>
+            <Dependent Role="AlumnosTutoriaRelationship">
+              <PropertyRef Name="IdAlumno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AlumnosTutoriaRelationship_Tutorias1">
+          <End Role="Tutorias" Type="Self.Tutorias" Multiplicity="1" />
+          <End Role="AlumnosTutoriaRelationship" Type="Self.AlumnosTutoriaRelationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tutorias">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlumnosTutoriaRelationship">
+              <PropertyRef Name="IdTutoria" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -190,15 +253,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Maestro">
-          <End Role="Loginn" Type="Self.Loginn" Multiplicity="1" />
-          <End Role="Maestro" Type="Self.Maestro" Multiplicity="*" />
+        <Association Name="FK_HorarioTutorias_Tutorias">
+          <End Role="Tutorias" Type="Self.Tutorias" Multiplicity="1" />
+          <End Role="HorarioTutorias" Type="Self.HorarioTutorias" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Loginn">
-              <PropertyRef Name="noControl" />
+            <Principal Role="Tutorias">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Maestro">
-              <PropertyRef Name="NumEconomico" />
+            <Dependent Role="HorarioTutorias">
+              <PropertyRef Name="TutoriaId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -214,15 +277,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK2_Alumno">
+        <Association Name="FK_Tutores_Tutores">
           <End Role="Loginn" Type="Self.Loginn" Multiplicity="1" />
-          <End Role="Alumno" Type="Self.Alumno" Multiplicity="*" />
+          <End Role="Tutores" Type="Self.Tutores" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Loginn">
               <PropertyRef Name="noControl" />
             </Principal>
-            <Dependent Role="Alumno">
-              <PropertyRef Name="noControl" />
+            <Dependent Role="Tutores">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tutorias_Materia">
+          <End Role="Materia" Type="Self.Materia" Multiplicity="1" />
+          <End Role="Tutorias" Type="Self.Tutorias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materia">
+              <PropertyRef Name="idMateria" />
+            </Principal>
+            <Dependent Role="Tutorias">
+              <PropertyRef Name="MateriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tutorias_Tutores">
+          <End Role="Tutores" Type="Self.Tutores" Multiplicity="1" />
+          <End Role="Tutorias" Type="Self.Tutorias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tutores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tutorias">
+              <PropertyRef Name="TutorId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -322,9 +409,33 @@
           <EntitySet Name="Maestro" EntityType="Self.Maestro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Materia" EntityType="Self.Materia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Salon" EntityType="Self.Salon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tutores" EntityType="Self.Tutores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tutorias" EntityType="Self.Tutorias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AlumnosTutoriaRelationship" EntityType="Self.AlumnosTutoriaRelationship" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [AlumnosTutoriaRelationship].[IdAlumno] AS [IdAlumno], 
+    [AlumnosTutoriaRelationship].[IdTutoria] AS [IdTutoria], 
+    [AlumnosTutoriaRelationship].[Calificacion] AS [Calificacion]
+    FROM [dbo].[AlumnosTutoriaRelationship] AS [AlumnosTutoriaRelationship]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="HorarioTutorias" EntityType="Self.HorarioTutorias" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [HorarioTutorias].[TutoriaId] AS [TutoriaId], 
+    [HorarioTutorias].[Dia] AS [Dia], 
+    [HorarioTutorias].[Horario] AS [Horario]
+    FROM [dbo].[HorarioTutorias] AS [HorarioTutorias]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Alumno" Association="Self.FK_Alumno">
             <End Role="Carrera" EntitySet="Carrera" />
             <End Role="Alumno" EntitySet="Alumno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AlumnosTutoriaRelationship_Tutorias" Association="Self.FK_AlumnosTutoriaRelationship_Tutorias">
+            <End Role="Alumno" EntitySet="Alumno" />
+            <End Role="AlumnosTutoriaRelationship" EntitySet="AlumnosTutoriaRelationship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AlumnosTutoriaRelationship_Tutorias1" Association="Self.FK_AlumnosTutoriaRelationship_Tutorias1">
+            <End Role="Tutorias" EntitySet="Tutorias" />
+            <End Role="AlumnosTutoriaRelationship" EntitySet="AlumnosTutoriaRelationship" />
           </AssociationSet>
           <AssociationSet Name="FK_Cursando" Association="Self.FK_Cursando">
             <End Role="Grupo" EntitySet="Grupo" />
@@ -338,17 +449,25 @@
             <End Role="Grupo" EntitySet="Grupo" />
             <End Role="HorarioGrupo" EntitySet="HorarioGrupo" />
           </AssociationSet>
-          <AssociationSet Name="FK_Maestro" Association="Self.FK_Maestro">
-            <End Role="Loginn" EntitySet="Loginn" />
-            <End Role="Maestro" EntitySet="Maestro" />
+          <AssociationSet Name="FK_HorarioTutorias_Tutorias" Association="Self.FK_HorarioTutorias_Tutorias">
+            <End Role="Tutorias" EntitySet="Tutorias" />
+            <End Role="HorarioTutorias" EntitySet="HorarioTutorias" />
           </AssociationSet>
           <AssociationSet Name="FK_Materia" Association="Self.FK_Materia">
             <End Role="Carrera" EntitySet="Carrera" />
             <End Role="Materia" EntitySet="Materia" />
           </AssociationSet>
-          <AssociationSet Name="FK2_Alumno" Association="Self.FK2_Alumno">
+          <AssociationSet Name="FK_Tutores_Tutores" Association="Self.FK_Tutores_Tutores">
             <End Role="Loginn" EntitySet="Loginn" />
-            <End Role="Alumno" EntitySet="Alumno" />
+            <End Role="Tutores" EntitySet="Tutores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tutorias_Materia" Association="Self.FK_Tutorias_Materia">
+            <End Role="Materia" EntitySet="Materia" />
+            <End Role="Tutorias" EntitySet="Tutorias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tutorias_Tutores" Association="Self.FK_Tutorias_Tutores">
+            <End Role="Tutores" EntitySet="Tutores" />
+            <End Role="Tutorias" EntitySet="Tutorias" />
           </AssociationSet>
           <AssociationSet Name="FK2_Cursando" Association="Self.FK2_Cursando">
             <End Role="Alumno" EntitySet="Alumno" />
@@ -414,6 +533,7 @@
           <NavigationProperty Name="Loginn" Relationship="Self.FK2_Alumno" FromRole="Alumno" ToRole="Loginn" />
           <NavigationProperty Name="Cursando" Relationship="Self.FK2_Cursando" FromRole="Alumno" ToRole="Cursando" />
           <NavigationProperty Name="HistorialAcademico" Relationship="Self.FK2_Inscritos" FromRole="Alumno" ToRole="HistorialAcademico" />
+          <NavigationProperty Name="AlumnosTutoriaRelationship" Relationship="SIIE_dbModel.FK_AlumnosTutoriaRelationship_Tutorias" FromRole="Alumno" ToRole="AlumnosTutoriaRelationship" />
         </EntityType>
         <EntityType Name="Carrera">
           <Key>
@@ -498,6 +618,7 @@
           <Property Name="Permiso" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Alumno" Relationship="Self.FK2_Alumno" FromRole="Loginn" ToRole="Alumno" />
           <NavigationProperty Name="Maestro" Relationship="Self.FK_Maestro" FromRole="Loginn" ToRole="Maestro" />
+          <NavigationProperty Name="Tutores" Relationship="SIIE_dbModel.FK_Tutores_Tutores" FromRole="Loginn" ToRole="Tutores" />
         </EntityType>
         <EntityType Name="Maestro">
           <Key>
@@ -539,6 +660,7 @@
           <NavigationProperty Name="Cursando" Relationship="Self.FK3_Cursando" FromRole="Materia" ToRole="Cursando" />
           <NavigationProperty Name="Grupo" Relationship="Self.FK_Grupo" FromRole="Materia" ToRole="Grupo" />
           <NavigationProperty Name="HistorialAcademico" Relationship="Self.FK3_Inscritos" FromRole="Materia" ToRole="HistorialAcademico" />
+          <NavigationProperty Name="Tutorias" Relationship="SIIE_dbModel.FK_Tutorias_Materia" FromRole="Materia" ToRole="Tutorias" />
         </EntityType>
         <EntityType Name="Salon">
           <Key>
@@ -788,8 +910,152 @@
             <End Role="Loginn" EntitySet="Loginn" />
             <End Role="Maestro" EntitySet="Maestro" />
           </AssociationSet>
-        </EntityContainer>
-      </Schema>
+          <EntitySet Name="Tutores" EntityType="SIIE_dbModel.Tutores" />
+          <EntitySet Name="Tutorias" EntityType="SIIE_dbModel.Tutorias" />
+          <EntitySet Name="AlumnosTutoriaRelationship" EntityType="SIIE_dbModel.AlumnosTutoriaRelationship" />
+          <AssociationSet Name="FK_AlumnosTutoriaRelationship_Tutorias" Association="SIIE_dbModel.FK_AlumnosTutoriaRelationship_Tutorias">
+            <End Role="Alumno" EntitySet="Alumno" />
+            <End Role="AlumnosTutoriaRelationship" EntitySet="AlumnosTutoriaRelationship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tutores_Tutores" Association="SIIE_dbModel.FK_Tutores_Tutores">
+            <End Role="Loginn" EntitySet="Loginn" />
+            <End Role="Tutores" EntitySet="Tutores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tutorias_Materia" Association="SIIE_dbModel.FK_Tutorias_Materia">
+            <End Role="Materia" EntitySet="Materia" />
+            <End Role="Tutorias" EntitySet="Tutorias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tutorias_Tutores" Association="SIIE_dbModel.FK_Tutorias_Tutores">
+            <End Role="Tutores" EntitySet="Tutores" />
+            <End Role="Tutorias" EntitySet="Tutorias" />
+          </AssociationSet>
+          <EntitySet Name="HorarioTutorias" EntityType="SIIE_dbModel.HorarioTutorias" />
+          <AssociationSet Name="FK_AlumnosTutoriaRelationship_Tutorias1" Association="SIIE_dbModel.FK_AlumnosTutoriaRelationship_Tutorias1">
+            <End Role="Tutorias" EntitySet="Tutorias" />
+            <End Role="AlumnosTutoriaRelationship" EntitySet="AlumnosTutoriaRelationship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HorarioTutorias_Tutorias" Association="SIIE_dbModel.FK_HorarioTutorias_Tutorias">
+            <End Role="Tutorias" EntitySet="Tutorias" />
+            <End Role="HorarioTutorias" EntitySet="HorarioTutorias" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Tutores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Loginn" Relationship="SIIE_dbModel.FK_Tutores_Tutores" FromRole="Tutores" ToRole="Loginn" />
+          <NavigationProperty Name="Tutorias" Relationship="SIIE_dbModel.FK_Tutorias_Tutores" FromRole="Tutores" ToRole="Tutorias" />
+        </EntityType>
+        <EntityType Name="Tutorias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MateriaId" Type="Int32" Nullable="false" />
+          <Property Name="TutorId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Materia" Relationship="SIIE_dbModel.FK_Tutorias_Materia" FromRole="Tutorias" ToRole="Materia" />
+          <NavigationProperty Name="Tutores" Relationship="SIIE_dbModel.FK_Tutorias_Tutores" FromRole="Tutorias" ToRole="Tutores" />
+          <NavigationProperty Name="AlumnosTutoriaRelationship" Relationship="SIIE_dbModel.FK_AlumnosTutoriaRelationship_Tutorias1" FromRole="Tutorias" ToRole="AlumnosTutoriaRelationship" />
+          <NavigationProperty Name="HorarioTutorias" Relationship="SIIE_dbModel.FK_HorarioTutorias_Tutorias" FromRole="Tutorias" ToRole="HorarioTutorias" />
+        </EntityType>
+        <EntityType Name="AlumnosTutoriaRelationship">
+          <Key>
+            <PropertyRef Name="IdAlumno" />
+            <PropertyRef Name="IdTutoria" />
+          </Key>
+          <Property Name="IdAlumno" Type="Int32" Nullable="false" />
+          <Property Name="IdTutoria" Type="Int32" Nullable="false" />
+          <Property Name="Calificacion" Type="Double" />
+          <NavigationProperty Name="Alumno" Relationship="SIIE_dbModel.FK_AlumnosTutoriaRelationship_Tutorias" FromRole="AlumnosTutoriaRelationship" ToRole="Alumno" />
+          <NavigationProperty Name="Tutorias" Relationship="SIIE_dbModel.FK_AlumnosTutoriaRelationship_Tutorias1" FromRole="AlumnosTutoriaRelationship" ToRole="Tutorias" />
+        </EntityType>
+        <Association Name="FK_AlumnosTutoriaRelationship_Tutorias">
+          <End Type="SIIE_dbModel.Alumno" Role="Alumno" Multiplicity="1" />
+          <End Type="SIIE_dbModel.AlumnosTutoriaRelationship" Role="AlumnosTutoriaRelationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alumno">
+              <PropertyRef Name="idAlumno" />
+            </Principal>
+            <Dependent Role="AlumnosTutoriaRelationship">
+              <PropertyRef Name="IdAlumno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tutores_Tutores">
+          <End Type="SIIE_dbModel.Loginn" Role="Loginn" Multiplicity="1" />
+          <End Type="SIIE_dbModel.Tutores" Role="Tutores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Loginn">
+              <PropertyRef Name="noControl" />
+            </Principal>
+            <Dependent Role="Tutores">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tutorias_Materia">
+          <End Type="SIIE_dbModel.Materia" Role="Materia" Multiplicity="1" />
+          <End Type="SIIE_dbModel.Tutorias" Role="Tutorias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materia">
+              <PropertyRef Name="idMateria" />
+            </Principal>
+            <Dependent Role="Tutorias">
+              <PropertyRef Name="MateriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tutorias_Tutores">
+          <End Type="SIIE_dbModel.Tutores" Role="Tutores" Multiplicity="1" />
+          <End Type="SIIE_dbModel.Tutorias" Role="Tutorias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tutores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tutorias">
+              <PropertyRef Name="TutorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="HorarioTutorias">
+          <Key>
+            <PropertyRef Name="TutoriaId" />
+            <PropertyRef Name="Dia" />
+            <PropertyRef Name="Horario" />
+          </Key>
+          <Property Name="TutoriaId" Type="Int32" Nullable="false" />
+          <Property Name="Dia" Type="Int32" Nullable="false" />
+          <Property Name="Horario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tutorias" Relationship="SIIE_dbModel.FK_HorarioTutorias_Tutorias" FromRole="HorarioTutorias" ToRole="Tutorias" />
+        </EntityType>
+        <Association Name="FK_AlumnosTutoriaRelationship_Tutorias1">
+          <End Type="SIIE_dbModel.Tutorias" Role="Tutorias" Multiplicity="1" />
+          <End Type="SIIE_dbModel.AlumnosTutoriaRelationship" Role="AlumnosTutoriaRelationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tutorias">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlumnosTutoriaRelationship">
+              <PropertyRef Name="IdTutoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HorarioTutorias_Tutorias">
+          <End Type="SIIE_dbModel.Tutorias" Role="Tutorias" Multiplicity="1" />
+          <End Type="SIIE_dbModel.HorarioTutorias" Role="HorarioTutorias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tutorias">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HorarioTutorias">
+              <PropertyRef Name="TutoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -943,7 +1209,43 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="Tutores">
+            <EntityTypeMapping TypeName="SIIE_dbModel.Tutores">
+              <MappingFragment StoreEntitySet="Tutores">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tutorias">
+            <EntityTypeMapping TypeName="SIIE_dbModel.Tutorias">
+              <MappingFragment StoreEntitySet="Tutorias">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TutorId" ColumnName="TutorId" />
+                <ScalarProperty Name="MateriaId" ColumnName="MateriaId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlumnosTutoriaRelationship">
+            <EntityTypeMapping TypeName="SIIE_dbModel.AlumnosTutoriaRelationship">
+              <MappingFragment StoreEntitySet="AlumnosTutoriaRelationship">
+                <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
+                <ScalarProperty Name="IdTutoria" ColumnName="IdTutoria" />
+                <ScalarProperty Name="IdAlumno" ColumnName="IdAlumno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HorarioTutorias">
+            <EntityTypeMapping TypeName="SIIE_dbModel.HorarioTutorias">
+              <MappingFragment StoreEntitySet="HorarioTutorias">
+                <ScalarProperty Name="Horario" ColumnName="Horario" />
+                <ScalarProperty Name="Dia" ColumnName="Dia" />
+                <ScalarProperty Name="TutoriaId" ColumnName="TutoriaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

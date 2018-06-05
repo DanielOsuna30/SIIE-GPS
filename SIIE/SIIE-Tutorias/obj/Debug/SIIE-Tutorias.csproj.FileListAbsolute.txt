@@ -1,0 +1,10 @@
+\\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE-Tutorias\bin\Debug\SIIE-Tutorias.dll.config
+\\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE-Tutorias\bin\Debug\SIIE-Tutorias.dll
+\\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE-Tutorias\bin\Debug\SIIE-Tutorias.pdb
+\\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE-Tutorias\bin\Debug\EntityFramework.dll
+\\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE-Tutorias\bin\Debug\EntityFramework.SqlServer.dll
+\\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE-Tutorias\bin\Debug\EntityFramework.xml
+\\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE-Tutorias\bin\Debug\EntityFramework.SqlServer.xml
+\\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE-Tutorias\obj\Debug\SIIE-Tutorias.csprojResolveAssemblyReference.cache
+\\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE-Tutorias\obj\Debug\SIIE-Tutorias.dll
+\\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE-Tutorias\obj\Debug\SIIE-Tutorias.pdb

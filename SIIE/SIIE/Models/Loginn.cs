@@ -19,6 +19,7 @@ namespace SIIE.Models
         {
             this.Alumno = new HashSet<Alumno>();
             this.Maestro = new HashSet<Maestro>();
+            this.Tutores = new HashSet<Tutores>();
         }
     
         public string noControl { get; set; }
@@ -29,5 +30,7 @@ namespace SIIE.Models
         public virtual ICollection<Alumno> Alumno { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Maestro> Maestro { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tutores> Tutores { get; set; }
     }
 }

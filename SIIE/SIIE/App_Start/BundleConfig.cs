@@ -28,6 +28,13 @@ namespace SIIE
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css"));
+
+            bundles.Add(new StyleBundle("~/Content/sbAdmin").Include(
+          "~/Content/sb-admin.css",
+          "~/Scripts/vendor/font-awesome/css/font-awesome.min.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/sbAdminjs").Include(
+                "~/Scripts/js/sb-admin.min.js"));
         }
     }
 }

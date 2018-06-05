@@ -252,6 +252,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\AuthController.cs" />
+    <Compile Include="Api\CourseController.cs" />
+    <Compile Include="Api\Helpers.cs" />
+    <Compile Include="Api\Models\CourseModels.cs" />
+    <Compile Include="Api\Models\UserModels.cs" />
+    <Compile Include="Api\SubjectController.cs" />
+    <Compile Include="Api\UserController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -267,17 +274,22 @@
     <Compile Include="Controllers\Engine\StudentEngine.cs" />
     <Compile Include="Controllers\Engine\InscriptionEngine.cs" />
     <Compile Include="Controllers\Engine\ReinscriptionEngine.cs" />
+    <Compile Include="Controllers\Engine\TutoriaEngine.cs" />
     <Compile Include="Controllers\Helpers\DatabaseManager.cs" />
     <Compile Include="Controllers\Helpers\DocumentsManager.cs" />
     <Compile Include="Controllers\Helpers\SessionAuthorize.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InscriptionController.cs" />
     <Compile Include="Controllers\ReinscriptionController.cs" />
+    <Compile Include="Controllers\TutoriasController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Alumno.cs">
+      <DependentUpon>SIIENewDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AlumnosTutoriaRelationship.cs">
       <DependentUpon>SIIENewDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Carrera.cs">
@@ -297,6 +309,9 @@
       <DependentUpon>SIIENewDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HorarioGrupo.cs">
+      <DependentUpon>SIIENewDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HorarioTutorias.cs">
       <DependentUpon>SIIENewDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
@@ -328,6 +343,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SIIENewDb.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tutores.cs">
+      <DependentUpon>SIIENewDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tutorias.cs">
+      <DependentUpon>SIIENewDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -414,6 +435,7 @@
     <Content Include="Content\Images\upload.png" />
     <Content Include="Content\Images\vector.png" />
     <Content Include="Content\MainStyle.css" />
+    <Content Include="Content\sb-admin.css" />
     <Content Include="Content\Styles\admin.css" />
     <Content Include="Content\Styles\ajustes.css" />
     <Content Include="Content\Styles\dashboard.css" />
@@ -489,6 +511,12 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\sb-admin-charts.js" />
+    <Content Include="Scripts\js\sb-admin-charts.min.js" />
+    <Content Include="Scripts\js\sb-admin-datatables.js" />
+    <Content Include="Scripts\js\sb-admin-datatables.min.js" />
+    <Content Include="Scripts\js\sb-admin.js" />
+    <Content Include="Scripts\js\sb-admin.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -502,6 +530,33 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\vendor\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="Scripts\vendor\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="Scripts\vendor\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="Scripts\vendor\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="Scripts\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="Scripts\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Scripts\vendor\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="Scripts\vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="Scripts\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Scripts\vendor\chart.js\Chart.bundle.js" />
+    <Content Include="Scripts\vendor\chart.js\Chart.bundle.min.js" />
+    <Content Include="Scripts\vendor\chart.js\Chart.js" />
+    <Content Include="Scripts\vendor\chart.js\Chart.min.js" />
+    <Content Include="Scripts\vendor\datatables\dataTables.bootstrap4.css" />
+    <Content Include="Scripts\vendor\datatables\dataTables.bootstrap4.js" />
+    <Content Include="Scripts\vendor\datatables\jquery.dataTables.js" />
+    <Content Include="Scripts\vendor\font-awesome\css\font-awesome.css" />
+    <Content Include="Scripts\vendor\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Scripts\vendor\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Scripts\vendor\jquery-easing\jquery.easing.compatibility.js" />
+    <Content Include="Scripts\vendor\jquery-easing\jquery.easing.js" />
+    <Content Include="Scripts\vendor\jquery-easing\jquery.easing.min.js" />
+    <Content Include="Scripts\vendor\jquery\jquery.js" />
+    <Content Include="Scripts\vendor\jquery\jquery.min.js" />
+    <Content Include="Scripts\vendor\jquery\jquery.slim.js" />
+    <Content Include="Scripts\vendor\jquery\jquery.slim.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -549,6 +604,58 @@
     <Content Include="Views\Admin\AlumnosEdit.cshtml" />
     <Content Include="Views\Admin\CreateUser.cshtml" />
     <Content Include="Views\Admin\CreateMateria.cshtml" />
+    <Content Include="Views\Shared\_LayoutTutorias.cshtml" />
+    <Content Include="Views\Tutorias\Index.cshtml" />
+    <Content Include="Scripts\vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Scripts\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Scripts\vendor\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\vendor\bootstrap\js\bootstrap.js.map" />
+    <Content Include="Scripts\vendor\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="Scripts\vendor\font-awesome\css\font-awesome.css.map" />
+    <Content Include="Scripts\vendor\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Scripts\vendor\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Scripts\vendor\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Scripts\vendor\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Scripts\vendor\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Scripts\vendor\font-awesome\less\animated.less" />
+    <Content Include="Scripts\vendor\font-awesome\less\bordered-pulled.less" />
+    <Content Include="Scripts\vendor\font-awesome\less\core.less" />
+    <Content Include="Scripts\vendor\font-awesome\less\fixed-width.less" />
+    <Content Include="Scripts\vendor\font-awesome\less\font-awesome.less" />
+    <Content Include="Scripts\vendor\font-awesome\less\icons.less" />
+    <Content Include="Scripts\vendor\font-awesome\less\larger.less" />
+    <Content Include="Scripts\vendor\font-awesome\less\list.less" />
+    <Content Include="Scripts\vendor\font-awesome\less\mixins.less" />
+    <Content Include="Scripts\vendor\font-awesome\less\path.less" />
+    <Content Include="Scripts\vendor\font-awesome\less\rotated-flipped.less" />
+    <Content Include="Scripts\vendor\font-awesome\less\screen-reader.less" />
+    <Content Include="Scripts\vendor\font-awesome\less\stacked.less" />
+    <Content Include="Scripts\vendor\font-awesome\less\variables.less" />
+    <Content Include="Scripts\vendor\font-awesome\scss\font-awesome.scss" />
+    <Content Include="Scripts\vendor\font-awesome\scss\_animated.scss" />
+    <Content Include="Scripts\vendor\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="Scripts\vendor\font-awesome\scss\_core.scss" />
+    <Content Include="Scripts\vendor\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="Scripts\vendor\font-awesome\scss\_icons.scss" />
+    <Content Include="Scripts\vendor\font-awesome\scss\_larger.scss" />
+    <Content Include="Scripts\vendor\font-awesome\scss\_list.scss" />
+    <Content Include="Scripts\vendor\font-awesome\scss\_mixins.scss" />
+    <Content Include="Scripts\vendor\font-awesome\scss\_path.scss" />
+    <Content Include="Scripts\vendor\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="Scripts\vendor\font-awesome\scss\_screen-reader.scss" />
+    <Content Include="Scripts\vendor\font-awesome\scss\_stacked.scss" />
+    <Content Include="Scripts\vendor\font-awesome\scss\_variables.scss" />
+    <Content Include="Scripts\vendor\jquery\jquery.min.map" />
+    <Content Include="Scripts\vendor\jquery\jquery.slim.min.map" />
+    <Content Include="Views\Tutorias\TutorDetails.cshtml" />
+    <Content Include="Views\Tutorias\ListaTutores.cshtml" />
+    <Content Include="Views\Tutorias\AlumnoDetails.cshtml" />
+    <Content Include="Views\Tutorias\ListaAlumnos.cshtml" />
+    <Content Include="Views\Tutorias\TutoriaDetails.cshtml" />
+    <Content Include="Views\Tutorias\CrearTutoria.cshtml" />
+    <Content Include="Views\Tutorias\ListaTutorias.cshtml" />
+    <Content Include="Views\Tutorias\ListaHorarios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -569,6 +676,12 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SIIE-Tutorias\SIIE-Tutorias.csproj">
+      <Project>{d78ab74a-0b7c-4701-a852-871b613de402}</Project>
+      <Name>SIIE-Tutorias</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

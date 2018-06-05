@@ -149,5 +149,41 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Tutores">
+      <EntityTypeMapping TypeName="SIIE_dbModel.Tutores">
+        <MappingFragment StoreEntitySet="Tutores">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tutorias">
+      <EntityTypeMapping TypeName="SIIE_dbModel.Tutorias">
+        <MappingFragment StoreEntitySet="Tutorias">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TutorId" ColumnName="TutorId" />
+          <ScalarProperty Name="MateriaId" ColumnName="MateriaId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AlumnosTutoriaRelationship">
+      <EntityTypeMapping TypeName="SIIE_dbModel.AlumnosTutoriaRelationship">
+        <MappingFragment StoreEntitySet="AlumnosTutoriaRelationship">
+          <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
+          <ScalarProperty Name="IdTutoria" ColumnName="IdTutoria" />
+          <ScalarProperty Name="IdAlumno" ColumnName="IdAlumno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HorarioTutorias">
+      <EntityTypeMapping TypeName="SIIE_dbModel.HorarioTutorias">
+        <MappingFragment StoreEntitySet="HorarioTutorias">
+          <ScalarProperty Name="Horario" ColumnName="Horario" />
+          <ScalarProperty Name="Dia" ColumnName="Dia" />
+          <ScalarProperty Name="TutoriaId" ColumnName="TutoriaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

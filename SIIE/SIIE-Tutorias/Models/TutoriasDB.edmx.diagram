@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="427ed340cdaa4d6cbd1d3f691f50a8a4" Name="Diagram1">
+        <EntityTypeShape EntityType="Tutorias_dbModel.Alumno" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tutorias_dbModel.Carrera" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tutorias_dbModel.Cursando" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tutorias_dbModel.Grupo" Width="1.5" PointX="5.25" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tutorias_dbModel.HistorialAcademico" Width="1.5" PointX="8.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tutorias_dbModel.Horario" Width="1.5" PointX="5.25" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tutorias_dbModel.HorarioGrupo" Width="1.5" PointX="7.5" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tutorias_dbModel.Loginn" Width="1.5" PointX="3.75" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tutorias_dbModel.Maestro" Width="1.5" PointX="3" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tutorias_dbModel.Materia" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tutorias_dbModel.Salon" Width="1.5" PointX="3" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tutorias_dbModel.Tutores" Width="1.5" PointX="6" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tutorias_dbModel.Tutorias" Width="1.5" PointX="8.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tutorias_dbModel.AlumnosTutoriaRelationship" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Tutorias_dbModel.HorarioTutorias" Width="1.5" PointX="10.5" PointY="12.25" IsExpanded="true" />
+        <AssociationConnector Association="Tutorias_dbModel.FK_Alumno" ManuallyRouted="false" />
+        <AssociationConnector Association="Tutorias_dbModel.FK_AlumnosTutoriaRelationship_Tutorias" ManuallyRouted="false" />
+        <AssociationConnector Association="Tutorias_dbModel.FK2_Cursando" ManuallyRouted="false" />
+        <AssociationConnector Association="Tutorias_dbModel.FK2_Inscritos" ManuallyRouted="false" />
+        <AssociationConnector Association="Tutorias_dbModel.FK_Materia" ManuallyRouted="false" />
+        <AssociationConnector Association="Tutorias_dbModel.FK_Cursando" ManuallyRouted="false" />
+        <AssociationConnector Association="Tutorias_dbModel.FK3_Cursando" ManuallyRouted="false" />
+        <AssociationConnector Association="Tutorias_dbModel.FK_Grupo" ManuallyRouted="false" />
+        <AssociationConnector Association="Tutorias_dbModel.FK_HorarioGrupo" ManuallyRouted="false" />
+        <AssociationConnector Association="Tutorias_dbModel.FK2_Grupo" ManuallyRouted="false" />
+        <AssociationConnector Association="Tutorias_dbModel.FK3_Grupo" ManuallyRouted="false" />
+        <AssociationConnector Association="Tutorias_dbModel.FK3_Inscritos" ManuallyRouted="false" />
+        <AssociationConnector Association="Tutorias_dbModel.FK2_HorarioGrupo" ManuallyRouted="false" />
+        <AssociationConnector Association="Tutorias_dbModel.FK_Tutores_Tutores" ManuallyRouted="false" />
+        <AssociationConnector Association="Tutorias_dbModel.FK_Tutorias_Materia" ManuallyRouted="false" />
+        <AssociationConnector Association="Tutorias_dbModel.FK_Tutorias_Tutores" ManuallyRouted="false" />
+        <AssociationConnector Association="Tutorias_dbModel.FK_AlumnosTutoriaRelationship_Tutorias1" ManuallyRouted="false" />
+        <AssociationConnector Association="Tutorias_dbModel.FK_HorarioTutorias_Tutorias" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
