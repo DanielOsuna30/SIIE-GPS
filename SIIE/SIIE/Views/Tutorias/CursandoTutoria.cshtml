@@ -1,0 +1,40 @@
+﻿@model List<SIIE.Models.AlumnosTutoriaRelationship>
+@{
+    ViewBag.Title = "Tutoria Cursando";
+    ViewBag.MainBreadcrumb = "Tutoria";
+    ViewBag.ChildBreadCrumb = "Cursando";
+    Layout = "~/Views/Shared/_LayoutTutorias.cshtml";
+}
+
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-user"></i>&nbsp; @Model.FirstOrDefault().Tutorias.Name - Alumnos
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Num. Control</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Carrera</th>
+                        <th>Dar de baja</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    @foreach (var alumno in Model)
+                    {
+                        <tr>
+                            <td>@alumno.Alumno.noControl</td>
+                            <td>@alumno.Alumno.Nombre</td>
+                            <td>@alumno.Alumno.ApellidoP</td>
+                            <td>@alumno.Alumno.Carrera.NombreCarrera</td>
+                            <td><a href="/Tutorias/Delete/@alumno.IdTutoria/@alumno.IdAlumno" style="color:red">Dar De Baja</a></td>
+                        </tr>
+                    }
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

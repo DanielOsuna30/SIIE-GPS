@@ -1,0 +1,40 @@
+﻿@model IEnumerable<SIIE.Models.Tutorias>
+
+@{
+    ViewBag.Title = "ListaTutoriasImpartidas";
+    ViewBag.MainBreadcrumb = Model.FirstOrDefault().Tutores.Loginn.Maestro.FirstOrDefault().Nombre+" "+ Model.FirstOrDefault().Tutores.Loginn.Maestro.FirstOrDefault().ApellidoP;
+    ViewBag.ChildBreadCrumb = "Impartiendo";
+    Layout = "~/Views/Shared/_LayoutTutorias.cshtml";
+}
+
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i>&nbsp; Horarios disponibles
+        <button class="btn btn-primary" style="float:right" onclick="location.href='/Tutorias/Create'">Ingresar Tutoria</button>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Materia</th>
+                        <th>Alumnos</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    @foreach (var materia in Model)
+                    {
+                        <tr>
+                            <td><a href="">@materia.Name</a></td>
+                            <td>@materia.Materia.NombreMateria</td>
+                            <td><a href="/Tutorias/Cursando/@materia.Id">Ver Alumnos</a></td>
+                            <td><a href="/Tutorias/Inscribirse/@materia.Id">Inscribirse </a></td>
+                        </tr>
+                    }
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

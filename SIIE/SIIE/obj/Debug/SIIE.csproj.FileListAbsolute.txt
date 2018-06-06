@@ -261,9 +261,6 @@ C:\Users\dell\Desktop\SIIE\SIIE\SIIE\obj\Debug\SIIE.dll
 C:\Users\dell\Desktop\SIIE\SIIE\SIIE\obj\Debug\SIIE.pdb
 \\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE\bin\AutoMapper.dll
 \\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE\bin\AutoMapper.xml
-\\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE\obj\Debug\SIIE.csprojResolveAssemblyReference.cache
-\\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE\bin\SIIE-Tutorias.dll
-\\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE\bin\SIIE-Tutorias.pdb
 C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\bin\ApplicationInsights.config
 C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\bin\SIIE.dll.config
 C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\bin\SIIE.dll
@@ -399,3 +396,4 @@ C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\bin\Microsoft.AspNet.Identity.EntityF
 C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\obj\Debug\SIIE.csprojResolveAssemblyReference.cache
 C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\obj\Debug\SIIE.dll
 C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\obj\Debug\SIIE.pdb
+\\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE\obj\Debug\SIIE.csprojResolveAssemblyReference.cache

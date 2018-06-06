@@ -1,8 +1,64 @@
-﻿
+﻿@model Tuple<List<SIIE.Models.Materia>, List<SIIE.Models.Tutores>>
+
 @{
     ViewBag.Title = "CrearTutoria";
+    ViewBag.MainBreadcrumb = "Tutorias";
+    ViewBag.ChildBreadCrumb = "Crear";
     Layout = "~/Views/Shared/_LayoutTutorias.cshtml";
 }
+    <script>
+    $(document).ready(function () {
 
-<h2>CrearTutoria</h2>
+        $("#save").click(function () {
+            $('#save').disabled = true;
+            $.ajax({
+                url: '/Tutorias/CreateTutoria',
+                type: 'POST',
+                dataType: 'json',
+                // we set cache: false because GET requests are often cached by browsers
+                // IE is particularly aggressive in that respect
+                cache: false,
+                data: {
+                    idTutor: $('#Tutor').val(),
+                    idMateria: $('#Materia').val(),
+                    name: $('#nombreTutoria').val()
+                },
+                success: function (data) {
+                    alert("Grupo Guardado");
+                    window.location.href = '/Tutorias/List';
+                }
+            });
+        });
 
+    });
+    </script>
+
+<div class="row">
+    <div class="col-sm-5">
+        <label>Seleccionar Tutor:</label>
+        <select class="form-control" id="Tutor">
+            @foreach (var tutor in Model.Item2)
+            {
+                <option value="@tutor.Id">
+                    @tutor.Loginn.Maestro.FirstOrDefault().Nombre @tutor.Loginn.Maestro.FirstOrDefault().ApellidoP
+                </option>
+            }
+        </select>
+    </div>
+    <div class="col-sm-5">
+        <label>Seleccionar Materia:</label>
+        <select class="form-control" id="Materia">
+            @foreach (var materia in Model.Item1)
+            {
+                <option value="@materia.idMateria">
+                    @materia.NombreMateria
+                </option>
+            }
+        </select>
+    </div>
+    <div class="col-sm-5">
+        <label>Nombre Tutoria:</label>
+        <input class="form-control" id="nombreTutoria" type="text" />
+        <button id="save" class="btn btn-primary">Guardar</button>
+    </div>
+</div>

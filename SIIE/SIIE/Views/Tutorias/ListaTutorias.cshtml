@@ -21,18 +21,18 @@
                 <th>Tutor</th>
                 <th>Materia</th>
                 <th>Alumnos</th>
-                <th>Horario</th>
+                <th></th>
             </tr>
             </thead>
             <tfoot>
 @foreach(var materia in Model)
 {
             <tr>
-                <td><a href="">materia.Name</a></td>
-                <td>materia.Tutores.Loginn.Maestro.FirstOrDefault().Nombre</td>
-                <td>materia.Materia.NombreMateria</td>
-                <td><a href="">Ver Alumnos</a></td>
-                <td><a href="">Ver Horario</a></td>
+                <td><a href="">@materia.Name</a></td>
+                <td>@materia.Tutores.Loginn.Maestro.FirstOrDefault().ApellidoP @materia.Tutores.Loginn.Maestro.FirstOrDefault().Nombre</td>
+                <td>@materia.Materia.NombreMateria</td>
+                <td><a href="/Tutorias/Cursando/@materia.Id">Ver Alumnos</a></td>
+                <td><a href="/Tutorias/Inscribirse/@materia.Id">Inscribirse </a></td>
             </tr>
 }
             </tfoot>

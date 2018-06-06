@@ -1,0 +1,37 @@
+﻿@model IEnumerable<SIIE.Models.Tutorias>
+
+@{
+    ViewBag.Title = "Recomendaciones";
+    ViewBag.MainBreadcrumb = "Tutorados";
+    ViewBag.ChildBreadCrumb = "Recomendaciones";
+    Layout = "~/Views/Shared/_LayoutTutorias.cshtml";
+}
+
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i>&nbsp; Recomendaciones Tutorias
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Tutor</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    @foreach (var materia in Model)
+                    {
+                        <tr>
+                            <td><a href="">@materia.Name</a></td>
+                            <td>@materia.Tutores.Loginn.Maestro.FirstOrDefault().ApellidoP @materia.Tutores.Loginn.Maestro.FirstOrDefault().Nombre</td>
+                            <td>Debido a que esta cursando: @materia.Materia.NombreMateria </td>
+                        </tr>
+                    }
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

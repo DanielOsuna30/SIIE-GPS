@@ -656,6 +656,11 @@
     <Content Include="Views\Tutorias\CrearTutoria.cshtml" />
     <Content Include="Views\Tutorias\ListaTutorias.cshtml" />
     <Content Include="Views\Tutorias\ListaHorarios.cshtml" />
+    <Content Include="Views\Tutorias\CursandoTutoria.cshtml" />
+    <Content Include="Views\Tutorias\ListaCursandoTutorado.cshtml" />
+    <Content Include="Views\Tutorias\ListaTutoriasImpartidas.cshtml" />
+    <Content Include="Views\Tutorias\ListaRecomendaciones.cshtml" />
+    <Content Include="Views\Tutorias\ListaRecomendacionesPersonal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -676,12 +681,6 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SIIE-Tutorias\SIIE-Tutorias.csproj">
-      <Project>{d78ab74a-0b7c-4701-a852-871b613de402}</Project>
-      <Name>SIIE-Tutorias</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

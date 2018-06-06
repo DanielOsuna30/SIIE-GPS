@@ -10,7 +10,6 @@
 <div class="card mb-3">
     <div class="card-header">
         <i class="fa fa-user"></i>&nbsp; Tutores
-        <button class="btn btn-primary" style="float:right" onclick="location.href='/Tutorias/Tutores/Create'">Ingresar Tutor</button>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -26,9 +25,9 @@
                     @foreach(var tutor in Model)
                     { 
                     <tr>
-                        <td>tutor.Loginn.Maestro.FirstOrDefault().Nombre</td>
-                        <td>tutor.Loginn.Maestro.FirstOrDefault().ApellidoP</td>
-                        <td><a href="Tutorias/Lista/1">Ver Tutorias</a></td>
+                        <td>@tutor.Loginn.Maestro.FirstOrDefault().Nombre</td>
+                        <td>@tutor.Loginn.Maestro.FirstOrDefault().ApellidoP</td>
+                        <td><a href="/Tutorias/Tutores/Imparte/@tutor.Id">Ver Tutorias Que Imparte</a></td>
                     </tr>
                     }
                 </tfoot>

@@ -16,9 +16,11 @@ namespace SIIE.Controllers
 
         // GET: Tutorias
         [Route("")]
+        [SessionAuthorize(Users = "3")]
         public ActionResult Index()
         {
-            return View();
+            var listCursando = Engine.tutoriasCursandoAlumno(Convert.ToString(Session["controlNumber"]));
+            return View(listCursando);
         }
 
         //Tutores
@@ -31,7 +33,15 @@ namespace SIIE.Controllers
         [Route("Tutores")]
         public ActionResult ListaTutores()
         {
-            return View();
+            var listTutores = Engine.getTutores();
+            return View(listTutores);
+        }
+
+        [Route("Tutores/Imparte/{id:int}")]
+        public ActionResult ListaTutoriasImpartidas(int id)
+        {
+            var listTutorias = Engine.getTutoriasImpartidas(id);
+            return View(listTutorias);
         }
 
         //Tutorados
@@ -43,9 +53,36 @@ namespace SIIE.Controllers
         }
 
         [Route("Tutorados")]
+        [SessionAuthorize(Users ="1,2")]
         public ActionResult ListaAlumnos()
         {
-            return View();
+            var listTutorados = Engine.getTutorados();
+            return View(listTutorados);
+        }
+
+        [Route("Tutorados/Cursando/{id:int}")]
+        [SessionAuthorize(Users = "1,2")]
+        public ActionResult ListaCursandoTutorado(int id )
+        {
+            var lis = Engine.getTutoradoCursando(id);
+            return View(lis);
+        }
+
+        [Route("Tutorados/Recomendaciones/{id:int}")]
+        [SessionAuthorize(Users ="1,2")]
+        public ActionResult ListaRecomendaciones(int id)
+        {
+            var lis = Engine.getRecomendaciones(id);
+            return View(lis);
+        }
+
+        [Route("Tutorados/Recomendaciones")]
+        [SessionAuthorize(Users ="3")]
+        public ActionResult ListaRecomendacionesPersonal()
+        {
+            var id = Engine.getIdAlumno(Session["controlNumber"].ToString());
+            var lis = Engine.getRecomendaciones(id);
+            return View(lis);
         }
 
         //Tutorias
@@ -57,9 +94,20 @@ namespace SIIE.Controllers
         }
 
         [Route("Create")]
+        [SessionAuthorize(Users = "1,2")]
         public ActionResult CrearTutoria()
         {
-            return View();
+            var listMateria = Engine.getMaterias();
+            var listTutores = Engine.getTutores();
+            return View(Tuple.Create(listMateria,listTutores));
+        }
+
+        [Route("CreateTutoria"),HttpPost]
+        [SessionAuthorize(Users = "1,2")]
+        public JsonResult CrearTutoria(int idTutor, int idMateria, string name)
+        {
+            var response=Engine.createGroup(idTutor,idMateria,name);
+            return Json(new { message = response },JsonRequestBehavior.AllowGet);
         }
 
         [Route("List")]
@@ -69,11 +117,35 @@ namespace SIIE.Controllers
             return View(listTutorias);
         }
 
+        [Route("Cursando/{id:int}")]
+        public ActionResult CursandoTutoria(int id)
+        {
+            var listCursando = Engine.getTutoriaCursando(id);
+            return View(listCursando);
+        }
+
+        [Route("Inscribirse/{id:int}")]
+        [SessionAuthorize(Users = "3")]
+        public ActionResult Inscribirse(int id)
+        {
+            Engine.Inscribirse(id, Convert.ToString(Session["controlNumber"]));
+            return RedirectToAction("Index");
+        }
+
         [Route("Horario")]
         public ActionResult ListaHorarios()
         {
             return View();
         }
+
+        [Route("Delete/{idAlumno:int}/{idMateria:int}")]
+        [SessionAuthorize(Users = "1,2")]
+        public ActionResult DeleteStudentFromCourse(int idAlumno, int idMateria)
+        {
+            Engine.DeleteStudent(idAlumno, idMateria);
+            return RedirectToAction("Index");
+        }
+
 
     }
 }

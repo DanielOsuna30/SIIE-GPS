@@ -1,4 +1,5 @@
-﻿
+﻿@model List<SIIE.Models.Alumno>
+
 @{
     ViewBag.Title = "Listado Tutorados";
     ViewBag.MainBreadcrumb = "Tutorados";
@@ -19,19 +20,22 @@
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>Carrera</th>
+                        <th>Cursando</th>
                         <th>Recomendaciones</th>
-                        <th>Tutorias</th>
                     </tr>
                 </thead>
                 <tfoot>
+                    @foreach (var alumno in Model)
+                    {
                     <tr>
-                        <td>13310569</td>
-                        <td>Daniel</td>
-                        <td>Osuna</td>
-                        <td>Sistemas Computacionales</td>
-                        <td>Ver Recomendaciones</td>
-                        <td><a href="">Ver Tutorias</a></td>
+                        <td>@alumno.Loginn.noControl</td>
+                        <td>@alumno.Nombre</td>
+                        <td>@alumno.ApellidoP</td>
+                        <td>@alumno.Carrera.NombreCarrera</td>
+                        <td><a href="/Tutorias/Tutorados/Cursando/@alumno.Loginn.Alumno.FirstOrDefault().idAlumno">Ver Tutorias</a></td>
+                        <td><a href="/Tutorias/Tutorados/Recomendaciones/@alumno.Loginn.Alumno.FirstOrDefault().idAlumno">Recomendaciones</a></td>
                     </tr>
+                    }
                 </tfoot>
             </table>
         </div>

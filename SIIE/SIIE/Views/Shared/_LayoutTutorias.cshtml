@@ -27,6 +27,21 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+          @if (Session["level"].ToString() == "3")
+          {
+          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+              <a class="nav-link" href="/Tutorias">
+                  <i class="fa fa-calendar"></i>
+                  <span class="nav-link-text">Cursando</span>
+              </a>
+          </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+            <a class="nav-link" href="/Tutorias">
+                <i class="fa fa-question"></i>
+                <span class="nav-link-text">Recomendaciones</span>
+            </a>
+        </li>
+          }
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
           <a class="nav-link" href="/Tutorias/List">
             <i class="fa fa-calendar"></i>
@@ -39,13 +54,15 @@
             <span class="nav-link-text">Tutores</span>
           </a>
         </li>
-        
+        @if (Session["level"].ToString() != "3")
+        {
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
           <a class="nav-link" href="/Tutorias/Tutorados">
             <i class="fa fa-address-card-o"></i>
             <span class="nav-link-text">Tutorados</span>
           </a>
         </li>
+        }
       </ul>
       <ul class="navbar-nav sidenav-toggler">
         <li class="nav-item">
