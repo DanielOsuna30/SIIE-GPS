@@ -4,13 +4,13 @@
     ViewBag.Title = "Cursando";
     ViewBag.MainBreadcrumb = "Tutorados";
     ViewBag.ChildBreadCrumb = "Cursando";
+    ViewBag.ActiveTutorados = "active";
     Layout = "~/Views/Shared/_LayoutTutorias.cshtml";
 }
 
 <div class="card mb-3">
     <div class="card-header">
         <i class="fa fa-table"></i>&nbsp; Tutorias cursadas por: @Model.FirstOrDefault().Alumno.ApellidoP  @Model.FirstOrDefault().Alumno.Nombre
-        <button class="btn btn-primary" style="float:right" onclick="location.href='/Tutorias/Create'">Ingresar Tutoria</button>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -27,7 +27,7 @@
                     @foreach (var materia in Model)
                     {
                         <tr>
-                            <td><a href="">@materia.Tutorias.Name</a></td>
+                            <td>@materia.Tutorias.Name</td>
                             <td>@materia.Tutorias.Tutores.Loginn.Maestro.FirstOrDefault().ApellidoP @materia.Tutorias.Tutores.Loginn.Maestro.FirstOrDefault().Nombre</td>
                             <td>@materia.Tutorias.Materia.NombreMateria</td>
                             <td>@materia.Calificacion</td>

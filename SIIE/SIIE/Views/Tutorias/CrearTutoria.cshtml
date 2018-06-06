@@ -1,40 +1,76 @@
-﻿@model Tuple<List<SIIE.Models.Materia>, List<SIIE.Models.Tutores>>
+﻿@model Tuple<List<SIIE.Models.Materia>, List<SIIE.Models.Tutores>,List<SIIE.Models.Salon>>
 
 @{
-    ViewBag.Title = "CrearTutoria";
+    ViewBag.Title = "Crear Tutoria";
     ViewBag.MainBreadcrumb = "Tutorias";
     ViewBag.ChildBreadCrumb = "Crear";
+    ViewBag.ActiveTutorias = "active";
     Layout = "~/Views/Shared/_LayoutTutorias.cshtml";
 }
     <script>
     $(document).ready(function () {
-
         $("#save").click(function () {
             $('#save').disabled = true;
-            $.ajax({
-                url: '/Tutorias/CreateTutoria',
-                type: 'POST',
-                dataType: 'json',
-                // we set cache: false because GET requests are often cached by browsers
-                // IE is particularly aggressive in that respect
-                cache: false,
-                data: {
-                    idTutor: $('#Tutor').val(),
-                    idMateria: $('#Materia').val(),
-                    name: $('#nombreTutoria').val()
-                },
-                success: function (data) {
-                    alert("Grupo Guardado");
-                    window.location.href = '/Tutorias/List';
-                }
-            });
+            var lunesHorario = "";
+            var martesHorario = "";
+            var miercolesHorario = "";
+            var juevesHorario = "";
+            var viernesHorario = "";
+
+            if ($('#lunesActive').prop('checked'))
+                lunesHorario = $('#lunesEntrada').val() + '-' + $('#lunesSalida').val()+'-'+$('#lunesSalon').val()
+            if ($('#martesActive').prop('checked')) 
+                martesHorario = $('#martesEntrada').val() + '-' + $('#martesSalida').val() +'-'+ $('#martesSalon').val()
+            if ($('#miercolesActive').prop('checked')) 
+                miercolesHorario = $('#miercolesEntrada').val() + '-' + $('#miercolesSalida').val() +'-'+ $('#miercolesSalon').val()
+            if ($('#juevesActive').prop('checked'))
+                juevesHorario = $('#juevesEntrada').val() + '-' + $('#juevesEntrada').val() + '-'+$('#juevesSalon').val()
+            if ($('#viernesActive').prop('checked'))
+                viernesHorario = $('#viernesEntrada').val() + '-' + $('#viernesEntrada').val() +'-'+ $('#viernesSalon').val()
+            if (lunesHorario == "" && martesHorario == "" && miercolesHorario == "" && juevesHorario == "" && viernesHorario == "") {
+                alert('Seleccionar por lo menos un horario');
+                $('#save').disabled = false;
+            }
+            else if($('#nombreTutoria').val()=="")
+            {
+                alert('Ingresar nombre de tutoria');
+                $('#save').disabled = false;
+            }
+            else {
+                $.ajax({
+                    url: '/Tutorias/CreateTutoria',
+                    type: 'POST',
+                    dataType: 'json',
+                    // we set cache: false because GET requests are often cached by browsers
+                    // IE is particularly aggressive in that respect
+                    cache: false,
+                    data: {
+                        idTutor: $('#Tutor').val(),
+                        idMateria: $('#Materia').val(),
+                        name: $('#nombreTutoria').val(),
+                        lunes: lunesHorario,
+                        martes: martesHorario,
+                        miercoles: miercolesHorario,
+                        jueves: juevesHorario,
+                        viernes: viernesHorario,
+                    },
+                    success: function (data) {
+                        alert("Grupo Guardado");
+                        window.location.href = '/Tutorias/List';
+                    }
+                });
+            }
         });
 
     });
     </script>
 
 <div class="row">
-    <div class="col-sm-5">
+    <div class="col-sm-3" style="margin:10px;">
+        <label>Nombre Tutoria:</label>
+        <input class="form-control" id="nombreTutoria" type="text" />
+        </div>
+    <div class="col-sm-3" style="margin:10px;">
         <label>Seleccionar Tutor:</label>
         <select class="form-control" id="Tutor">
             @foreach (var tutor in Model.Item2)
@@ -45,7 +81,7 @@
             }
         </select>
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-4" style="margin:10px;">
         <label>Seleccionar Materia:</label>
         <select class="form-control" id="Materia">
             @foreach (var materia in Model.Item1)
@@ -56,9 +92,225 @@
             }
         </select>
     </div>
-    <div class="col-sm-5">
-        <label>Nombre Tutoria:</label>
-        <input class="form-control" id="nombreTutoria" type="text" />
+    <div class="col-sm-12" style="margin-left:10px;margin-top:10px;margin-bottom:0px;">
+        <h5>Horarios</h5>
+    </div>
+    <div class="col-sm-2" style="margin:10px">
+        <input type="checkbox" id="lunesActive" />
+        <label>Lunes:</label>
+        <select id="lunesEntrada" placeholder="Entrada" class="form-control">
+            <option value="07:00">7:00</option>
+            <option value="08:00">8:00</option>
+            <option value="09:00">9:00</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="12:00">12:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>
+            <option value="17:00">17:00</option>
+            <option value="18:00">18:00</option>
+            <option value="19:00">19:00</option>
+            <option value="20:00">20:00</option>
+            <option value="21:00">21:00</option>
+        </select>
+        <select id="lunesSalida" placeholder="Salida" class="form-control">
+            <option value="8:00">8:00</option>
+            <option value="9:00">9:00</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="12:00">12:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>
+            <option value="17:00">17:00</option>
+            <option value="18:00">18:00</option>
+            <option value="19:00">19:00</option>
+            <option value="20:00">20:00</option>
+            <option value="21:00">21:00</option>
+        </select>
+        <select id="lunesSalon" class="form-control">
+            @foreach(var salon in Model.Item3)
+            {
+                <option value="@salon.idSalon">@salon.NombreSalon</option>
+            }
+        </select>
+    </div>
+    <div class="col-sm-2" style="margin:10px">
+        <input type="checkbox" id="martesActive" />
+        <label>Martes:</label>
+        <select id="martesEntrada" placeholder="Entrada" class="form-control">
+            <option value="7:00">7:00</option>
+            <option value="8:00">8:00</option>
+            <option value="9:00">9:00</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="12:00">12:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>
+            <option value="17:00">17:00</option>
+            <option value="18:00">18:00</option>
+            <option value="19:00">19:00</option>
+            <option value="20:00">20:00</option>
+            <option value="21:00">21:00</option>
+        </select>
+        <select id="martesSalida" placeholder="Salida" class="form-control">
+            <option value="8:00">8:00</option>
+            <option value="9:00">9:00</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="12:00">12:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>
+            <option value="17:00">17:00</option>
+            <option value="18:00">18:00</option>
+            <option value="19:00">19:00</option>
+            <option value="20:00">20:00</option>
+            <option value="21:00">21:00</option>
+        </select>
+        <select id="martesSalon" class="form-control">
+            @foreach (var salon in Model.Item3)
+            {
+                <option value="@salon.idSalon">@salon.NombreSalon</option>
+            }
+        </select>
+    </div>
+    <div class="col-sm-2" style="margin:10px">
+        <input type="checkbox" id="miercolesActive" />
+        <label>Miercoles:</label>
+        <select id="miercolesEntrada" placeholder="Entrada" class="form-control">
+            <option value="7:00">7:00</option>
+            <option value="8:00">8:00</option>
+            <option value="9:00">9:00</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="12:00">12:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>
+            <option value="17:00">17:00</option>
+            <option value="18:00">18:00</option>
+            <option value="19:00">19:00</option>
+            <option value="20:00">20:00</option>
+            <option value="21:00">21:00</option>
+        </select>
+        <select id="miercolesSalida" placeholder="Salida" class="form-control">
+            <option value="8:00">8:00</option>
+            <option value="9:00">9:00</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="12:00">12:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>
+            <option value="17:00">17:00</option>
+            <option value="18:00">18:00</option>
+            <option value="19:00">19:00</option>
+            <option value="20:00">20:00</option>
+            <option value="21:00">21:00</option>
+        </select>
+        <select id="miercolesSalon" class="form-control">
+            @foreach (var salon in Model.Item3)
+            {
+                <option value="@salon.idSalon">@salon.NombreSalon</option>
+            }
+        </select>
+    </div>
+    <div class="col-sm-2" style="margin:10px">
+        <input type="checkbox" id="juevesActive" />
+        <label>Jueves:</label>
+        <select id="juevesEntrada" placeholder="Entrada" class="form-control">
+            <option value="7:00">7:00</option>
+            <option value="8:00">8:00</option>
+            <option value="9:00">9:00</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="12:00">12:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>
+            <option value="17:00">17:00</option>
+            <option value="18:00">18:00</option>
+            <option value="19:00">19:00</option>
+            <option value="20:00">20:00</option>
+            <option value="21:00">21:00</option>
+        </select>
+        <select id="juevesSalida" placeholder="Salida" class="form-control">
+            <option value="8:00">8:00</option>
+            <option value="9:00">9:00</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="12:00">12:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>
+            <option value="17:00">17:00</option>
+            <option value="18:00">18:00</option>
+            <option value="19:00">19:00</option>
+            <option value="20:00">20:00</option>
+            <option value="21:00">21:00</option>
+        </select>
+        <select id="juevesSalon" class="form-control">
+            @foreach (var salon in Model.Item3)
+            {
+                <option value="@salon.idSalon">@salon.NombreSalon</option>
+            }
+        </select>
+    </div>
+    <div class="col-sm-2" style="margin:10px">
+        <input type="checkbox" id="viernesActive" />
+        <label>Viernes:</label>
+        <select id="viernesEntrada" placeholder="Entrada" class="form-control">
+            <option value="7:00">7:00</option>
+            <option value="8:00">8:00</option>
+            <option value="9:00">9:00</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="12:00">12:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>
+            <option value="17:00">17:00</option>
+            <option value="18:00">18:00</option>
+            <option value="19:00">19:00</option>
+            <option value="20:00">20:00</option>
+            <option value="21:00">21:00</option>
+        </select>
+        <select id="viernesSalida" placeholder="Salida" class="form-control">
+            <option value="8:00">8:00</option>
+            <option value="9:00">9:00</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="12:00">12:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>
+            <option value="17:00">17:00</option>
+            <option value="18:00">18:00</option>
+            <option value="19:00">19:00</option>
+            <option value="20:00">20:00</option>
+            <option value="21:00">21:00</option>
+        </select>
+        <select id="viernesSalon" class="form-control">
+            @foreach (var salon in Model.Item3)
+            {
+                <option value="@salon.idSalon">@salon.NombreSalon</option>
+            }
+        </select>
+    </div>
+    <div class="col-sm-2" style="margin:10px">
         <button id="save" class="btn btn-primary">Guardar</button>
     </div>
 </div>

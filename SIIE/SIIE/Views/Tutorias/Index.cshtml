@@ -4,6 +4,7 @@
     ViewBag.Title = "Sistema De Tutorias";
     ViewBag.MainBreadcrumb = "Inicio";
     ViewBag.ChildBreadCrumb = "Cursando";
+    ViewBag.ActiveCursando = "active";
     Layout = "~/Views/Shared/_LayoutTutorias.cshtml";
 }
 
@@ -19,6 +20,8 @@
                         <th>Nombre</th>
                         <th>Tutor</th>
                         <th>Materia</th>
+                        <th>Calificacion</th>
+                        <th>Horario</th>
                         <th>Alumnos</th>
                         <th></th>
                     </tr>
@@ -27,11 +30,13 @@
                     @foreach (var materia in Model)
                     {
                         <tr>
-                            <td><a href="">@materia.Tutorias.Name</a></td>
+                            <td>@materia.Tutorias.Name</td>
                             <td>@materia.Tutorias.Tutores.Loginn.Maestro.FirstOrDefault().ApellidoP @materia.Tutorias.Tutores.Loginn.Maestro.FirstOrDefault().Nombre</td>
                             <td>@materia.Tutorias.Materia.NombreMateria</td>
+                            <td>@materia.Calificacion</td>
+                            <td><a href="/Tutorias/Horario/@materia.Id">Ver Horario</a></td>
                             <td><a href="/Tutorias/Cursando/@materia.IdTutoria">Ver Alumnos</a></td>
-                            <td><a href="/Tutorias/Down/@materia.IdTutoria" style="color:red">Darse de baja </a></td>
+                            <td><a href="/Tutorias/Delete/@materia.IdTutoria" style="color:red">Darse De Baja</a></td>
                         </tr>
                     }
                 </tfoot>

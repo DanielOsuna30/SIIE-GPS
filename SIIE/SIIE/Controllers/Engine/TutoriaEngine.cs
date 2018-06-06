@@ -31,7 +31,18 @@ namespace SIIE.Controllers.Engine
 
         public List<AlumnosTutoriaRelationship> getTutoriaCursando(int i)
         {
-            return db.Tutorias.FirstOrDefault(x => x.Id == i).AlumnosTutoriaRelationship.ToList();
+            var list= db.Tutorias.FirstOrDefault(x => x.Id == i).AlumnosTutoriaRelationship.ToList();
+            if (list.Count == 0)
+            {
+                list = new List<AlumnosTutoriaRelationship>();
+                list.Add(new AlumnosTutoriaRelationship
+                {
+                    IdAlumno = -1,
+                    IdTutoria = i,
+                    Tutorias = db.Tutorias.FirstOrDefault(x => x.Id == i)
+                });
+            }
+            return list;
         }
 
         public List<AlumnosTutoriaRelationship> getTutoradoCursando(int id)
@@ -50,9 +61,9 @@ namespace SIIE.Controllers.Engine
             List<Tutorias> materia = new List<Tutorias>();
             foreach (Cursando m in materias)
             {
-                Tutorias curso = db.Tutorias.FirstOrDefault(x => x.MateriaId == m.idMateria);
-                if (curso != null)
-                    materia.Add(curso);
+                List<Tutorias> curso = db.Tutorias.Where(x => x.MateriaId == m.idMateria && (db.AlumnosTutoriaRelationship.FirstOrDefault(y => y.IdAlumno == id && y.IdTutoria == x.Id) == null)).ToList();
+                if (curso.Count != 0)
+                    materia.AddRange(curso);
             }
             return materia;
         }
@@ -73,6 +84,11 @@ namespace SIIE.Controllers.Engine
             return db.Alumno.FirstOrDefault(x => x.noControl == noControl).idAlumno;
         }
 
+        public List<Salon> getSalones()
+        {
+            return db.Salon.ToList();
+        }
+
         public  List<AlumnosTutoriaRelationship> tutoriasCursandoAlumno(string v)
         {
             int id = db.Alumno.FirstOrDefault(x => x.noControl == v).idAlumno;
@@ -80,12 +96,45 @@ namespace SIIE.Controllers.Engine
             return list;
         }
 
-        public string createGroup(int idTutor,int idMateria, string name)
+        public string createGroup(int idTutor,int idMateria, string name,string lunes, string martes, string miercoles, string jueves, string viernes)
         {
             var group = new Tutorias { MateriaId = idMateria, TutorId = idTutor, Name = name };
             if (db.Tutorias.FirstOrDefault(x => x.MateriaId == idMateria && x.TutorId == idTutor) == null)
             {
                 db.Tutorias.Add(group);
+                db.SaveChanges();
+                List<HorarioTutorias> hor = new List<HorarioTutorias>();
+                if (lunes != "")
+                {
+                    var horario = lunes.Split('-');
+                    HorarioTutorias Lunes = new HorarioTutorias { TutoriaId = group.Id, Dia = "Lunes", Entrada = horario[0], Salida = horario[1], IdSalon = Convert.ToInt32(horario[2]) };
+                    hor.Add(Lunes);
+                }
+                if (martes != "")
+                {
+                    var horario = martes.Split('-');
+                    HorarioTutorias Lunes = new HorarioTutorias { TutoriaId = group.Id, Dia = "Martes", Entrada = horario[0], Salida = horario[1], IdSalon = Convert.ToInt32(horario[2]) };
+                    hor.Add(Lunes);
+                }
+                if (miercoles != "")
+                {
+                    var horario = miercoles.Split('-');
+                    HorarioTutorias Lunes = new HorarioTutorias { TutoriaId = group.Id, Dia = "Miercoles", Entrada = horario[0], Salida = horario[1], IdSalon = Convert.ToInt32(horario[2]) };
+                    hor.Add(Lunes);
+                }
+                if (jueves != "")
+                {
+                    var horario = jueves.Split('-');
+                    HorarioTutorias Lunes = new HorarioTutorias { TutoriaId = group.Id, Dia = "Jueves", Entrada = horario[0], Salida = horario[1], IdSalon = Convert.ToInt32(horario[2]) };
+                    hor.Add(Lunes);
+                }
+                if (viernes != "")
+                {
+                    var horario = viernes.Split('-');
+                    HorarioTutorias Lunes = new HorarioTutorias { TutoriaId = group.Id, Dia = "Viernes", Entrada = horario[0], Salida = horario[1], IdSalon = Convert.ToInt32(horario[2]) };
+                    hor.Add(Lunes);
+                }
+                db.HorarioTutorias.AddRange(hor);
                 db.SaveChanges();
                 return "Grupo guardado";
             }
@@ -103,6 +152,11 @@ namespace SIIE.Controllers.Engine
                 db.AlumnosTutoriaRelationship.Remove(Record);
                 db.SaveChanges();
             }
+        }
+
+        public List<HorarioTutorias> GetHorarios(int idTutoria)
+        {
+            return db.HorarioTutorias.Where(x => x.TutoriaId == idTutoria).ToList();
         }
     }
 }

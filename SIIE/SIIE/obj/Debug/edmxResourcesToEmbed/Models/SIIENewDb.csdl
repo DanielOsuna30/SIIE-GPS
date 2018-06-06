@@ -167,6 +167,7 @@
     <Property Name="idSalon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="NombreSalon" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Grupo" Relationship="Self.FK3_Grupo" FromRole="Salon" ToRole="Grupo" />
+    <NavigationProperty Name="HorarioTutorias" Relationship="SIIE_dbModel.FK_HorarioTutorias_Salon" FromRole="Salon" ToRole="HorarioTutorias" />
   </EntityType>
   <Association Name="FK_Alumno">
     <End Role="Carrera" Type="Self.Carrera" Multiplicity="1" />
@@ -423,12 +424,16 @@
       <End Role="Tutores" EntitySet="Tutores" />
       <End Role="Tutorias" EntitySet="Tutorias" />
     </AssociationSet>
-    <EntitySet Name="HorarioTutorias" EntityType="SIIE_dbModel.HorarioTutorias" />
     <AssociationSet Name="FK_AlumnosTutoriaRelationship_Tutorias1" Association="SIIE_dbModel.FK_AlumnosTutoriaRelationship_Tutorias1">
       <End Role="Tutorias" EntitySet="Tutorias" />
       <End Role="AlumnosTutoriaRelationship" EntitySet="AlumnosTutoriaRelationship" />
     </AssociationSet>
-    <AssociationSet Name="FK_HorarioTutorias_Tutorias" Association="SIIE_dbModel.FK_HorarioTutorias_Tutorias">
+    <EntitySet Name="HorarioTutorias" EntityType="SIIE_dbModel.HorarioTutorias" />
+    <AssociationSet Name="FK_HorarioTutorias_Salon" Association="SIIE_dbModel.FK_HorarioTutorias_Salon">
+      <End Role="Salon" EntitySet="Salon" />
+      <End Role="HorarioTutorias" EntitySet="HorarioTutorias" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HorarioTutorias_Tutorias1" Association="SIIE_dbModel.FK_HorarioTutorias_Tutorias1">
       <End Role="Tutorias" EntitySet="Tutorias" />
       <End Role="HorarioTutorias" EntitySet="HorarioTutorias" />
     </AssociationSet>
@@ -453,7 +458,7 @@
     <NavigationProperty Name="Materia" Relationship="SIIE_dbModel.FK_Tutorias_Materia" FromRole="Tutorias" ToRole="Materia" />
     <NavigationProperty Name="Tutores" Relationship="SIIE_dbModel.FK_Tutorias_Tutores" FromRole="Tutorias" ToRole="Tutores" />
     <NavigationProperty Name="AlumnosTutoriaRelationship" Relationship="SIIE_dbModel.FK_AlumnosTutoriaRelationship_Tutorias1" FromRole="Tutorias" ToRole="AlumnosTutoriaRelationship" />
-    <NavigationProperty Name="HorarioTutorias" Relationship="SIIE_dbModel.FK_HorarioTutorias_Tutorias" FromRole="Tutorias" ToRole="HorarioTutorias" />
+    <NavigationProperty Name="HorarioTutorias" Relationship="SIIE_dbModel.FK_HorarioTutorias_Tutorias1" FromRole="Tutorias" ToRole="HorarioTutorias" />
   </EntityType>
   <EntityType Name="AlumnosTutoriaRelationship">
     <Key>
@@ -514,17 +519,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="HorarioTutorias">
-    <Key>
-      <PropertyRef Name="TutoriaId" />
-      <PropertyRef Name="Dia" />
-      <PropertyRef Name="Horario" />
-    </Key>
-    <Property Name="TutoriaId" Type="Int32" Nullable="false" />
-    <Property Name="Dia" Type="Int32" Nullable="false" />
-    <Property Name="Horario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Tutorias" Relationship="SIIE_dbModel.FK_HorarioTutorias_Tutorias" FromRole="HorarioTutorias" ToRole="Tutorias" />
-  </EntityType>
   <Association Name="FK_AlumnosTutoriaRelationship_Tutorias1">
     <End Type="SIIE_dbModel.Tutorias" Role="Tutorias" Multiplicity="1" />
     <End Type="SIIE_dbModel.AlumnosTutoriaRelationship" Role="AlumnosTutoriaRelationship" Multiplicity="*" />
@@ -537,7 +531,32 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_HorarioTutorias_Tutorias">
+  <EntityType Name="HorarioTutorias">
+    <Key>
+      <PropertyRef Name="idHorario" />
+    </Key>
+    <Property Name="idHorario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TutoriaId" Type="Int32" Nullable="false" />
+    <Property Name="Dia" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Entrada" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Salida" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdSalon" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Salon" Relationship="SIIE_dbModel.FK_HorarioTutorias_Salon" FromRole="HorarioTutorias" ToRole="Salon" />
+    <NavigationProperty Name="Tutorias" Relationship="SIIE_dbModel.FK_HorarioTutorias_Tutorias1" FromRole="HorarioTutorias" ToRole="Tutorias" />
+  </EntityType>
+  <Association Name="FK_HorarioTutorias_Salon">
+    <End Type="SIIE_dbModel.Salon" Role="Salon" Multiplicity="1" />
+    <End Type="SIIE_dbModel.HorarioTutorias" Role="HorarioTutorias" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Salon">
+        <PropertyRef Name="idSalon" />
+      </Principal>
+      <Dependent Role="HorarioTutorias">
+        <PropertyRef Name="IdSalon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HorarioTutorias_Tutorias1">
     <End Type="SIIE_dbModel.Tutorias" Role="Tutorias" Multiplicity="1" />
     <End Type="SIIE_dbModel.HorarioTutorias" Role="HorarioTutorias" Multiplicity="*" />
     <ReferentialConstraint>

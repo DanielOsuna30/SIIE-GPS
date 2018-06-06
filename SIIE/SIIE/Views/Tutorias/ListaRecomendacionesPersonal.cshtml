@@ -1,7 +1,10 @@
 ﻿@model IEnumerable<SIIE.Models.Tutorias>
 
 @{
-    ViewBag.Title = "ListaRecomendacionesPersonal";
+    ViewBag.Title = "Recomendaciones";
+    ViewBag.MainBreadcrumb = "Recomendaciones";
+    ViewBag.ChildBreadCrumb = "";
+    ViewBag.ActiveRecomendaciones = "active";
     Layout = "~/Views/Shared/_LayoutTutorias.cshtml";
 }
 <div class="card mb-3">
@@ -15,6 +18,7 @@
                     <tr>
                         <th>Nombre</th>
                         <th>Tutor</th>
+                        <th>Horario</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -23,8 +27,9 @@
                     @foreach (var materia in Model)
                     {
                         <tr>
-                            <td><a href="">@materia.Name</a></td>
+                            <td>@materia.Name</td>
                             <td>@materia.Tutores.Loginn.Maestro.FirstOrDefault().ApellidoP @materia.Tutores.Loginn.Maestro.FirstOrDefault().Nombre</td>
+                            <td><a href="/Tutorias/Horario/@materia.Id">Ver Horario</a></td>
                             <td>Debido a que estas cursando: @materia.Materia.NombreMateria </td>
                             <td><a href="/Tutorias/Inscribirse/@materia.Id">Inscribirse </a></td>
                         </tr>

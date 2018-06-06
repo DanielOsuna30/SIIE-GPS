@@ -18,6 +18,7 @@ namespace SIIE.Models
         public Salon()
         {
             this.Grupo = new HashSet<Grupo>();
+            this.HorarioTutorias = new HashSet<HorarioTutorias>();
         }
     
         public int idSalon { get; set; }
@@ -25,5 +26,7 @@ namespace SIIE.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Grupo> Grupo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HorarioTutorias> HorarioTutorias { get; set; }
     }
 }

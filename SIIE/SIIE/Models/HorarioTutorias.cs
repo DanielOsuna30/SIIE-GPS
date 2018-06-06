@@ -14,10 +14,14 @@ namespace SIIE.Models
     
     public partial class HorarioTutorias
     {
+        public int idHorario { get; set; }
         public int TutoriaId { get; set; }
-        public int Dia { get; set; }
-        public string Horario { get; set; }
+        public string Dia { get; set; }
+        public string Entrada { get; set; }
+        public string Salida { get; set; }
+        public int IdSalon { get; set; }
     
+        public virtual Salon Salon { get; set; }
         public virtual Tutorias Tutorias { get; set; }
     }
 }

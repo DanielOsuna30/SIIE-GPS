@@ -1,16 +1,16 @@
 ﻿@model IEnumerable<SIIE.Models.Tutorias>
 
 @{
-    ViewBag.Title = "ListaTutoriasImpartidas";
+    ViewBag.Title = "Tutorias Impartidas";
     ViewBag.MainBreadcrumb = Model.FirstOrDefault().Tutores.Loginn.Maestro.FirstOrDefault().Nombre+" "+ Model.FirstOrDefault().Tutores.Loginn.Maestro.FirstOrDefault().ApellidoP;
     ViewBag.ChildBreadCrumb = "Impartiendo";
+    ViewBag.ActiveTutorias = "active";
     Layout = "~/Views/Shared/_LayoutTutorias.cshtml";
 }
 
 <div class="card mb-3">
     <div class="card-header">
         <i class="fa fa-table"></i>&nbsp; Horarios disponibles
-        <button class="btn btn-primary" style="float:right" onclick="location.href='/Tutorias/Create'">Ingresar Tutoria</button>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -19,18 +19,27 @@
                     <tr>
                         <th>Nombre</th>
                         <th>Materia</th>
+                        <th>Horario</th>
                         <th>Alumnos</th>
+@if (Session["level"].ToString() == "3")
+{
                         <th></th>
+}
                     </tr>
                 </thead>
                 <tfoot>
                     @foreach (var materia in Model)
                     {
                         <tr>
-                            <td><a href="">@materia.Name</a></td>
+                            <td>@materia.Name</td>
                             <td>@materia.Materia.NombreMateria</td>
+                            <td><a href="/Tutorias/Horario/@materia.Id">Ver Horario</a></td>
                             <td><a href="/Tutorias/Cursando/@materia.Id">Ver Alumnos</a></td>
+@if (Session["level"].ToString() == "3")
+{
+
                             <td><a href="/Tutorias/Inscribirse/@materia.Id">Inscribirse </a></td>
+}
                         </tr>
                     }
                 </tfoot>

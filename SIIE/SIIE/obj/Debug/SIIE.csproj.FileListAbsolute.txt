@@ -344,7 +344,6 @@ C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\bin\Microsoft.Owin.Security.Twitter.d
 C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\bin\Newtonsoft.Json.dll
 C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\bin\Owin.dll
-C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\bin\SIIE-Tutorias.dll
 C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\bin\System.ComponentModel.Primitives.dll
 C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\bin\System.Diagnostics.DiagnosticSource.dll
 C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\bin\System.Net.Http.Formatting.dll
@@ -358,7 +357,6 @@ C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\bin\System.Web.WebPages.Deployment.dl
 C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\bin\System.Web.WebPages.dll
 C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\bin\System.Web.WebPages.Razor.dll
 C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\bin\WebGrease.dll
-C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\bin\SIIE-Tutorias.pdb
 C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\bin\Antlr3.Runtime.pdb
 C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\bin\AutoMapper.xml
 C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\bin\EntityFramework.xml
@@ -393,7 +391,6 @@ C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\bin\System.Web.Optimization.xml
 C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\bin\Microsoft.AspNet.Identity.Owin.xml
 C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\bin\Microsoft.AspNet.Identity.EntityFramework.xml
-C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\obj\Debug\SIIE.csprojResolveAssemblyReference.cache
 C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\obj\Debug\SIIE.dll
 C:\Users\dell\Documents\SIIE-GPS\SIIE\SIIE\obj\Debug\SIIE.pdb
 \\Mac\Home\Desktop\SIIE GPS\SIIE\SIIE\obj\Debug\SIIE.csprojResolveAssemblyReference.cache

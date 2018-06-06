@@ -4,6 +4,7 @@
     ViewBag.Title = "Recomendaciones";
     ViewBag.MainBreadcrumb = "Tutorados";
     ViewBag.ChildBreadCrumb = "Recomendaciones";
+    ViewBag.ActiveRecomendaciones = "active";
     Layout = "~/Views/Shared/_LayoutTutorias.cshtml";
 }
 
@@ -18,6 +19,7 @@
                     <tr>
                         <th>Nombre</th>
                         <th>Tutor</th>
+                        <th>Horario</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -27,6 +29,7 @@
                         <tr>
                             <td><a href="">@materia.Name</a></td>
                             <td>@materia.Tutores.Loginn.Maestro.FirstOrDefault().ApellidoP @materia.Tutores.Loginn.Maestro.FirstOrDefault().Nombre</td>
+                            <td><a href="/Tutorias/Horario/@materia.Id">Ver Horario</a></td>
                             <td>Debido a que esta cursando: @materia.Materia.NombreMateria </td>
                         </tr>
                     }

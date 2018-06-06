@@ -98,13 +98,14 @@
   </EntityType>
   <EntityType Name="HorarioTutorias">
     <Key>
-      <PropertyRef Name="TutoriaId" />
-      <PropertyRef Name="Dia" />
-      <PropertyRef Name="Horario" />
+      <PropertyRef Name="idHorario" />
     </Key>
+    <Property Name="idHorario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TutoriaId" Type="int" Nullable="false" />
-    <Property Name="Dia" Type="int" Nullable="false" />
-    <Property Name="Horario" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Dia" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Entrada" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Salida" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IdSalon" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Loginn">
     <Key>
@@ -340,7 +341,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_HorarioTutorias_Tutorias">
+  <Association Name="FK_HorarioTutorias_Salon">
+    <End Role="Salon" Type="Self.Salon" Multiplicity="1" />
+    <End Role="HorarioTutorias" Type="Self.HorarioTutorias" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Salon">
+        <PropertyRef Name="idSalon" />
+      </Principal>
+      <Dependent Role="HorarioTutorias">
+        <PropertyRef Name="IdSalon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HorarioTutorias_Tutorias1">
     <End Role="Tutorias" Type="Self.Tutorias" Multiplicity="1" />
     <End Role="HorarioTutorias" Type="Self.HorarioTutorias" Multiplicity="*" />
     <ReferentialConstraint>
@@ -484,7 +497,11 @@
       <End Role="Grupo" EntitySet="Grupo" />
       <End Role="HorarioGrupo" EntitySet="HorarioGrupo" />
     </AssociationSet>
-    <AssociationSet Name="FK_HorarioTutorias_Tutorias" Association="Self.FK_HorarioTutorias_Tutorias">
+    <AssociationSet Name="FK_HorarioTutorias_Salon" Association="Self.FK_HorarioTutorias_Salon">
+      <End Role="Salon" EntitySet="Salon" />
+      <End Role="HorarioTutorias" EntitySet="HorarioTutorias" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HorarioTutorias_Tutorias1" Association="Self.FK_HorarioTutorias_Tutorias1">
       <End Role="Tutorias" EntitySet="Tutorias" />
       <End Role="HorarioTutorias" EntitySet="HorarioTutorias" />
     </AssociationSet>

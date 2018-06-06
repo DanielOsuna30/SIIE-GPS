@@ -99,15 +99,16 @@ namespace SIIE.Controllers
         {
             var listMateria = Engine.getMaterias();
             var listTutores = Engine.getTutores();
-            return View(Tuple.Create(listMateria,listTutores));
+            var listSalones = Engine.getSalones();
+            return View(Tuple.Create(listMateria,listTutores,listSalones));
         }
 
-        [Route("CreateTutoria"),HttpPost]
+        [Route("CreateTutoria"), HttpPost]
         [SessionAuthorize(Users = "1,2")]
-        public JsonResult CrearTutoria(int idTutor, int idMateria, string name)
+        public JsonResult CrearTutoria(int idTutor, int idMateria, string name, string lunes, string martes, string miercoles, string jueves, string viernes)
         {
-            var response=Engine.createGroup(idTutor,idMateria,name);
-            return Json(new { message = response },JsonRequestBehavior.AllowGet);
+            var response = Engine.createGroup(idTutor, idMateria, name, lunes, martes, miercoles, jueves, viernes);
+            return Json(new { message = response }, JsonRequestBehavior.AllowGet);
         }
 
         [Route("List")]
@@ -129,23 +130,32 @@ namespace SIIE.Controllers
         public ActionResult Inscribirse(int id)
         {
             Engine.Inscribirse(id, Convert.ToString(Session["controlNumber"]));
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Tutorias");
         }
 
-        [Route("Horario")]
-        public ActionResult ListaHorarios()
+        [Route("Horario/{idTutoria:int}")]
+        public ActionResult ListaHorarios(int idTutoria)
         {
-            return View();
+            var list=Engine.GetHorarios(idTutoria);
+            return View(list);
         }
 
-        [Route("Delete/{idAlumno:int}/{idMateria:int}")]
+        [Route("Delete/{idAlumno:int}/{idTutoria:int}")]
         [SessionAuthorize(Users = "1,2")]
-        public ActionResult DeleteStudentFromCourse(int idAlumno, int idMateria)
+        public ActionResult DeleteStudentFromCourse(int idAlumno, int idTutoria)
         {
-            Engine.DeleteStudent(idAlumno, idMateria);
-            return RedirectToAction("Index");
+            Engine.DeleteStudent(idAlumno, idTutoria);
+            return RedirectToAction("ListaTutorias", "Tutorias");
         }
 
 
+        [Route("Delete/{idTutoria:int}")]
+        [SessionAuthorize(Users = "3")]
+        public ActionResult GetOutOfCourse(int idTutoria)
+        {
+            var idAlumno = Engine.getIdAlumno(Session["controlNumber"].ToString());
+            Engine.DeleteStudent(idAlumno, idTutoria);
+            return RedirectToAction("Index", "Tutorias");
+        }
     }
 }

@@ -3,6 +3,7 @@
     ViewBag.Title = "Tutoria Cursando";
     ViewBag.MainBreadcrumb = "Tutoria";
     ViewBag.ChildBreadCrumb = "Cursando";
+    ViewBag.ActiveTutorias = "active";
     Layout = "~/Views/Shared/_LayoutTutorias.cshtml";
 }
 
@@ -19,19 +20,28 @@
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>Carrera</th>
-                        <th>Dar de baja</th>
+                        @if (Session["level"].ToString() == "1")
+                        {
+                            <th>Dar de baja</th>
+                        }
                     </tr>
                 </thead>
                 <tfoot>
                     @foreach (var alumno in Model)
                     {
+                        if (alumno.IdAlumno != -1)
+                        {
                         <tr>
                             <td>@alumno.Alumno.noControl</td>
                             <td>@alumno.Alumno.Nombre</td>
                             <td>@alumno.Alumno.ApellidoP</td>
                             <td>@alumno.Alumno.Carrera.NombreCarrera</td>
-                            <td><a href="/Tutorias/Delete/@alumno.IdTutoria/@alumno.IdAlumno" style="color:red">Dar De Baja</a></td>
+                            @if (Session["level"].ToString() == "1")
+                            {
+                                <td><a href="/Tutorias/Delete/@alumno.IdAlumno/@alumno.IdTutoria" style="color:red">Dar De Baja</a></td>
+                            }
                         </tr>
+                        }
                     }
                 </tfoot>
             </table>
