@@ -73,11 +73,20 @@
     <div class="col-sm-3" style="margin:10px;">
         <label>Seleccionar Tutor:</label>
         <select class="form-control" id="Tutor">
-            @foreach (var tutor in Model.Item2)
+            @if (Session["Level"].ToString() == "2")
             {
-                <option value="@tutor.Id">
-                    @tutor.Loginn.Maestro.FirstOrDefault().Nombre @tutor.Loginn.Maestro.FirstOrDefault().ApellidoP
+                <option value="-1">
+                    @Session["controlNumber"].ToString()
                 </option>
+            }
+            else
+            {
+                foreach (var tutor in Model.Item2)
+                {
+                    <option value="@tutor.Id">
+                        @tutor.Loginn.Maestro.FirstOrDefault().Nombre @tutor.Loginn.Maestro.FirstOrDefault().ApellidoP
+                    </option>
+                }
             }
         </select>
     </div>

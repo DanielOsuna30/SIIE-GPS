@@ -661,6 +661,8 @@
     <Content Include="Views\Tutorias\ListaTutoriasImpartidas.cshtml" />
     <Content Include="Views\Tutorias\ListaRecomendaciones.cshtml" />
     <Content Include="Views\Tutorias\ListaRecomendacionesPersonal.cshtml" />
+    <Content Include="Views\Tutorias\ListaImpartiendo.cshtml" />
+    <Content Include="Views\Tutorias\AsignarCalifaciones.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

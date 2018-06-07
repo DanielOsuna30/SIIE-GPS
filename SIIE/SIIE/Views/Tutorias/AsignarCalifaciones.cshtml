@@ -1,0 +1,64 @@
+﻿@model IEnumerable<SIIE.Models.AlumnosTutoriaRelationship>
+
+@{
+    ViewBag.Title = "AsignarCalifaciones";
+    Layout = "~/Views/Shared/_LayoutTutorias.cshtml";
+}
+<script>
+    $(document).ready(function () {
+        $(".saveCal").click(function () {
+            var id = $(this).val();
+            var alumno=$('#idAlumno' + id).val();
+            var tutoria= $('#idTutoria' + id).val();
+            var calificacion=$('#calificacion' + id).val()
+                $.ajax({
+                    url: '/Tutorias/Tutores/Calificaciones/Actualizar',
+                    type: 'POST',
+                    dataType: 'json',
+                    cache: false,
+                    data: {
+                        idAlumno: alumno,
+                        idTutoria: tutoria,
+                        calificacion: calificacion,
+                    },
+                    success: function (data) {
+                        alert("Calificacion Actualizada");
+                    }
+                });
+        });
+
+    });
+</script>
+
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i>&nbsp; Asignar Calificaciones
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Alumno</th>
+                        <th width="10%">Calificacion</th>
+                        <th width="15%"></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    @foreach (var materia in Model)
+                    {
+                        <tr>
+                            <td >@materia.Tutorias.Name</td>
+                            <td hidden><input id="@string.Format("idTutoria{0}",materia.IdAlumno)" value="@materia.IdTutoria" /></td>
+                            <td >@materia.Alumno.ApellidoP @materia.Alumno.Nombre</td>
+                            <td hidden><input id="@string.Format("idAlumno{0}",materia.IdAlumno)" value="@materia.IdAlumno" /></td>
+                            <td><input type="number" class="form-control" id="@string.Format("calificacion{0}",materia.IdAlumno)" value="@materia.Calificacion" /></td>
+                            <td><button class="saveCal form-control btn btn-primary" value="@materia.IdAlumno">Guardar</button></td>
+                        </tr>
+                    }
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

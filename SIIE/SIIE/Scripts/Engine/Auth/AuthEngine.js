@@ -12,7 +12,7 @@
             success: function (response) {
                 $('#loginButton').css('disabled', false);
                 if (response.status == 200)
-                    window.location.href = "/";
+                    window.location.href = "/Tutorias/List";
                 else
                     alert("Usuario o contraseña incorrecto")
             }

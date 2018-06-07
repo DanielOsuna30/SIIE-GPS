@@ -44,6 +44,31 @@ namespace SIIE.Controllers
             return View(listTutorias);
         }
 
+        [Route("Tutores/Impartiendo")]
+        [SessionAuthorize(Users ="2")]
+        public ActionResult ListaImpartiendo()
+        {
+            var tutorId = Session["controlNumber"].ToString();
+            var tutorias=Engine.getTutoriasImpartidas(tutorId);
+            return View(tutorias);
+        }
+
+        [Route("Tutores/Calificaciones/{idTutoria:int}")]
+        [SessionAuthorize(Users = "2")]
+        public ActionResult AsignarCalifaciones(int idTutoria)
+        {
+            var calificaciones = Engine.GetCalificaciones(idTutoria);
+            return View(calificaciones);
+        }
+
+        [Route("Tutores/Calificaciones/Actualizar")]
+        [SessionAuthorize(Users ="2"),HttpPost]
+        public JsonResult AsignarCalificacion(int idAlumno, int idTutoria, int Calificacion)
+        {
+            var result = Engine.SetCalificacion(idTutoria, idAlumno, Calificacion);
+            return Json(new { response = result }, JsonRequestBehavior.AllowGet);
+        }
+
         //Tutorados
 
         [Route("Tutorados/Details")]
@@ -107,7 +132,8 @@ namespace SIIE.Controllers
         [SessionAuthorize(Users = "1,2")]
         public JsonResult CrearTutoria(int idTutor, int idMateria, string name, string lunes, string martes, string miercoles, string jueves, string viernes)
         {
-            var response = Engine.createGroup(idTutor, idMateria, name, lunes, martes, miercoles, jueves, viernes);
+            var maestro = Session["controlNumber"].ToString();
+            var response = Engine.createGroup(idTutor, idMateria, name, lunes, martes, miercoles, jueves, viernes,maestro);
             return Json(new { message = response }, JsonRequestBehavior.AllowGet);
         }
 

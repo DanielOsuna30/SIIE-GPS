@@ -26,7 +26,7 @@ namespace SIIE.Controllers
         [SessionAuthorize(Users = "3")]
         public JsonResult SemesterSchedule()
         {
-            StudentEngine = new StudentEngine(Convert.ToInt32(Session["controlNumber"]));
+            StudentEngine = new StudentEngine(Session["controlNumber"].ToString());
             var S=StudentEngine.getSchedule();
             return Json(S);
         }
@@ -35,7 +35,7 @@ namespace SIIE.Controllers
         [SessionAuthorize(Users ="1,2")]
         public JsonResult SemesterSchedule(int controlNumber)
         {
-            StudentEngine = new StudentEngine(controlNumber);
+            StudentEngine = new StudentEngine(controlNumber.ToString());
             var Schedule=StudentEngine.getSchedule();
             return Json(Schedule);
         }
@@ -44,7 +44,7 @@ namespace SIIE.Controllers
         [SessionAuthorize(Users ="3")]
         public ActionResult AcademicHistory()
         {
-            StudentEngine = new StudentEngine(Convert.ToInt32(Session["controlNumber"]));
+            StudentEngine = new StudentEngine(Session["controlNumber"].ToString());
             var AH = StudentEngine.getAcademicHistory();
             return View(AH);
         }
@@ -53,7 +53,7 @@ namespace SIIE.Controllers
         [SessionAuthorize(Users = "1,2")]
         public JsonResult AcademicHistory(int controlNumber)
         {
-            StudentEngine = new StudentEngine(controlNumber);
+            StudentEngine = new StudentEngine(controlNumber.ToString());
             var AH = StudentEngine.getAcademicHistory();
             return Json(AH);
         }

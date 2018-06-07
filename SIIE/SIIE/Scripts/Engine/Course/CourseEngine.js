@@ -15,7 +15,8 @@
             PhoneNumber: $('#PhoneNumber').val(),
             Email: $('#Email').val(),
             CivilStatus: $('#CivilStatus').val(),
-            Password: $('#Password').val()
+            Password: $('#Password').val(),
+            Level:3
         }
         $.ajax({
             url: '/Inscripcion',

@@ -55,6 +55,32 @@ namespace SIIE.Controllers.Engine
             return db.Tutorias.Where(x => x.TutorId == id).ToList();
         }
 
+        public List<Tutorias> getTutoriasImpartidas(string tutorId)
+        {
+            return db.Tutorias.Where(x => x.Tutores.UserId == tutorId).ToList();
+        }
+
+        public List<AlumnosTutoriaRelationship> GetCalificaciones(int idTutoria)
+        {
+            return db.AlumnosTutoriaRelationship.Where(x => x.IdTutoria == idTutoria).ToList();
+        }
+
+        public bool SetCalificacion(int idTutoria, int idAlumno, int calificacion)
+        {
+            try
+            {
+                var rel = db.AlumnosTutoriaRelationship.FirstOrDefault(x => x.IdAlumno == idAlumno && x.IdTutoria == idTutoria);
+                rel.Calificacion = calificacion;
+                db.Entry(rel).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
         public List<Tutorias> getRecomendaciones(int id)
         {
             var materias = db.Alumno.FirstOrDefault(x => x.idAlumno == id).Cursando.ToList().OrderBy(x=>x.idMateria);
@@ -96,8 +122,22 @@ namespace SIIE.Controllers.Engine
             return list;
         }
 
-        public string createGroup(int idTutor,int idMateria, string name,string lunes, string martes, string miercoles, string jueves, string viernes)
+        public string createGroup(int idTutor,int idMateria, string name,string lunes, string martes, string miercoles, string jueves, string viernes, string maestroId)
         {
+            if(idTutor==-1)
+            {
+                var Tutor = db.Tutores.FirstOrDefault(x => x.UserId == maestroId);
+                if(Tutor==null)
+                {
+                    Tutor = new Tutores
+                    {
+                        UserId = maestroId
+                    };
+                    db.Tutores.Add(Tutor);
+                    db.SaveChanges();
+                }
+                idTutor = Tutor.Id;
+            }
             var group = new Tutorias { MateriaId = idMateria, TutorId = idTutor, Name = name };
             if (db.Tutorias.FirstOrDefault(x => x.MateriaId == idMateria && x.TutorId == idTutor) == null)
             {

@@ -21,12 +21,23 @@
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <img id="loguito" style="width:80px;margin-right:10px " src="~/Content/Images/Logo_Mesa de trabajo 1.png" alt="">
-    <a class="navbar-brand" href="/Tutorias/List">Sistema De Tutorias - @Session["controlNumber"].ToString() </a>
+      @switch (Session["level"].ToString())
+      {
+          case "1":
+            <a class="navbar-brand" href="/Tutorias/List">Sistema De Tutorias - Administrador </a>
+              break;
+          case "2":
+            <a class="navbar-brand" href="/Tutorias/List">Sistema De Tutorias - Maestro </a>
+              break;
+          case "3":
+            <a class="navbar-brand" href="/Tutorias/List">Sistema De Tutorias - Alumno </a>
+              break;
+      }
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+      <ul class="navbar-nav navbar-sidenav" style="padding-top:20px" id="exampleAccordion">
           @if (Session["level"].ToString() == "3")
           {
                 <li class="nav-item @ViewBag.ActiveCursando " data-toggle="tooltip" data-placement="right" title="Charts">
@@ -42,6 +53,15 @@
                     </a>
                 </li>
           }
+        @if (Session["level"].ToString() == "2")
+        {
+            <li class="nav-item @ViewBag.ActiveCursando " data-toggle="tooltip" data-placement="right" title="Charts">
+                <a class="nav-link" href="/Tutorias/Tutores/Impartiendo">
+                    <i class="fa fa-calendar"></i>
+                    <span class="nav-link-text">Impartiendo</span>
+                </a>
+            </li>
+        }
         <li class="nav-item @ViewBag.ActiveTutorias" data-toggle="tooltip" data-placement="right" title="Charts">
           <a class="nav-link" href="/Tutorias/List">
             <i class="fa fa-calendar"></i>
@@ -54,7 +74,7 @@
             <span class="nav-link-text">Tutores</span>
           </a>
         </li>
-        @if (Session["level"].ToString() != "3")
+        @if (Session["level"].ToString() == "1")
         {
         <li class="nav-item @ViewBag.ActiveTutorados" data-toggle="tooltip" data-placement="right" title="Link">
           <a class="nav-link" href="/Tutorias/Tutorados">
@@ -68,7 +88,10 @@
         <li class="nav-item">
         </li>
       </ul>
-      <ul class="navbar-nav ml-auto">          
+      <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link"> @Session["controlNumber"].ToString() </a>
+          </li>          
         <li class="nav-item">
           <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
             <i class="fa fa-fw fa-sign-out"></i>Cerrar Sesion</a>

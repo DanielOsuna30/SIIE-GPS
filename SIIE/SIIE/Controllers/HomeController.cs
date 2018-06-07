@@ -25,7 +25,7 @@ namespace SIIE.Controllers
             }
             else
             {
-                StudentEngine = new StudentEngine(Convert.ToInt32(Session["controlNumber"]));
+                StudentEngine = new StudentEngine(Session["controlNumber"].ToString());
                 var Data = StudentEngine.UserData();
                 var Schedule = StudentEngine.getSchedule();
                 return View(Tuple.Create(Schedule, Data));

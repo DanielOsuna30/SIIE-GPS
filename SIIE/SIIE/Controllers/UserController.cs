@@ -36,7 +36,7 @@ namespace SIIE.Controllers
         [SessionAuthorize]
         public JsonResult Get()
         {
-            SEngine = new StudentEngine(Convert.ToInt32(Session["controlNumber"]));
+            SEngine = new StudentEngine(Session["controlNumber"].ToString());
             var Data =SEngine.UserData();
             var json = JsonConvert.SerializeObject(Data);
             return Json(json, JsonRequestBehavior.AllowGet);
@@ -51,7 +51,7 @@ namespace SIIE.Controllers
         [SessionAuthorize(Users ="1,2")]
         public JsonResult Get(int controlNumber)
         {
-            SEngine = new StudentEngine(controlNumber);
+            SEngine = new StudentEngine(controlNumber.ToString());
             var data = SEngine.UserData();
             return Json(new { data=data, success = true, status = HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
         }
@@ -107,7 +107,7 @@ namespace SIIE.Controllers
         [SessionAuthorize(Users ="3")]
         public JsonResult Patch(UserData Data)
         {
-            SEngine = new StudentEngine(Convert.ToInt32(Session["controlNumber"]));
+            SEngine = new StudentEngine(Session["controlNumber"].ToString());
             var status = SEngine.Update(Data);
             return Json(new { success = true,status=HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
         }
@@ -123,7 +123,7 @@ namespace SIIE.Controllers
         [SessionAuthorize(Users = "1")]
         public JsonResult Patch(int controlNumber,UserData Data)
         {
-            SEngine = new StudentEngine(controlNumber);
+            SEngine = new StudentEngine(controlNumber.ToString());
             var status = SEngine.Update(Data);
             return Json(new { success = true, status = HttpStatusCode.OK }, JsonRequestBehavior.AllowGet);
         }
@@ -136,7 +136,7 @@ namespace SIIE.Controllers
         [SessionAuthorize(Users ="1")]
         public JsonResult Delete(int controlNumber)
         {
-            SEngine = new StudentEngine(controlNumber);
+            SEngine = new StudentEngine(controlNumber.ToString());
             SEngine.Delete();
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
